@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const port = 2000;
+const auth = require('./routes/authr')
 
 // env config
 require('dotenv').config();
@@ -16,6 +17,8 @@ app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+app.use('/api',auth)
+
 app.get('/', (req, res) => {
     res.json({
         requestHeaders: req.headers,
@@ -27,7 +30,9 @@ app.get('/', (req, res) => {
 
 app.use((err, req, res, next) => {
     res.json({
-        message: 'Some Error Occurred'
+        error:true,
+        message: err,
+        errorMeassage: 'Some Internal Error Ocured'
     });
 });
 

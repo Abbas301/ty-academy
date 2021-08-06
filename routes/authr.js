@@ -15,12 +15,12 @@ router.get('/register',auth, async (req, res) => {
     res.send(user);
 })
 
-router.get('/getotp',auth, async (req, res) => {
+router.get('/getotp', async (req, res) => {
     const otp = await Otp.find();
     res.send(otp);
 })
 
-router.post('/register',auth,sendMail)
+router.post('/register',sendMail)
 
 router.post('/login',login);
 
@@ -42,22 +42,24 @@ router.delete('/otp/:id', async (req, res) => {
     res.send(`user deleted successfully ${user}`)
 })
 
-const http =  require('http');
+const https =  require('https');
 
 router.post('/auth/facebook',(req,res,next) => {
+    console.log(req.body.authToken);
     const options = {
         hostname:'graph.facebook.com',
         port:443,
         path:'/me?access_token=' + req.body.authToken,
         method:'GET'
     };
-    const request = http.get(options,responce => {
+    const request = https.get(options,responce => {
         responce.on('data', function (user){
             user = JSON.parse(user.toString());
             console.log(user);
         })
     })
     request.on('error',(message) => {
+        console.log('error from requst');
         console.error(message);
     });
     request.end();

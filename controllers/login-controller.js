@@ -47,7 +47,7 @@ async function login(req, res,next) {
             return res.status(400).send({error:true,errorMessage:'Invalid Password'});
         }
         const token = jwt.sign({ _id: user._id }, 'jwtPrivateKey');
-        res.header('x-auth-token', token).send({error:false,message:`${newUser.email} has been Verified Succesfully`});
+        res.header('x-auth-token', token).send({error:false,message:`${user.email} has been Verified Succesfully`});
     }
 }
 

@@ -14,6 +14,7 @@ async function verifyOtp(req, res,next) {
             await Register.findByIdAndUpdate(userNew._id, {
                 isEmailVerified: true,
             },{ new: true })
+            await Otp.findByIdAndDelete(user._id);
             res.status(200).send({error:false,message:'User Successfully Verified'})
         } else {
             res.status(400).send({error:true,message:'Invalid OTP'})

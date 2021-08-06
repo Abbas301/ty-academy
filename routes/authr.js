@@ -10,7 +10,7 @@ const {resetMail} = require('../controllers/password-reset-controller')
 const {otpVerify} = require('../controllers/verify-otp-controller')
 const {resetPassword} = require('../controllers/reset-password-controller')
 
-router.get('/register',auth, async (req, res) => {
+router.get('/register', async (req, res) => {
     const user = await Register.find();
     res.send(user);
 })

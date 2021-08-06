@@ -7,13 +7,12 @@ const Register = mongoose.model('Register', new mongoose.Schema({
         maxlength: 30,
         required: true
     },
-    password: {
+    co: {
         type: String,
         required: true
     },
     phoneNumber: {
         type: Number,
-        required: true
     },
     isEmailVerified: {
         type: Boolean,
@@ -45,7 +44,7 @@ function validateUser(user) {
     const schema = {
         email: Joi.string().max(30).required().email(),
         password: Joi.string().required(),
-        phoneNumber: Joi.number().required(),
+        phoneNumber: Joi.number(),
       
     }
     return Joi.validate(user,schema )

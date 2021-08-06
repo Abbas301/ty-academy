@@ -10,7 +10,7 @@ const {reSendMail} = require('../controllers/resend-mail-controller')
 const {verifyOtp} = require('../controllers/verify-controller')
 const {login} = require('../controllers/login-controller')
 
-router.get('/register',auth, async (req, res) => {
+router.get('/register', async (req, res) => {
     const user = await Register.find();
     res.send(user);
 })

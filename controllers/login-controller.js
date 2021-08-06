@@ -1,6 +1,7 @@
 const { validate, Register } = require('../models/authm');
 const _ = require('lodash');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 async function login(req, res) {
     const { error } = validate(req.body);
@@ -16,7 +17,7 @@ async function login(req, res) {
         return res.status(400).send('Invalid email or Password');
     }
     const token = jwt.sign({ _id: user._id }, 'jwtPrivateKey');
-    res.send(token)
+    res.send({error:false,message:"user verified successfully",token:token})
 }
 
 module.exports.login = login;

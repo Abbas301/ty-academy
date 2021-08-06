@@ -49,11 +49,6 @@ async function login(req, res,next) {
         const token = jwt.sign({ _id: user._id }, 'jwtPrivateKey');
         res.header('x-auth-token', token).send({error:false,message:`${user.email} has been Verified Succesfully`});
     }
-<<<<<<< HEAD
-    const token = jwt.sign({ _id: user._id }, 'jwtPrivateKey');
-    res.send({error:false,message:"user verified successfully",token:token})
-=======
->>>>>>> 46f24c692c5e8f8cacb8309d4b957c98f7a67c34
 }
 
 module.exports.login = login;

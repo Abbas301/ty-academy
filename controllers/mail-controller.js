@@ -12,7 +12,7 @@ async function sendMail(req,res,next) {
     }
     const userExist = await Register.findOne({ email: req.body.email })
     if (userExist) {
-        return res.status(400).send({error:true,errorMessage:'User already Registered'});
+        return res.status(400).send({error:true,errorMessage:'This User is already Registered'});
     }
     let user = new Register(_.pick(req.body, ['email', 'password', 'phoneNumber']))
     const salt = await bcrypt.genSalt(10);
@@ -35,7 +35,7 @@ async function sendMail(req,res,next) {
     };
     await  mailTransporter.sendMail(mailDetails,async function (err) {
         if (err) {
-            res.send({error:true,message:err.detalis[0].message})
+            next(err);
         }else {
             try {
                 const otpToken = jwt.sign({ emailOtp: random }, 'jwtPrivateKey', { expiresIn: '300s' });
@@ -48,9 +48,8 @@ async function sendMail(req,res,next) {
                 const user = await Register.findOne({email:req.body.email})
                 if(user) {
                     const token = jwt.sign({ _id: user._id }, 'jwtPrivateKey');
-                    res.header('x-auth-token', token).send({error:false,user:_.pick(user, ['_id', 'email', 'phoneNumber'])});
+                    res.header('x-auth-token', token).send({error:false,message:'User Registered sucessfully and email has been sent to user'});
                 }
-
             }catch(err) {
                 console.log(err);
             }

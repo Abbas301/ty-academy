@@ -1,19 +1,15 @@
-const { Register,Otp } = require('../models/authm')
+const { Otp } = require('../models/authm')
 const jwt = require('jsonwebtoken')
 
-async function verifyOtp(req, res,next) {
+async function otpVerify(req,res,next) {
     const user = await Otp.findOne({ email: req.body.email });
     const recivedOtp = req.body.emailOtp;
     if (!user) {
-        return res.status(400).send({error:true,message:'Invalid User Email-Id'});
+        return res.status(400).send({error:true,message:'Entered Email is invalid'});
     }
     try {
         const dbOtp = jwt.verify(user.emailOtp, 'jwtPrivateKey');
         if (dbOtp.emailOtp === recivedOtp) {
-            const userNew = await Register.findOne({ email: user.email });
-            await Register.findByIdAndUpdate(userNew._id, {
-                isEmailVerified: true,
-            },{ new: true })
             res.status(200).send({error:false,message:'User Successfully Verified'})
         } else {
             res.status(400).send({error:true,message:'Invalid OTP'})
@@ -22,4 +18,4 @@ async function verifyOtp(req, res,next) {
         next(err);
     }
 }
-module.exports.verifyOtp = verifyOtp;
+module.exports.otpVerify = otpVerify;

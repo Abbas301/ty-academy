@@ -7,12 +7,11 @@ const Register = mongoose.model('Register', new mongoose.Schema({
         maxlength: 30,
         required: true
     },
-    co: {
-        type: String,
-        required: true
+    password: {
+        type: String
     },
     phoneNumber: {
-        type: Number,
+        type: Number
     },
     isEmailVerified: {
         type: Boolean,
@@ -21,6 +20,10 @@ const Register = mongoose.model('Register', new mongoose.Schema({
     isPhoneVerified: {
         type: Boolean,
         default: false
+    },
+    role:{
+        type:String,
+        defalut:''
     }
 }))
 
@@ -49,6 +52,14 @@ function validateUser(user) {
     }
     return Joi.validate(user,schema )
 }
+
+// function validateTokenBody(token) {
+//     const tokenSchema = {
+//         authToken: Joi.string().required()
+//     }
+//     return Joi.validate(token,tokenSchema);
+// }
+// module.exports.validateTokenBody = validateTokenBody;
 
 module.exports.validate = validateUser;
 module.exports.Register = Register;

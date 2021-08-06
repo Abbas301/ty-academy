@@ -28,9 +28,7 @@ async function reSendMail(req,res) {
                     const otpToken = jwt.sign({ emailOtp: random }, 'jwtPrivateKey', { expiresIn: '300s' });
                     await Otp.findByIdAndUpdate(otpExists._id, {
                         emailOtp: otpToken,
-                        email: otpExists.email,
-                        phoneNumber: '',
-                        phoneNumberOtp: ''
+                        email: otpExists.email
                     }, { new: true });
                     res.status(200).send({error:false,message:"New OTP has been sent Succesfully"})
                 }

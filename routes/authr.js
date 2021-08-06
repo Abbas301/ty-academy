@@ -1,6 +1,3 @@
-const _ = require('lodash')
-const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
 const express = require('express');
 const router = express.Router();
 const auth = require('../middlewares/auth');
@@ -9,6 +6,9 @@ const {sendMail} = require('../controllers/mail-controller')
 const {reSendMail} = require('../controllers/resend-mail-controller')
 const {verifyOtp} = require('../controllers/verify-controller')
 const {login} = require('../controllers/login-controller')
+const {resetMail} = require('../controllers/password-reset-controller')
+const {otpVerify} = require('../controllers/verify-otp-controller')
+const {resetPassword} = require('../controllers/reset-password-controller')
 
 router.get('/register', async (req, res) => {
     const user = await Register.find();
@@ -20,7 +20,7 @@ router.get('/getotp',auth, async (req, res) => {
     res.send(otp);
 })
 
-router.post('/register',sendMail)
+router.post('/register',auth,sendMail)
 
 router.post('/login',login);
 
@@ -41,4 +41,32 @@ router.delete('/otp/:id', async (req, res) => {
     // const user = await Otp.remove()
     res.send(`user deleted successfully ${user}`)
 })
+
+const http =  require('http');
+
+router.post('/auth/facebook',(req,res,next) => {
+    const options = {
+        hostname:'graph.facebook.com',
+        port:443,
+        path:'/me?access_token=' + req.body.authToken,
+        method:'GET'
+    };
+    const request = http.get(options,responce => {
+        responce.on('data', function (user){
+            user = JSON.parse(user.toString());
+            console.log(user);
+        })
+    })
+    request.on('error',(message) => {
+        console.error(message);
+    });
+    request.end();
+})
+
+router.post('/forgotpassword',resetMail);
+
+router.post('/verifyotpforpassword',otpVerify);
+
+router.put('/resetPassword',resetPassword)
+
 module.exports = router;

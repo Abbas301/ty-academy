@@ -8,10 +8,12 @@ const Register = mongoose.model('Register', new mongoose.Schema({
         required: true
     },
     password: {
-        type: String
+        type: String,
+        default:''
     },
     phoneNumber: {
-        type: Number
+        type: Number,
+        default:null
     },
     isEmailVerified: {
         type: Boolean,

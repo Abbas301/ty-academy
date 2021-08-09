@@ -22,8 +22,8 @@ async function sendMail(req,res,next) {
     const mailTransporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: 'dudekulaabbas16@gmail.com',
-            pass: 'Abbas@301'
+            user: 'testmedifit@gmail.com',
+            pass: 'medifittest123'
         }
     });
     let random = Math.floor(100000 + Math.random() * 900000);
@@ -65,8 +65,8 @@ async function resetMail(req,res,next) {
     const mailTransporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: 'dudekulaabbas16@gmail.com',
-            pass: 'Abbas@301'
+            user: 'testmedifit@gmail.com',
+            pass: 'medifittest123'
         }
     });
     let random = Math.floor(100000 + Math.random() * 900000);
@@ -99,8 +99,8 @@ async function reSendMail(req,res) {
     const mailTransporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: 'dudekulaabbas16@gmail.com',
-            pass: 'Abbas@301'
+            user: 'testmedifit@gmail.com',
+            pass: 'medifittest123'
         }
     });
     let random = Math.floor(100000 + Math.random() * 900000);

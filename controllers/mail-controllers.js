@@ -28,7 +28,7 @@ async function sendMail(req,res,next) {
     });
     let random = Math.floor(100000 + Math.random() * 900000);
     let mailDetails = {
-        from: 'dudekulaabbas16@gmail.com',
+        from: 'testmedifit@gmail.com',
         to: req.body.email,
         subject: 'OTP For MediFit Login',
         text: `Otp for your verification ${random}`
@@ -71,7 +71,7 @@ async function resetMail(req,res,next) {
     });
     let random = Math.floor(100000 + Math.random() * 900000);
     let mailDetails = {
-        from: 'dudekulaabbas16@gmail.com',
+        from: 'testmedifit@gmail.com',
         to: req.body.email,
         subject: 'OTP Form MediFit',
         text: `Otp To Reset Your Password  ${random}`
@@ -105,7 +105,7 @@ async function reSendMail(req,res) {
     });
     let random = Math.floor(100000 + Math.random() * 900000);
     let mailDetails = {
-        from: 'dudekulaabbas16@gmail.com',
+        from: 'testmedifit@gmail.com',
         to: req.body.email,
         subject: 'OTP For MediFit Login',
         text: `New Otp for your verification ${random}`

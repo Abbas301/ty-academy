@@ -15,7 +15,7 @@ async function verifyOtp(req, res,next) {
                 isEmailVerified: true,
             },{ new: true })
             await Otp.findByIdAndDelete(user._id);
-            res.status(200).send({error:false,message:'User Successfully Verified'})
+            res.status(200).send({error:false,newUser:true,message:'User Successfully Verified'})
         } else {
             res.status(400).send({error:true,message:'Invalid OTP'})
         }
@@ -24,7 +24,7 @@ async function verifyOtp(req, res,next) {
     }
 }
 
-async function otpVerify(req,res,next) {
+async function resetOtpVerify(req,res,next) {
     const user = await Otp.findOne({ email: req.body.email });
     const recivedOtp = req.body.emailOtp;
     if (!user) {
@@ -34,7 +34,7 @@ async function otpVerify(req,res,next) {
         const dbOtp = jwt.verify(user.emailOtp, 'jwtPrivateKey');
         if (dbOtp.emailOtp === recivedOtp) {
             await Otp.findByIdAndDelete(user._id);
-            res.status(200).send({error:false,message:'User Successfully Verified'})
+            res.status(200).send({error:false,reset:true,message:'User Successfully Verified'})
         } else {
             res.status(400).send({error:true,message:'Invalid OTP'})
         }
@@ -43,5 +43,5 @@ async function otpVerify(req,res,next) {
     }
 }
 
-module.exports.otpVerify = otpVerify;
+module.exports.resetOtpVerify = resetOtpVerify;
 module.exports.verifyOtp = verifyOtp;

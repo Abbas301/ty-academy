@@ -7,6 +7,10 @@ const {reSendMail,resetMail,sendMail} = require('../controllers/mail-controllers
 const {login} = require('../controllers/login-controller')
 const {resetOtpVerify,verifyOtp} = require('../controllers/otp-verify-controllers')
 const {resetPassword} = require('../controllers/reset-password-controller')
+const {goals, putGoals} = require('../controllers/goals-controller')
+const {bodyFitness, putBodyFitness} = require('../controllers/bodyFitness-controller')
+const {Goals, BodyFitness} = require('../models/authm')
+
 
 router.get('/register', async (req, res) => {
     const user = await Register.find();
@@ -17,6 +21,20 @@ router.get('/getotp', async (req, res) => {
     const otp = await Otp.find();
     res.send(otp);
 })
+
+router.get('/goals',auth, async (req, res) => {
+    const goals = await Goals.find();
+    res.send(goals);
+})
+router.get('/bodyFitness',auth, async (req, res) => {
+    const bodyFitness = await BodyFitness.find();
+    res.send(bodyFitness);
+})
+
+router.post('/goals',auth, goals)
+router.put('/putGoals/:id', putGoals)
+router.post('/bodyFitness',auth, bodyFitness)
+router.put('/putBodyFitness/:id', putBodyFitness)
 
 router.post('/register',sendMail)
 

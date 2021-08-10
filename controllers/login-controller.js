@@ -4,13 +4,14 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
 const https = require('https');
 const {OAuth2Client} = require('google-auth-library');
-const CLIENT_ID = '587279546475-5ocljn07t366rpf942j5ul28o3os2q38.apps.googleusercontent.com';
+const CLIENT_ID = '587279546475-8kd6p4ltc9vbofjv6j1n6uuqdf0kfth8.apps.googleusercontent.com';
 const client = new OAuth2Client(CLIENT_ID);
 
 
 async function verify(token) {
     const ticket = await client.verifyIdToken({idToken: token, audience: CLIENT_ID});
     const payload = ticket.getPayload();
+    console.log(payload)
     return payload;
 }
 
@@ -20,13 +21,15 @@ async function login(req, res, next) {
             const userExist = await Register.findOne({email: user.email})
             if (userExist) {
                 const token = jwt.sign({_id: userExist._id}, 'jwtPrivateKey');
-                res.header('x-auth-token', token).send({error: false,isGoogle:true, message: `${newUser.email}  has been Verified Succesfully`});
+                res.header('x-auth-token', token).send({error: false,newUser:false, message: `${userExist.email}  has been Verified Succesfully`});
+            }else {
+                let newUser = new Register({email: user.email});
+                await newUser.save();
+                const token = jwt.sign({_id: newUser._id}, 'jwtPrivateKey');
+                res.header('x-auth-token', token).send({error: false,newUser:true, message: `${newUser.email}  has been Verified Succesfully`});
             }
-            let newUser = new Register({email: user.email});
-            await newUser.save();
-            const token = jwt.sign({_id: newUser._id}, 'jwtPrivateKey');
-            res.header('x-auth-token', token).send({error: false,isGoogle:true, message: `${newUser.email}  has been Verified Succesfully`});
         }).catch(err => {
+            console.error(err);
             next(err);
         })
     } else if (req.body.fbToken) {
@@ -46,12 +49,14 @@ async function login(req, res, next) {
                         const userExist = await Register.findOne({email: parsedUser.email})
                         if (userExist) {
                             const token = jwt.sign({ _id: userExist._id}, 'jwtPrivateKey');
-                            res.header('x-auth-token', token).send({error: false,isFb:true, message: `${newUser.email} has been Verified Succesfully`});
+                            res.header('x-auth-token', token).send({error: false,newUser:false, message: `${userExist.email} has been Verified Succesfully`});
+                        }else {
+                            let newUser = new Register({email: parsedUser.email});
+                            console.log(newUser)
+                            await newUser.save();
+                            const token = jwt.sign({ _id: newUser._id}, 'jwtPrivateKey');
+                            res.header('x-auth-token', token).send({error: false,newUser:true, message: `${newUser.email} has been Verified Succesfully`});
                         }
-                        let newUser = new Register({email: parsedUser.email});
-                        await newUser.save();
-                        const token = jwt.sign({ _id: newUser._id}, 'jwtPrivateKey');
-                        res.header('x-auth-token', token).send({error: false,isFb:true, message: `${newUser.email} has been Verified Succesfully`});
                     }
                 } catch (err) {
                     next(err);

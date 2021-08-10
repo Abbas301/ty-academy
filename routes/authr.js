@@ -5,10 +5,10 @@ const auth = require('../middlewares/auth');
 const { Register, Otp } = require('../models/authm')
 const {reSendMail,resetMail,sendMail} = require('../controllers/mail-controllers')
 const {login} = require('../controllers/login-controller')
-const {otpVerify,verifyOtp} = require('../controllers/otp-verify-controllers')
+const {resetOtpVerify,verifyOtp} = require('../controllers/otp-verify-controllers')
 const {resetPassword} = require('../controllers/reset-password-controller')
 
-router.get('/register',auth, async (req, res) => {
+router.get('/register', async (req, res) => {
     const user = await Register.find();
     res.send(user);
 })
@@ -42,7 +42,7 @@ router.delete('/otp/:id', async (req, res) => {
 
 router.post('/forgotpassword',resetMail);
 
-router.post('/verifyotpforpassword',otpVerify);
+router.post('/verifyotpforpassword',resetOtpVerify);
 
 router.put('/resetPassword',resetPassword);
 

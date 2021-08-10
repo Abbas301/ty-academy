@@ -35,10 +35,18 @@ async function sendMail(req,res,next) {
     };
     await  mailTransporter.sendMail(mailDetails,async function (err) {
         if (err) {
-            next(err);
+            try{
+                const userExist = await Register.findOne({ email: req.body.email })
+                if (userExist) {
+                    await Register.findByIdAndRemove(userExist._id);
+                }
+            }catch (err){
+                next(err);
+            }
+             next(err);
         }else {
             try {
-                const otpToken = jwt.sign({ emailOtp: random }, 'jwtPrivateKey', { expiresIn: '300s' });
+                const otpToken = jwt.sign({ emailOtp: random }, 'jwtPrivateKey', { expiresIn: '600s' });
                 const otp = new Otp({
                     email: req.body.email,
                     phoneNumber: '',
@@ -51,6 +59,14 @@ async function sendMail(req,res,next) {
                     res.header('x-auth-token', token).send({error:false,message:'User Registered sucessfully and email has been sent to user'});
                 }
             }catch(err) {
+                try{
+                    const userExist = await Register.findOne({ email: req.body.email })
+                    if (userExist) {
+                        await Register.findByIdAndRemove(userExist._id);
+                    }
+                }catch (err){
+                    next(err);
+                }
                 next(err);
             }
         }
@@ -78,7 +94,15 @@ async function resetMail(req,res,next) {
     };
     await  mailTransporter.sendMail(mailDetails,async function (err) {
         if (err) {
-            res.send({error:true,message:err.detalis[0].message})
+            try{
+                const userExist = await Register.findOne({ email: req.body.email })
+                if (userExist) {
+                    await Register.findByIdAndRemove(userExist._id);
+                }
+            }catch (err){
+                next(err);
+            }
+             next(err);
         }else {
             try {
                 const otpToken = jwt.sign({ emailOtp: random }, 'jwtPrivateKey', { expiresIn: '300s' });
@@ -89,13 +113,21 @@ async function resetMail(req,res,next) {
                 await otp.save();
                 res.send({error:false,message:`OTP has Been Successfully Sent To ${req.body.email}`})
             }catch(err) {
+                try{
+                    const userExist = await Register.findOne({ email: req.body.email })
+                    if (userExist) {
+                        await Register.findByIdAndRemove(userExist._id);
+                    }
+                }catch (err){
+                    next(err);
+                }
                 next(err);
             }
         }
     })
 }
 
-async function reSendMail(req,res) {
+async function reSendMail(req,res,next) {
     const mailTransporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -112,7 +144,15 @@ async function reSendMail(req,res) {
     };
     await  mailTransporter.sendMail(mailDetails,async function (err) {
         if (err) {
-            res.send({error:true,message:err.detalis[0].message})
+            try{
+                const userExist = await Register.findOne({ email: req.body.email })
+                if (userExist) {
+                    await Register.findByIdAndRemove(userExist._id);
+                }
+            }catch (err){
+                next(err);
+            }
+             next(err);
         }else {
             try {
                 let otpExists = await Otp.findOne({ email: req.body.email })
@@ -125,6 +165,14 @@ async function reSendMail(req,res) {
                     res.status(200).send({error:false,message:"New OTP has been sent Succesfully"})
                 }
             }catch(err) {
+                try{
+                    const userExist = await Register.findOne({ email: req.body.email })
+                    if (userExist) {
+                        await Register.findByIdAndRemove(userExist._id);
+                    }
+                }catch (err){
+                    next(err);
+                }
                 next(err);
             }
         }

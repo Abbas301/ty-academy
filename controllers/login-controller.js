@@ -19,7 +19,8 @@ async function login(req, res, next) {
         verify(req.body.googleToken).then(async (user) => {
             const userExist = await Register.findOne({email: user.email})
             if (userExist) {
-                return res.status(400).send({error: true, errorMessage: 'User already Registered'});
+                const token = jwt.sign({_id: userExist._id}, 'jwtPrivateKey');
+                res.header('x-auth-token', token).send({error: false,isGoogle:true, message: `${newUser.email}  has been Verified Succesfully`});
             }
             let newUser = new Register({email: user.email});
             await newUser.save();
@@ -44,7 +45,8 @@ async function login(req, res, next) {
                     } else {
                         const userExist = await Register.findOne({email: parsedUser.email})
                         if (userExist) {
-                            return res.status(400).send({error: true, errorMessage: 'This Email-Id Already Exists'});
+                            const token = jwt.sign({ _id: userExist._id}, 'jwtPrivateKey');
+                            res.header('x-auth-token', token).send({error: false,isFb:true, message: `${newUser.email} has been Verified Succesfully`});
                         }
                         let newUser = new Register({email: parsedUser.email});
                         await newUser.save();
@@ -57,7 +59,7 @@ async function login(req, res, next) {
             })
         })
         request.on('error', (err) => {
-            console.error(err);
+            // console.error(err);
             next(err);
         });
         request.end();

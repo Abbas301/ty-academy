@@ -1,6 +1,7 @@
 const { validate, Register } = require('../models/authm');
 const _ = require('lodash');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 async function login(req, res) {
     const { error } = validate(req.body);

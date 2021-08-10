@@ -24,7 +24,7 @@ async function login(req, res, next) {
             let newUser = new Register({email: user.email});
             await newUser.save();
             const token = jwt.sign({_id: newUser._id}, 'jwtPrivateKey');
-            res.header('x-auth-token', token).send({error: false, message: `${newUser.email}  has been Verified Succesfully`});
+            res.header('x-auth-token', token).send({error: false,isGoogle:true, message: `${newUser.email}  has been Verified Succesfully`});
         }).catch(err => {
             next(err);
         })
@@ -49,7 +49,7 @@ async function login(req, res, next) {
                         let newUser = new Register({email: parsedUser.email});
                         await newUser.save();
                         const token = jwt.sign({ _id: newUser._id}, 'jwtPrivateKey');
-                        res.header('x-auth-token', token).send({error: false, message: `${newUser.email} has been Verified Succesfully`});
+                        res.header('x-auth-token', token).send({error: false,isFb:true, message: `${newUser.email} has been Verified Succesfully`});
                     }
                 } catch (err) {
                     next(err);

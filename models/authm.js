@@ -45,6 +45,8 @@ const Otp = mongoose.model('Otp', new mongoose.Schema({
     }
 }))
 
+
+
 function validateUser(user) {
     const schema = {
         email: Joi.string().max(30).required().email(),

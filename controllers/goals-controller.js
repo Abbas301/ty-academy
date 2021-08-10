@@ -1,4 +1,4 @@
-const {Validate, Goals} = require('../models/authm');
+const {Validate, Goals} = require('../models/goalsm');
 const _ = require('lodash');
 
 async function goals(req, res) {

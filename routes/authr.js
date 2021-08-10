@@ -9,7 +9,7 @@ const {resetOtpVerify,verifyOtp} = require('../controllers/otp-verify-controller
 const {resetPassword} = require('../controllers/reset-password-controller')
 const {goals, putGoals} = require('../controllers/goals-controller')
 const {bodyFitness, putBodyFitness} = require('../controllers/bodyFitness-controller')
-const {Goals, BodyFitness} = require('../models/authm')
+const {Goals, BodyFitness} = require('../models/goalsm')
 
 
 router.get('/register', async (req, res) => {

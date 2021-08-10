@@ -1,4 +1,4 @@
-const {bodyFitnessValidate, BodyFitness} = require('../models/authm');
+const {bodyFitnessValidate, BodyFitness} = require('../models/goalsm');
 
 async function bodyFitness(req, res) {
     try {

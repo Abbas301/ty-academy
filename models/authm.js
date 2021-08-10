@@ -9,11 +9,11 @@ const Register = mongoose.model('Register', new mongoose.Schema({
     },
     password: {
         type: String,
-        required: true
+        default:''
     },
     phoneNumber: {
         type: Number,
-        required: true
+        default:null
     },
     isEmailVerified: {
         type: Boolean,
@@ -22,6 +22,10 @@ const Register = mongoose.model('Register', new mongoose.Schema({
     isPhoneVerified: {
         type: Boolean,
         default: false
+    },
+    role:{
+        type:String,
+        defalut:''
     }
 }))
 
@@ -41,12 +45,13 @@ const Otp = mongoose.model('Otp', new mongoose.Schema({
     }
 }))
 
+
+
 function validateUser(user) {
     const schema = {
         email: Joi.string().max(30).required().email(),
         password: Joi.string().required(),
-        phoneNumber: Joi.number().required(),
-      
+        phoneNumber: Joi.number(),
     }
     return Joi.validate(user,schema )
 }

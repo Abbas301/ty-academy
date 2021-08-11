@@ -43,15 +43,15 @@ router.put('/putGoals/:id',auth, putGoals)
 router.post('/bodyFitness',auth, bodyFitness)
 router.put('/putBodyFitness/:id',auth, putBodyFitness)
 
-router.post('/register',auth,sendMail)
+router.post('/register',sendMail)
 
-router.post('/login',auth,login);
+router.post('/login',login);
 
-router.put('/resendotp',auth,reSendMail)
+router.put('/resendotp',reSendMail)
 
-router.put('/verify',auth,verifyOtp )
+router.put('/verify',verifyOtp )
 
-router.post('/details',auth,userDetails)
+router.post('/details',userDetails)
 
 router.put('/details/:id',auth,updateDetails)
 
@@ -77,10 +77,10 @@ router.delete('/details/:id',auth, async (req, res) => {
     res.send(user);
 })
 
-router.post('/forgotpassword',auth,resetMail);
+router.post('/forgotpassword',resetMail);
 
-router.post('/verifyotpforpassword',auth,resetOtpVerify);
+router.post('/verifyotpforpassword',resetOtpVerify);
 
-router.put('/resetPassword',auth,resetPassword);
+router.put('/resetPassword',resetPassword);
 
 module.exports = router;

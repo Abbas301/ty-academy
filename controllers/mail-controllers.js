@@ -27,11 +27,13 @@ async function sendMail(req,res,next) {
         }
     });
     let random = Math.floor(100000 + Math.random() * 900000);
+    const password = await bcrypt.compare(req.body.password, user.password)
     let mailDetails = {
         from: 'testmedifit@gmail.com',
         to: req.body.email,
         subject: 'OTP For MediFit Login',
-        text: `Otp for your verification ${random}`
+        html: `<b>Hello, <strong>${user.email},</strong><br><br> Your password for this account is :<b>${req.body.password}</b></p><br><br><p><strong>Otp</strong> for your account verification is <strong> ${random}</strong></p>`
+
     };
     await  mailTransporter.sendMail(mailDetails,async function (err) {
         if (err) {

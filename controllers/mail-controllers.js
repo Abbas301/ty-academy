@@ -14,7 +14,11 @@ async function sendMail(req,res,next) {
     if (userExist) {
         return res.status(400).send({error:true,errorMessage:'This User is already Registered'});
     }
-    let user = new Register(_.pick(req.body, ['email', 'password', 'phoneNumber']))
+<<<<<<< HEAD
+    let user = new Register(_.pick(req.body, ['email', 'password', 'phoneNumber','getUpdates']))
+=======
+    let user = new Register(_.pick(req.body, ['email', 'password', 'phoneNumber','role']))
+>>>>>>> cfbbef6bfc873250d52c516bf91c7b9bff3501e7
     const salt = await bcrypt.genSalt(10);
     user.password = await bcrypt.hash(user.password, salt);
     await user.save();
@@ -22,16 +26,26 @@ async function sendMail(req,res,next) {
     const mailTransporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: 'testmedifit@gmail.com',
+            user: 'testmedifit@gmail.com', 
             pass: 'medifittest123'
         }
     });
     let random = Math.floor(100000 + Math.random() * 900000);
+    const password = await bcrypt.compare(req.body.password, user.password)
     let mailDetails = {
         from: 'testmedifit@gmail.com',
         to: req.body.email,
         subject: 'OTP For MediFit Login',
-        text: `Otp for your verification ${random}`
+<<<<<<< HEAD
+        html : `<b>Hello, <strong>${user.email}</strong><br><br><br>
+        You are successfully registered for Medifit Application<br><br>
+        Your Login Credentials:<br><br>
+        <strong>Email-Id : ${user.email}</strong><br>
+        <strong>password :${req.body.password }</strong><br><br>
+        Otp for your verification ${random}`
+=======
+        html: `<b>Hello, <strong>${user.email}, you have successfully registred for </strong><br><br> Your password for this account is :<b>${req.body.password}</b></p><br><br><p><strong>Otp</strong> for your account verification is <strong> ${random}</strong></p>`
+>>>>>>> cfbbef6bfc873250d52c516bf91c7b9bff3501e7
     };
     await  mailTransporter.sendMail(mailDetails,async function (err) {
         if (err) {
@@ -90,7 +104,8 @@ async function resetMail(req,res,next) {
         from: 'testmedifit@gmail.com',
         to: req.body.email,
         subject: 'OTP Form MediFit',
-        text: `Otp To Reset Your Password  ${random}`
+        html : `<b>Hello, <strong>${user.email}</strong><br><br>
+        <p>OTP To reset your password <strong>${random}</strong></p>`
     };
     await  mailTransporter.sendMail(mailDetails,async function (err) {
         if (err) {

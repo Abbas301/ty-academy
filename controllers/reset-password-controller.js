@@ -10,7 +10,8 @@ async function resetPassword(req,res) {
     const salt = await bcrypt.genSalt(10);
     const password = await bcrypt.hash(req.body.password, salt);
     const user = await Register.findByIdAndUpdate(userExist._id,{
-        password:password
+        password:password,
+        phoneNumber:req.body.phoneNumber
     },{new:true})
     res.status(200).send({error:false,message:'Password Updated successfully'})
 }

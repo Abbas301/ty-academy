@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const https =  require('https');
 const auth = require('../middlewares/auth');
 const { Register, Otp } = require('../models/authm')
 const {reSendMail,resetMail,sendMail} = require('../controllers/mail-controllers')

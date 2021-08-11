@@ -14,7 +14,7 @@ async function sendMail(req,res,next) {
     if (userExist) {
         return res.status(400).send({error:true,errorMessage:'This User is already Registered'});
     }
-    let user = new Register(_.pick(req.body, ['email', 'password', 'phoneNumber']))
+    let user = new Register(_.pick(req.body, ['email', 'password', 'phoneNumber','role']))
     const salt = await bcrypt.genSalt(10);
     user.password = await bcrypt.hash(user.password, salt);
     await user.save();
@@ -22,7 +22,7 @@ async function sendMail(req,res,next) {
     const mailTransporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: 'testmedifit@gmail.com',
+            user: 'testmedifit@gmail.com', 
             pass: 'medifittest123'
         }
     });
@@ -32,8 +32,7 @@ async function sendMail(req,res,next) {
         from: 'testmedifit@gmail.com',
         to: req.body.email,
         subject: 'OTP For MediFit Login',
-        html: `<b>Hello, <strong>${user.email},</strong><br><br> Your password for this account is :<b>${req.body.password}</b></p><br><br><p><strong>Otp</strong> for your account verification is <strong> ${random}</strong></p>`
-
+        html: `<b>Hello, <strong>${user.email}, you have successfully registred for </strong><br><br> Your password for this account is :<b>${req.body.password}</b></p><br><br><p><strong>Otp</strong> for your account verification is <strong> ${random}</strong></p>`
     };
     await  mailTransporter.sendMail(mailDetails,async function (err) {
         if (err) {

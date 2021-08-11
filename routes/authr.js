@@ -14,7 +14,7 @@ const {bodyFitness, putBodyFitness} = require('../controllers/bodyFitness-contro
 const {Goals, BodyFitness} = require('../models/goalsm')
 
 
-router.get('/register',auth, async (req, res) => {
+router.get('/register',auth, async (req, res) => { 
     const user = await Register.find();
     res.send(user);
 })

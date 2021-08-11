@@ -4,7 +4,6 @@ const mongoose = require('mongoose')
 const Register = mongoose.model('Register', new mongoose.Schema({
     email: {
         type: String,
-        maxlength: 30,
         required: true
     },
     password: {
@@ -25,14 +24,13 @@ const Register = mongoose.model('Register', new mongoose.Schema({
     },
     role:{
         type:String,
-        defalut:''
+        default: false
     }
 }))
 
 const Otp = mongoose.model('Otp', new mongoose.Schema({
     email: {
-        type: String,
-        maxlength: 30
+        type: String
     },
     phoneNumber: {
         type: Number
@@ -49,9 +47,10 @@ const Otp = mongoose.model('Otp', new mongoose.Schema({
 
 function validateUser(user) {
     const schema = {
-        email: Joi.string().max(30).required().email(),
-        password: Joi.string().required(),
-        phoneNumber: Joi.number(),
+        email: Joi.string().required().email(),
+        password: Joi.string().required().min(8).max(15),
+        phoneNumber: Joi.number().required(),
+        role:Joi.string().required()
     }
     return Joi.validate(user,schema )
 }

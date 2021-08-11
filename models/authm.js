@@ -13,19 +13,23 @@ const Register = mongoose.model('Register', new mongoose.Schema({
     },
     phoneNumber: {
         type: Number,
-        default:null
+        default:""
     },
     isEmailVerified: {
         type: Boolean,
-        default: false
+        default:false
     },
     isPhoneVerified: {
         type: Boolean,
-        default: false
+        default:false
     },
     role:{
         type:String,
         defalut:''
+    },
+    getUpdates: {
+        type:Boolean,
+        default : false
     }
 }))
 
@@ -52,6 +56,7 @@ function validateUser(user) {
         email: Joi.string().max(30).required().email(),
         password: Joi.string().required(),
         phoneNumber: Joi.number(),
+        getUpdates:Joi.boolean()
     }
     return Joi.validate(user,schema )
 }

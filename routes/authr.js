@@ -14,17 +14,17 @@ const {bodyFitness, putBodyFitness} = require('../controllers/bodyFitness-contro
 const {Goals, BodyFitness} = require('../models/goalsm')
 
 
-router.get('/register', async (req, res) => {
+router.get('/register',auth, async (req, res) => { 
     const user = await Register.find();
     res.send(user);
 })
 
-router.get('/getotp', async (req, res) => {
+router.get('/getotp',auth, async (req, res) => {
     const otp = await Otp.find();
     res.send(otp);
 })
 
-router.get('/details', async (req, res) => {
+router.get('/details',auth, async (req, res) => {
     const persons = await Personel.find();
     res.send(persons);
 })
@@ -39,23 +39,23 @@ router.get('/bodyFitness',auth, async (req, res) => {
 })
 
 router.post('/goals',auth, goals)
-router.put('/putGoals/:id', putGoals)
+router.put('/putGoals/:id',auth, putGoals)
 router.post('/bodyFitness',auth, bodyFitness)
-router.put('/putBodyFitness/:id', putBodyFitness)
+router.put('/putBodyFitness/:id',auth, putBodyFitness)
 
-router.post('/register',sendMail)
+router.post('/register',auth,sendMail)
 
-router.post('/login',login);
+router.post('/login',auth,login);
 
-router.put('/resendotp',reSendMail)
+router.put('/resendotp',auth,reSendMail)
 
-router.put('/verify',verifyOtp )
+router.put('/verify',auth,verifyOtp )
 
 router.post('/details',auth,userDetails)
 
-router.put('/details/:id',updateDetails)
+router.put('/details/:id',auth,updateDetails)
 
-router.delete('/users/:id', async (req, res) => {
+router.delete('/users/:id',auth, async (req, res) => {
     const user = await Register.findByIdAndRemove(req.params.id);
     if (!user) {
         return res.status(404).send('The user you have entered does not exist');
@@ -63,13 +63,13 @@ router.delete('/users/:id', async (req, res) => {
     // const user = await User.deleteMany()
     res.send(user);
 })
-router.delete('/otp/:id', async (req, res) => {
+router.delete('/otp/:id',auth, async (req, res) => {
     const user = await Otp.findByIdAndRemove(req.params.id)
     // const user = await Otp.remove()
     res.send(`user deleted successfully ${user}`)
 })
 
-router.delete('/details/:id', async (req, res) => {
+router.delete('/details/:id',auth, async (req, res) => {
     const user = await Personel.findByIdAndRemove(req.params.id);
     if (!user) {
         return res.status(404).send('The user you have entered does not exist');
@@ -77,10 +77,10 @@ router.delete('/details/:id', async (req, res) => {
     res.send(user);
 })
 
-router.post('/forgotpassword',resetMail);
+router.post('/forgotpassword',auth,resetMail);
 
-router.post('/verifyotpforpassword',resetOtpVerify);
+router.post('/verifyotpforpassword',auth,resetOtpVerify);
 
-router.put('/resetPassword',resetPassword);
+router.put('/resetPassword',auth,resetPassword);
 
 module.exports = router;

@@ -1,16 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const auth = require('../middlewares/auth');
-const { Register, Otp } = require('../models/authm')
-const {reSendMail,resetMail,sendMail} = require('../controllers/mail-controllers')
-const {login} = require('../controllers/login-controller')
-const {resetOtpVerify,verifyOtp} = require('../controllers/otp-verify-controllers')
-const {resetPassword} = require('../controllers/reset-password-controller')
-const { Personel } = require('../models/personelm')
-const {userDetails,updateDetails} = require('../controllers/personel-controllers')
-const {goals, putGoals} = require('../controllers/goals-controller')
-const {bodyFitness, putBodyFitness} = require('../controllers/bodyFitness-controller')
-const {Goals, BodyFitness} = require('../models/goalsm')
+const { Register, Otp } = require('../models/authm');
+const {reSendMail,resetMail,sendMail} = require('../controllers/mail-controllers');
+const {login} = require('../controllers/login-controller');
+const {resetOtpVerify,verifyOtp} = require('../controllers/otp-verify-controllers');
+const {resetPassword} = require('../controllers/reset-password-controller');
+const { Personel } = require('../models/personelm');
+const {userDetails,updateDetails} = require('../controllers/personel-controllers');
+const {goals, putGoals} = require('../controllers/goals-controller');
+const {bodyFitness, putBodyFitness} = require('../controllers/bodyFitness-controller');
+const {Goals, BodyFitness} = require('../models/goalsm');
+const {addDoctors,updateDoctors} =require('../controllers/add-doc-controller');
 
 
 router.get('/register',auth, async (req, res) => { 
@@ -79,5 +80,20 @@ router.post('/forgotpassword',resetMail);
 router.post('/verifyotpforpassword',resetOtpVerify);
 
 router.put('/resetPassword',resetPassword);
+
+router.delete('/deletedoctors/:id', async (req, res) => {
+    const user = await Register.findByIdAndRemove(req.params.id)
+    res.send(`${user.email} deleted successfully `)
+})
+
+router.get('/getdoctors', async (req, res) => { 
+    const user = await Register.find({role:{$ne:'physician'}});
+    res.send(user);
+})
+
+router.post('/adddoctors',addDoctors);
+
+router.put('/updatedoctors',updateDoctors);
+
 
 module.exports = router;

@@ -61,7 +61,6 @@ const updateImage = async (req, res, next) => {
     } catch (err) {
         next(err);
         console.log("error occured in catch block");
-
     }
 };
 

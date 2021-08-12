@@ -62,7 +62,7 @@ async function sendMail(req,res,next) {
                 const user = await Register.findOne({email:req.body.email})
                 if(user) {
                     const token = jwt.sign({ _id: user._id }, 'jwtPrivateKey');
-                    res.header('x-auth-token', token).send({error:false,message:'User Registered sucessfully and email has been sent to user'});
+                    res.send({error:false,token:token,message:'User Registered sucessfully and email has been sent to user'});
                 }
             }catch(err) {
                 try{

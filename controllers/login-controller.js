@@ -1,4 +1,4 @@
-const {validate, Register} = require('../models/authm');
+const {validate, validateLogin,Register} = require('../models/authm');
 const _ = require('lodash');
 const bcryptjs = require('bcryptjs')
 const jwt = require('jsonwebtoken')
@@ -25,7 +25,7 @@ async function login(req, res, next) {
                 let newUser = new Register({email: user.email});
                 await newUser.save();
                 const token = jwt.sign({_id: newUser._id}, 'jwtPrivateKey');
-                res.header('x-auth-token', token).send({error: false,newUser:true, message: `${newUser.email}  has been Verified Succesfully`,role:newUser.role});
+                res.send({error: false,newUser:true,token:token, message: `${newUser.email}  has been Verified Succesfully`,role:newUser.role});
             }
         }).catch(err => {
             next(err);
@@ -52,7 +52,7 @@ async function login(req, res, next) {
                             let newUser = new Register({email: parsedUser.email});
                             await newUser.save();
                             const token = jwt.sign({ _id: newUser._id}, 'jwtPrivateKey');
-                            res.header('x-auth-token', token).send({error: false,newUser:true, message: `${newUser.email} has been Verified Succesfully`,role:newUser.role});
+                            res.send({error: false,newUser:true,token:token, message: `${newUser.email} has been Verified Succesfully`,role:newUser.role});
                         }
                     }
                 } catch (err) {
@@ -65,7 +65,7 @@ async function login(req, res, next) {
         });
         request.end();
     } else {
-        const {error} = validate(req.body);
+        const {error} = validateLogin(req.body);
         if (error) {
             return res.status(400).send({error: true, message: error.details[0].message});
         }
@@ -78,7 +78,7 @@ async function login(req, res, next) {
             return res.status(400).send({error: true, errorMessage: 'Invalid Password'});
         }
         const token = jwt.sign({_id: user._id}, 'jwtPrivateKey');
-        res.header('x-auth-token', token).send({error: false, message: `${user.email} has been Verified Succesfully`,role:user.role});
+        res.send({error: false,token:token, message: `${user.email} has been Verified Succesfully`,role:user.role});
     }
 }
 

@@ -2,7 +2,7 @@ const { Register,validate,Otp } = require('../models/authm');
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
 const _ = require('lodash');
-const bcrypt = require('bcrypt');
+const bcryptjs = require('bcryptjs');
 
 async function sendMail(req,res,next) {
 
@@ -15,8 +15,8 @@ async function sendMail(req,res,next) {
         return res.status(400).send({error:true,errorMessage:'This User is already Registered'});
     }
     let user = new Register(_.pick(req.body, ['email', 'password', 'phoneNumber','getUpdates','role']))
-    const salt = await bcrypt.genSalt(10);
-    user.password = await bcrypt.hash(user.password, salt);
+    const salt = await bcryptjs.genSalt(10);
+    user.password = await bcryptjs.hash(user.password, salt);
     await user.save();
 
     const mailTransporter = nodemailer.createTransport({
@@ -27,7 +27,7 @@ async function sendMail(req,res,next) {
         }
     });
     let random = Math.floor(100000 + Math.random() * 900000);
-    const password = await bcrypt.compare(req.body.password, user.password)
+    const password = await bcryptjs.compare(req.body.password, user.password)
     let mailDetails = {
         from: 'testmedifit@gmail.com',
         to: req.body.email,

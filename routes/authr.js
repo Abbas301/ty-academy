@@ -50,7 +50,7 @@ router.put('/resendotp',reSendMail)
 
 router.put('/verify',verifyOtp )
 
-router.post('/details',userDetails)
+router.post('/details',auth,userDetails)
 
 router.put('/details/:id',auth,updateDetails)
 
@@ -59,12 +59,10 @@ router.delete('/users/:id',auth, async (req, res) => {
     if (!user) {
         return res.status(404).send('The user you have entered does not exist');
     }
-    // const user = await User.deleteMany()
     res.send(user);
 })
 router.delete('/otp/:id',auth, async (req, res) => {
     const user = await Otp.findByIdAndRemove(req.params.id)
-    // const user = await Otp.remove()
     res.send(`user deleted successfully ${user}`)
 })
 

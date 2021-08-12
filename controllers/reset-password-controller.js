@@ -1,5 +1,5 @@
 const { Register } = require('../models/authm');
-const bcrypt = require('bcrypt');
+const bcryptjs = require('bcryptjs');
 
 async function resetPassword(req,res) {
 
@@ -7,8 +7,8 @@ async function resetPassword(req,res) {
     if (!userExist) {
         return res.status(404).send({error:true,errorMessage:'User Does not Exists'});
     }
-    const salt = await bcrypt.genSalt(10);
-    const password = await bcrypt.hash(req.body.password, salt);
+    const salt = await bcryptjs.genSalt(10);
+    const password = await bcryptjs.hash(req.body.password, salt);
     const user = await Register.findByIdAndUpdate(userExist._id,{
         password:password,
         phoneNumber:req.body.phoneNumber

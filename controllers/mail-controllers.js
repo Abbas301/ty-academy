@@ -96,7 +96,7 @@ async function resetMail(req,res,next) {
         from: 'testmedifit@gmail.com',
         to: req.body.email,
         subject: 'OTP Form MediFit',
-        html : `<b>Hello, <strong>${user.email}</strong><br><br>
+        html : `<b>Hello, <strong>${req.body.email}</strong><br><br>
         <p>OTP To reset your password <strong>${random}</strong></p>`
     };
     await  mailTransporter.sendMail(mailDetails,async function (err) {

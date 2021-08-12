@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const https =  require('https');
 const auth = require('../middlewares/auth');
 const { Register, Otp } = require('../models/authm')
 const {reSendMail,resetMail,sendMail} = require('../controllers/mail-controllers')
@@ -43,13 +42,13 @@ router.put('/putGoals/:id',auth, putGoals)
 router.post('/bodyFitness',auth, bodyFitness)
 router.put('/putBodyFitness/:id',auth, putBodyFitness)
 
-router.post('/register',auth,sendMail)
+router.post('/register',sendMail)
 
-router.post('/login',auth,login);
+router.post('/login',login);
 
-router.put('/resendotp',auth,reSendMail)
+router.put('/resendotp',reSendMail)
 
-router.put('/verify',auth,verifyOtp )
+router.put('/verify',verifyOtp )
 
 router.post('/details',auth,userDetails)
 
@@ -60,12 +59,10 @@ router.delete('/users/:id',auth, async (req, res) => {
     if (!user) {
         return res.status(404).send('The user you have entered does not exist');
     }
-    // const user = await User.deleteMany()
     res.send(user);
 })
 router.delete('/otp/:id',auth, async (req, res) => {
     const user = await Otp.findByIdAndRemove(req.params.id)
-    // const user = await Otp.remove()
     res.send(`user deleted successfully ${user}`)
 })
 
@@ -77,10 +74,10 @@ router.delete('/details/:id',auth, async (req, res) => {
     res.send(user);
 })
 
-router.post('/forgotpassword',auth,resetMail);
+router.post('/forgotpassword',resetMail);
 
-router.post('/verifyotpforpassword',auth,resetOtpVerify);
+router.post('/verifyotpforpassword',resetOtpVerify);
 
-router.put('/resetPassword',auth,resetPassword);
+router.put('/resetPassword',resetPassword);
 
 module.exports = router;

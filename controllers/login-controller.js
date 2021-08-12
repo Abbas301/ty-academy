@@ -1,6 +1,6 @@
-const {validate, Register} = require('../models/authm');
+const {validate, validateLogin,Register} = require('../models/authm');
 const _ = require('lodash');
-const bcrypt = require('bcrypt');
+const bcryptjs = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const https = require('https');
 const {OAuth2Client} = require('google-auth-library');
@@ -11,7 +11,6 @@ const client = new OAuth2Client(CLIENT_ID);
 async function verify(token) {
     const ticket = await client.verifyIdToken({idToken: token, audience: CLIENT_ID});
     const payload = ticket.getPayload();
-    console.log(payload)
     return payload;
 }
 
@@ -26,10 +25,9 @@ async function login(req, res, next) {
                 let newUser = new Register({email: user.email});
                 await newUser.save();
                 const token = jwt.sign({_id: newUser._id}, 'jwtPrivateKey');
-                res.header('x-auth-token', token).send({error: false,newUser:true, message: `${newUser.email}  has been Verified Succesfully`,role:newUser.role});
+                res.send({error: false,newUser:true,token:token, message: `${newUser.email}  has been Verified Succesfully`,role:newUser.role});
             }
         }).catch(err => {
-            console.error(err);
             next(err);
         })
     } else if (req.body.fbToken) {
@@ -52,10 +50,9 @@ async function login(req, res, next) {
                             res.header('x-auth-token', token).send({error: false,newUser:false, message: `${userExist.email} has been Verified Succesfully`,role:userExist.role});
                         }else {
                             let newUser = new Register({email: parsedUser.email});
-                            console.log(newUser)
                             await newUser.save();
                             const token = jwt.sign({ _id: newUser._id}, 'jwtPrivateKey');
-                            res.header('x-auth-token', token).send({error: false,newUser:true, message: `${newUser.email} has been Verified Succesfully`,role:newUser.role});
+                            res.send({error: false,newUser:true,token:token, message: `${newUser.email} has been Verified Succesfully`,role:newUser.role});
                         }
                     }
                 } catch (err) {
@@ -64,12 +61,11 @@ async function login(req, res, next) {
             })
         })
         request.on('error', (err) => {
-            // console.error(err);
             next(err);
         });
         request.end();
     } else {
-        const {error} = validate(req.body);
+        const {error} = validateLogin(req.body);
         if (error) {
             return res.status(400).send({error: true, message: error.details[0].message});
         }
@@ -77,12 +73,12 @@ async function login(req, res, next) {
         if (! user) {
             return res.status(404).send({error: true, errorMessage: 'Invalid Email'});
         }
-        const password = await bcrypt.compare(req.body.password, user.password)
+        const password = await bcryptjs.compare(req.body.password, user.password)
         if (! password) {
             return res.status(400).send({error: true, errorMessage: 'Invalid Password'});
         }
         const token = jwt.sign({_id: user._id}, 'jwtPrivateKey');
-        res.header('x-auth-token', token).send({error: false, message: `${user.email} has been Verified Succesfully`,role:user.role});
+        res.send({error: false,token:token, message: `${user.email} has been Verified Succesfully`,role:user.role});
     }
 }
 

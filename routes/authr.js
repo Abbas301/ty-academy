@@ -83,7 +83,7 @@ router.put('/resetPassword',resetPassword);
 
 router.delete('/deletedoctors/:id', async (req, res) => {
     const user = await Register.findByIdAndRemove(req.params.id)
-    res.send({error:true,message:`${user.email} deleted successfully`})
+    res.status(200).send({error:false,message:`${user.email} has been deleted sucessfully`});
 })
 
 router.get('/getdoctors', async (req, res) => { 

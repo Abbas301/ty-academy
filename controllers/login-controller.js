@@ -47,7 +47,7 @@ async function login(req, res, next) {
                         const userExist = await Register.findOne({email: parsedUser.email})
                         if (userExist) {
                             const token = jwt.sign({ _id: userExist._id}, 'jwtPrivateKey');
-                            res.header('x-auth-token', token).send({error: false,newUser:false, message: `${userExist.email} has been Verified Succesfully`,role:userExist.role});
+                            res.send({error: false,newUser:true,token:token, message: `${newUser.email} has been Verified Succesfully`,role:userExist.role});
                         }else {
                             let newUser = new Register({email: parsedUser.email});
                             await newUser.save();

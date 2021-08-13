@@ -62,7 +62,7 @@ async function sendMail(req,res,next) {
                 const user = await Register.findOne({email:req.body.email})
                 if(user) {
                     const token = jwt.sign({ _id: user._id }, 'jwtPrivateKey');
-                    res.send({error:false,token:token,message:'User Registered sucessfully and email has been sent to user'});
+                    res.send({error:false,token:token,role:user.role,message:'User Registered sucessfully and email has been sent to user'});
                 }
             }catch(err) {
                 try{
@@ -96,7 +96,7 @@ async function resetMail(req,res,next) {
         from: 'testmedifit@gmail.com',
         to: req.body.email,
         subject: 'OTP Form MediFit',
-        html : `<b>Hello, <strong>${user.email}</strong><br><br>
+        html : `<b>Hello, <strong>${req.req.email}</strong><br><br>
         <p>OTP To reset your password <strong>${random}</strong></p>`
     };
     await  mailTransporter.sendMail(mailDetails,async function (err) {

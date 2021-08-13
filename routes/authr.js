@@ -83,11 +83,11 @@ router.put('/resetPassword',resetPassword);
 
 router.delete('/deletedoctors/:id', async (req, res) => {
     const user = await Register.findByIdAndRemove(req.params.id)
-    res.send(`${user.email} deleted successfully `)
+    res.send({error:true,message:`${user.email} deleted successfully`})
 })
 
 router.get('/getdoctors', async (req, res) => { 
-    const user = await Register.find({role:{$ne:'physician'}});
+    const user = await Register.find({role:{$ne:'client'}});
     res.send(user);
 })
 

@@ -27,7 +27,6 @@ async function addDoctors(req,res,next) {
         }
     });
     let random = Math.floor(100000 + Math.random() * 900000);
-    const password = await bcryptjs.compare(req.body.password, user.password)
     let mailDetails = {
         from: 'testmedifit@gmail.com',
         to: req.body.email,
@@ -85,16 +84,13 @@ async function updateDoctors(req,res) {
     if (!userExist) {
         return res.status(404).send({error:true,errorMessage:'User Does not Exists'});
     }
-    const salt = await bcryptjs.genSalt(10);
-    const password = await bcryptjs.hash(req.body.password, salt);
     const user = await Register.findByIdAndUpdate(userExist._id,{
         name:req.body.name,
         email:req.body.email,
-        password:password,
         phoneNumber:req.body.phoneNumber,
         role:req.body.role
     },{new:true})
-    res.status(200).send({error:false,message:'Details Updated successfully'})
+    res.status(200).send({error:false,message: `${user.email} Details Updated successfully`})
 }
 
 

@@ -87,7 +87,7 @@ router.delete('/deletedoctors/:id', async (req, res) => {
 })
 
 router.get('/getdoctors', async (req, res) => { 
-    const user = await Register.find({role:{$ne:'client'}});
+    const user = await Register.find({role:{$ne:'Client'}});
     res.send(user);
 })
 

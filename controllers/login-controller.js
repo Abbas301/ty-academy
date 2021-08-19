@@ -20,12 +20,12 @@ async function login(req, res, next) {
             const userExist = await Register.findOne({email: user.email})
             if (userExist) {
                 const token = jwt.sign({_id: userExist._id}, 'jwtPrivateKey');
-                res.header('x-auth-token', token).send({error: false,newUser:false, message: `${userExist.email}  has been Verified Succesfully`,role:userExist.role});
+                res.status(200).send({error: false,token:token,newUser:false, message: `${userExist.email}  has been Verified Succesfully`,role:userExist.role});
             }else {
-                let newUser = new Register({email: user.email});
+                let newUser = new Register({email: user.email,role:"Client"});
                 await newUser.save();
                 const token = jwt.sign({_id: newUser._id}, 'jwtPrivateKey');
-                res.send({error: false,newUser:true,token:token, message: `${newUser.email}  has been Verified Succesfully`,role:newUser.role});
+                res.status(200).send({error: false,newUser:true,token:token, message: `${newUser.email}  has been Verified Succesfully`,role:newUser.role});
             }
         }).catch(err => {
             next(err);
@@ -41,26 +41,31 @@ async function login(req, res, next) {
             responce.on('data', async function (user) {
                 try {
                     parsedUser = JSON.parse(user.toString());
+                    console.log(parsedUser)
                     if (parsedUser.error) {
                         res.status(400).send({error:true,message:parsedUser.error.message})
-                    } else {
+                    }else if(!parsedUser.email){
+                        res.status(404).send({error:ture,message:'your FB does not have email,please register with email'})
+                    }else {
                         const userExist = await Register.findOne({email: parsedUser.email})
                         if (userExist) {
                             const token = jwt.sign({ _id: userExist._id}, 'jwtPrivateKey');
-                            res.header('x-auth-token', token).send({error: false,newUser:false, message: `${userExist.email} has been Verified Succesfully`,role:userExist.role});
+                            res.status(200).send({error: false,newUser:false,token:token, message: `${userExist.email} has been Verified Succesfully`,role:userExist.role});
                         }else {
-                            let newUser = new Register({email: parsedUser.email});
+                            let newUser = new Register({email: parsedUser.email,role:"Client"});
                             await newUser.save();
                             const token = jwt.sign({ _id: newUser._id}, 'jwtPrivateKey');
                             res.send({error: false,newUser:true,token:token, message: `${newUser.email} has been Verified Succesfully`,role:newUser.role});
                         }
                     }
                 } catch (err) {
+                    console.error(err);
                     next(err);
                 }
             })
         })
         request.on('error', (err) => {
+            console.error(err);
             next(err);
         });
         request.end();

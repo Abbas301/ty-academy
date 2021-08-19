@@ -3,6 +3,7 @@ const cors = require('cors');
 const app = express();
 const port = 2000;
 const auth = require('./routes/authr')
+const medical = require('./routes/medical-route')
 const image = require('./routes/image')
 const path = require('path');
 
@@ -20,9 +21,9 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.static(path.join('public/images')));
 app.use(express.json());
 
-app.use('/api', auth)
-
-app.use('/image', image)
+app.use('/api/auth', auth)
+app.use('/api/medical', medical)
+app.use('/api/image', image)
 
 
 app.get('/', (req, res) => {

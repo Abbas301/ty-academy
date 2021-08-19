@@ -13,7 +13,6 @@ const {bodyFitness, putBodyFitness} = require('../controllers/bodyFitness-contro
 const {Goals, BodyFitness} = require('../models/goalsm');
 const {addDoctors,updateDoctors} =require('../controllers/add-doc-controller');
 
-
 router.get('/register',auth, async (req, res) => { 
     const user = await Register.find();
     res.send(user);
@@ -24,25 +23,6 @@ router.get('/getotp',auth, async (req, res) => {
     res.send(otp);
 })
 
-router.get('/details',auth, async (req, res) => {
-    const persons = await Personel.find();
-    res.send(persons);
-})
-
-router.get('/goals',auth, async (req, res) => {
-    const goals = await Goals.find();
-    res.send(goals);
-})
-router.get('/bodyFitness',auth, async (req, res) => {
-    const bodyFitness = await BodyFitness.find();
-    res.send(bodyFitness);
-})
-
-router.post('/goals',auth, goals)
-router.put('/putGoals/:id',auth, putGoals)
-router.post('/bodyFitness',auth, bodyFitness)
-router.put('/putBodyFitness/:id',auth, putBodyFitness)
-
 router.post('/register',sendMail)
 
 router.post('/login',login);
@@ -51,10 +31,6 @@ router.put('/resendotp',reSendMail)
 
 router.put('/verify',verifyOtp )
 
-router.post('/details',auth,userDetails)
-
-router.put('/details/:id',auth,updateDetails)
-
 router.delete('/users/:id',auth, async (req, res) => {
     const user = await Register.findByIdAndRemove(req.params.id);
     if (!user) {
@@ -62,10 +38,15 @@ router.delete('/users/:id',auth, async (req, res) => {
     }
     res.send(user);
 })
+
 router.delete('/otp/:id',auth, async (req, res) => {
     const user = await Otp.findByIdAndRemove(req.params.id)
     res.send(`user deleted successfully ${user}`)
 })
+
+router.post('/details',auth,userDetails)
+
+router.put('/details/:id',auth,updateDetails)
 
 router.delete('/details/:id',auth, async (req, res) => {
     const user = await Personel.findByIdAndRemove(req.params.id);
@@ -95,5 +76,27 @@ router.post('/adddoctors',addDoctors);
 
 router.put('/updatedoctors',updateDoctors);
 
+
+router.get('/details',auth, async (req, res) => {
+    const persons = await Personel.find();
+    res.send(persons);
+})
+
+router.get('/goals',auth, async (req, res) => {
+    const goals = await Goals.find();
+    res.send(goals);
+})
+router.get('/bodyFitness',auth, async (req, res) => {
+    const bodyFitness = await BodyFitness.find();
+    res.send(bodyFitness);
+})
+
+router.post('/goals',auth, goals)
+
+router.put('/putGoals/:id',auth, putGoals)
+
+router.post('/bodyFitness',auth, bodyFitness)
+
+router.put('/putBodyFitness/:id',auth, putBodyFitness)
 
 module.exports = router;

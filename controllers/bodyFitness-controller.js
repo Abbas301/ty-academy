@@ -30,6 +30,7 @@ async function bodyFitness(req, res) {
             },
             userId:req.user._id
         })
+        bodyFitness.userId = req.user._id;
         const bodyFitness1 = await bodyFitness.save()
         console.log(bodyFitness1);
         res.send(bodyFitness1);

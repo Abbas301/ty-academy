@@ -80,7 +80,7 @@ async function addDoctors(req,res,next) {
 
 async function updateDoctors(req,res) {
 
-    const userExist = await Register.findOne({ email: req.body.email })
+    const userExist = await Register.find({ email: req.body.email })
     if (!userExist) {
         return res.status(404).send({error:true,errorMessage:'User Does not Exists'});
     }

@@ -3,6 +3,7 @@ const cors = require('cors');
 const app = express();
 const port = 2000;
 const auth = require('./routes/authr')
+const lifestyle = require('./routes/lifestyler')
 const image = require('./routes/image')
 const path = require('path');
 
@@ -21,6 +22,7 @@ app.use(express.static(path.join('public/images')));
 app.use(express.json());
 
 app.use('/api', auth)
+app.use('/api', lifestyle)
 
 app.use('/image', image)
 

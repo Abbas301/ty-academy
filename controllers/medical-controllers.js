@@ -16,7 +16,6 @@ async function addMedicalDetails(req,res,next) {
     }
 }
 
-
 async function updateMedicalDetails(req,res,next) {
     console.log(req.body);
     try{

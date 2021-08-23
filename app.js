@@ -6,6 +6,7 @@ const auth = require('./routes/authr')
 const exercise = require('./routes/exerciseListr')
 const demographic = require('./routes/demographicsr')
 const medical = require('./routes/medical-route')
+const recipe = require('./routes/reciper')
 const path = require('path');
 
 // env config
@@ -25,6 +26,7 @@ app.use(express.static(path.join('public/excelFile')));
 app.use(express.json());
 app.use('/api', auth);
 app.use('/api', demographic);
+app.use('/api', recipe);
 app.use('/api/medical', medical)
 
 app.use('/exercise',exercise)

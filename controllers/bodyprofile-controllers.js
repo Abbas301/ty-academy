@@ -74,29 +74,15 @@ async function bodyFitness(req, res) {
         if (error) {
             return res.status(400).send({error: true, errorMessage: error.details[0].message});
         }
-        bodyFitness = new BodyFitness({
-            bodyMeasurements: {
-                height: req.body.bodyMeasurements.height,
-                weight: req.body.bodyMeasurements.weight,
-                armCircumference: req.body.bodyMeasurements.armCircumference,
-                chestCircumference: req.body.bodyMeasurements.chestCircumference,
-                waistCircumference: req.body.bodyMeasurements.waistCircumference,
-                hipCircumference: req.body.bodyMeasurements.hipCircumference,
-                thighCircumference: req.body.bodyMeasurements.thighCircumference,
-                calfCircumference: req.body.bodyMeasurements.calfCircumference
-            },
-            bodyComposition: {
-                fat: req.body.bodyComposition.fat,
-                skeletalMuscle: req.body.bodyComposition.skeletalMuscle,
-                visceralFat: req.body.bodyComposition.visceralFat,
-                totalBodyWater: req.body.bodyComposition.totalBodyWater,
-                bodyAge: req.body.bodyComposition.bodyAge
-            },
-            userId:req.user._id
-        })
+        const details = await BodyFitness.findOne({userId:req.user._id})
+        if(details){
+            return res.status(400).send({error:true , errorMessage:"BodyFitness Details are already existed. Just update it!!!!"})
+        }
+        const data =req.body;
+        data.userId = req.user._id
+        bodyFitness = new BodyFitness(data)
         const bodyFitness1 = await bodyFitness.save();
-        console.log(bodyFitness1);
-        res.send(bodyFitness1);
+        res.status(200).send({error:false, message:"BodyFitness Details are added successfully", response:bodyFitness1})
     } catch (err) {
         console.log(err);
         console.log('error occured')
@@ -109,29 +95,10 @@ async function putBodyFitness(req, res) {
         if (error) 
             return res.status(400).send({error: true, errorMessage: error.details[0].message})
         
-        const bodyFitness = await BodyFitness.findByIdAndUpdate(req.params.id, {
-            bodyMeasurements: {
-                height: req.body.bodyMeasurements.height,
-                weight: req.body.bodyMeasurements.weight,
-                armCircumference: req.body.bodyMeasurements.armCircumference,
-                chestCircumference: req.body.bodyMeasurements.chestCircumference,
-                waistCircumference: req.body.bodyMeasurements.waistCircumference,
-                hipCircumference: req.body.bodyMeasurements.hipCircumference,
-                thighCircumference: req.body.bodyMeasurements.thighCircumference,
-                calfCircumference: req.body.bodyMeasurements.calfCircumference
-            },
-            bodyComposition: {
-                fat: req.body.bodyComposition.fat,
-                skeletalMuscle: req.body.bodyComposition.skeletalMuscle,
-                visceralFat: req.body.bodyComposition.visceralFat,
-                totalBodyWater: req.body.bodyComposition.totalBodyWater,
-                bodyAge: req.body.bodyComposition.bodyAge
-            }
-        }, {new: true})
+        const bodyFitness = await BodyFitness.findByIdAndUpdate(req.params.id,req.body, {new: true})
         if (! bodyFitness) 
             return res.status(404).send('customer is not found by this id')
-        
-        res.send(bodyFitness);
+        res.json({error:false,message:"BodyFitness Details are updated successfully",response:bodyFitness});
     } catch (err) {
         console.log(err);
         console.log('error occured')

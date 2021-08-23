@@ -3,8 +3,9 @@ const cors = require('cors');
 const app = express();
 const port = 2000;
 const auth = require('./routes/authr')
-const image = require('./routes/imager')
 const exercise = require('./routes/exerciseListr')
+const demographic = require('./routes/demographicsr')
+const medical = require('./routes/medical-route')
 const path = require('path');
 
 // env config
@@ -22,10 +23,9 @@ app.use(express.static(path.join('public/images')));
 app.use(express.static(path.join('public/recipies')));
 app.use(express.static(path.join('public/excelFile')));
 app.use(express.json());
-
-app.use('/api', auth)
-
-app.use('/image', image)
+app.use('/api', auth);
+app.use('/api', demographic);
+app.use('/api/medical', medical)
 
 app.use('/exercise',exercise)
 

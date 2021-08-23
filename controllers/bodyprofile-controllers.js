@@ -32,7 +32,6 @@ const postImage = async (req, res, next) => {
         return res.status(400).send({ error: true, errorMessage: "Images already added with this userId" });
       }
     const imagePaths = req.files;
-    console.log(imagePaths);
     const url = req.protocol + "://" + req.get("host");
     let front = url + imagePaths.front[0].path;
     let back = url + imagePaths.back[0].path;

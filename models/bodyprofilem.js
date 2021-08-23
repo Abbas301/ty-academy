@@ -1,9 +1,7 @@
 const mongoose = require('mongoose');
 const Joi = require('joi');
-const Schema = mongoose.Schema;
 
-const imageSchema = new Schema({
-
+const Image = mongoose.model('Image', new mongoose.Schema({
     front: {
         type: String,
         required: true
@@ -19,9 +17,7 @@ const imageSchema = new Schema({
     userId: {
         type: String
     }
-
-
-});
+}));
 
 const BodyFitness = mongoose.model('BodyFitness', new mongoose.Schema({
     bodyMeasurements:{
@@ -108,6 +104,6 @@ const BodyFitness = mongoose.model('BodyFitness', new mongoose.Schema({
     return Joi.validate(bodyFitness,schema)
 }
 
-module.exports.imageDetails = mongoose.model('image', imageSchema)
+module.exports.Image = Image;
 module.exports.BodyFitness = BodyFitness;
 module.exports.bodyFitnessValidate = bodyFitnessValidate;

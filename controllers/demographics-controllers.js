@@ -1,54 +1,32 @@
 const jwt = require("jsonwebtoken");
 const _ = require("lodash");
-const { Register } = require('../models/authm');
-const {Validate, Goal, validateDetails} = require('../models/demographicsm');
-const { Personal } = require('../models/demographicsm')
+const { Register } = require("../models/authm");
+const { Validate, Goal, validateDetails } = require("../models/demographicsm");
+const { Personal } = require("../models/demographicsm");
 
 async function userDetails(req, res) {
-  console.log(req.user._id);
-    let id = req.user._id;
-    const { error } = validateDetails(req.body);
-    if (error) {
-      return res.status(400).send({ error: true, errorMessage: error.details[0].message });
-    }
-    let person = await Register.findOne({_id:id})
-    console.log(person);
+  let id = req.user._id;
+  const { error } = validateDetails(req.body);
+  if (error) {
+    return res.status(400).send({ error: true, errorMessage: error.details[0].message });
+  }
+  let person = await Register.findOne({ _id: id });
 
-    const userExist = await Personal.findOne({
-      email: req.body.email,  
-    });
-    if (userExist) {
-      return res.status(400).send({ error: true, errorMessage: "User already existed" });
-    }
-    
-  let user = new Personal({
-    fullName: req.body.fullName,
-    dateofBirth: req.body.dateofBirth,
-    age: req.body.age,
-    sex: req.body.sex,
-    postalAddress: req.body.postalAddress,
-    city: req.body.city,
-    state: req.body.state,
-    country: req.body.country,
-    pincode: req.body.pincode,
-    nationality: req.body.nationality,
-    currentLivesIn: req.body.currentLivesIn,
-    religion: req.body.religion,
-    occupation: req.body.occupation,
-    designation: req.body.designation,
-    company: req.body.company,
-    workTimings: req.body.workTimings,
-    educationalStatus: req.body.educationalStatus,
-    maritalStatus: req.body.maritalStatus,
-    deriveRace:req.body.deriveRace,
-    familyType: req.body.familyType,
-    annualIncome: req.body.annualIncome,
-    email : person.email ,
-    whatsAppNumber : person.phoneNumber,
-    phoneNumber : person.phoneNumber,
-    getUpdates : person.getUpdates,
-    userId: req.user._id, 
+  const personalInfo = req.body;
+  personalInfo.email = person.email;
+  personalInfo.whatsAppNumber = person.phoneNumber;
+  personalInfo.phoneNumber = person.phoneNumber;
+  personalInfo.getUpdates = person.getUpdates;
+  personalInfo.userId = req.user._id;
+
+  const userExist = await Personal.findOne({
+    userId: req.user._id,
   });
+  if (userExist) {
+    return res.status(400).send({error: true,errorMessage: "Personel information already added with this userIdv just update the personalInfo"});
+  }
+ 
+  let user = new Personal(personalInfo);
   await user.save();
   res.send({
     error: false,
@@ -91,13 +69,13 @@ async function goals(req, res) {
 async function putGoals(req, res) {
     try {
         const {error} = Validate(req.body)
-        if (error) 
+        if (error) {
             return res.status(400).send({error: true, errorMessage: error.details[0].message})
-        
+          }
         const goals = await Goal.findByIdAndUpdate(req.params.id,req.body, {new: true})
-        if (! goals) 
+        if (! goals) { 
             return res.status(404).send('customer is not found by this id')
-        
+          }
         res.send(goals)
     } catch (err) {
         console.log(err);
@@ -109,4 +87,3 @@ module.exports.goals = goals;
 module.exports.putGoals = putGoals;
 module.exports.userDetails = userDetails;
 module.exports.updateDetails = updateDetails;
-

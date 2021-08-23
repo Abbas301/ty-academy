@@ -1,0 +1,54 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0", 
+    "title": "MediFit App",
+    "description": "Medifit For Healthy Life"
+  },
+  "host": "localhost:2000",
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "Register",
+      "description": "API for users in the system"
+    }
+  ],
+  "schemes": ["http","https"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/auth/register": {
+      "get": {
+        "tags": [
+            "Register"
+        ],
+        "summary": "Get all users in system",
+        "parameters":{
+
+        },
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          },
+          "401":{
+              "description": "Unauthorized Client"
+          }
+        }
+      }
+    },
+    "/auth/login":{
+      "post":{
+        "tags":[
+          "Login"
+        ],
+        "summary":"Login into Application"
+      }
+    }
+  }
+}

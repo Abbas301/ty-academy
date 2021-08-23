@@ -7,6 +7,11 @@ const medical = require('./routes/medical-route')
 const image = require('./routes/image')
 const path = require('path');
 
+const swaggerUi = require('swagger-ui-express'),
+swaggerDocument = require('./swagger.json');
+
+app.use('/api-docs',swaggerUi.serve,swaggerUi.setup(swaggerDocument));
+
 // env config
 require('dotenv').config();
 

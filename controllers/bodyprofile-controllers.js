@@ -29,7 +29,7 @@ const postImage = async (req, res, next) => {
         userId: req.user._id,  
       });
       if (imageExist) {
-        return res.status(400).send({ error: true, errorMessage: "Images already added with this userId" });
+        return res.status(400).send({ error: true, errorMessage: "Images already added with this userId just update Images" });
       }
     const imagePaths = req.files;
     const url = req.protocol + "://" + req.get("host");
@@ -84,36 +84,18 @@ async function bodyFitness(req, res) {
         if (error) {
             return res.status(400).send({error: true, errorMessage: error.details[0].message});
         }
+        const bodyInfo = req.body;
+        bodyInfo.userId = req.user._id
 
         const bodyExist = await BodyFitness.findOne({
             userId: req.user._id,  
           });
           if (bodyExist) {
-            return res.status(400).send({ error: true, errorMessage: "BodyMeasurements already added with this userId" });
+            return res.status(400).send({ error: true, errorMessage: "BodyMeasurements already added with this userId just update body measurements"});
           }
 
-        bodyFitness = new BodyFitness({
-            bodyMeasurements: {
-                height: req.body.bodyMeasurements.height,
-                weight: req.body.bodyMeasurements.weight,
-                armCircumference: req.body.bodyMeasurements.armCircumference,
-                chestCircumference: req.body.bodyMeasurements.chestCircumference,
-                waistCircumference: req.body.bodyMeasurements.waistCircumference,
-                hipCircumference: req.body.bodyMeasurements.hipCircumference,
-                thighCircumference: req.body.bodyMeasurements.thighCircumference,
-                calfCircumference: req.body.bodyMeasurements.calfCircumference
-            },
-            bodyComposition: {
-                fat: req.body.bodyComposition.fat,
-                skeletalMuscle: req.body.bodyComposition.skeletalMuscle,
-                visceralFat: req.body.bodyComposition.visceralFat,
-                totalBodyWater: req.body.bodyComposition.totalBodyWater,
-                bodyAge: req.body.bodyComposition.bodyAge
-            },
-            userId:req.user._id
-        })
+        bodyFitness = new BodyFitness(bodyInfo);
         const bodyFitness1 = await bodyFitness.save();
-        console.log(bodyFitness1);
         res.send(bodyFitness1);
     } catch (err) {
         console.log('error occured')
@@ -126,25 +108,7 @@ async function putBodyFitness(req, res) {
         if (error) {
             return res.status(400).send({error: true, errorMessage: error.details[0].message})
         }
-        const bodyFitness = await BodyFitness.findByIdAndUpdate(req.params.id, {
-            bodyMeasurements: {
-                height: req.body.bodyMeasurements.height,
-                weight: req.body.bodyMeasurements.weight,
-                armCircumference: req.body.bodyMeasurements.armCircumference,
-                chestCircumference: req.body.bodyMeasurements.chestCircumference,
-                waistCircumference: req.body.bodyMeasurements.waistCircumference,
-                hipCircumference: req.body.bodyMeasurements.hipCircumference,
-                thighCircumference: req.body.bodyMeasurements.thighCircumference,
-                calfCircumference: req.body.bodyMeasurements.calfCircumference
-            },
-            bodyComposition: {
-                fat: req.body.bodyComposition.fat,
-                skeletalMuscle: req.body.bodyComposition.skeletalMuscle,
-                visceralFat: req.body.bodyComposition.visceralFat,
-                totalBodyWater: req.body.bodyComposition.totalBodyWater,
-                bodyAge: req.body.bodyComposition.bodyAge
-            }
-        }, {new: true})
+        const bodyFitness = await BodyFitness.findByIdAndUpdate(req.params.id,req.body,{new: true});
         if (! bodyFitness) 
             return res.status(404).send('customer is not found by this id')
         

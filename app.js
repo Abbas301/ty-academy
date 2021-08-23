@@ -3,8 +3,9 @@ const cors = require('cors');
 const app = express();
 const port = 2000;
 const auth = require('./routes/authr')
+const demographic = require('./routes/demographicsr')
 const medical = require('./routes/medical-route')
-const image = require('./routes/image')
+const image = require('./routes/demographicsr')
 const path = require('path');
 
 const swaggerUi = require('swagger-ui-express'),
@@ -25,8 +26,8 @@ app.use(cors());
 app.use(express.urlencoded({extended: false}));
 app.use(express.static(path.join('public/images')));
 app.use(express.json());
-
-app.use('/api/auth', auth)
+app.use('/api', auth);
+app.use('/api', demographic);
 app.use('/api/medical', medical)
 app.use('/api/image', image)
 

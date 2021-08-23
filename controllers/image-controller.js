@@ -1,4 +1,4 @@
-const imageDetails = require("../models/image");
+const imageDetails = require("../models/imagem");
 const multer = require("multer");
 
 
@@ -6,7 +6,6 @@ const MIME_TYPE = {
     "image/png": "png",
     "image/jpeg": "jpg",
     "image/jpg": "jpg"
-
 };
 
 const storage = multer.diskStorage({
@@ -26,7 +25,6 @@ const storage = multer.diskStorage({
 
     }
 });
-
 
 const postImage = async (req, res, next) => {
     const imagePaths = req.files;

@@ -11,7 +11,10 @@ const {userDetails,updateDetails} = require('../controllers/personel-controllers
 const {goals, putGoals} = require('../controllers/goals-controller');
 const {bodyFitness, putBodyFitness} = require('../controllers/bodyFitness-controller');
 const {Goals, BodyFitness} = require('../models/goalsm');
+const {Recipe} = require('../models/recipem');
+const {recipe, putRecipe ,storage, deleteRecipe ,getRecipies} = require('../controllers/recipe-controller');
 const {addDoctors,updateDoctors} =require('../controllers/add-doc-controller');
+const multer = require('multer')
 
 
 router.get('/register',auth, async (req, res) => { 
@@ -37,11 +40,20 @@ router.get('/bodyFitness',auth, async (req, res) => {
     const bodyFitness = await BodyFitness.find();
     res.send(bodyFitness);
 })
+router.get('/getRecipe', async (req, res) => {
+    const recipe = await Recipe.find();
+    res.send(recipe);
+})
 
 router.post('/goals',auth, goals)
 router.put('/putGoals/:id',auth, putGoals)
 router.post('/bodyFitness',auth, bodyFitness)
 router.put('/putBodyFitness/:id',auth, putBodyFitness)
+
+router.get('/getRecipies',auth, getRecipies)
+router.delete('/deleteRecipe/:id',auth, deleteRecipe)
+router.post('/addRecipe',auth,multer({ storage: storage }).array('recipeImage'), recipe)
+router.put('/updateRecipe/:id',auth,multer({ storage: storage }).array('recipeImage'), putRecipe)
 
 router.post('/register',sendMail)
 

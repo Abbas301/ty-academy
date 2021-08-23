@@ -3,7 +3,8 @@ const cors = require('cors');
 const app = express();
 const port = 2000;
 const auth = require('./routes/authr')
-const image = require('./routes/image')
+const image = require('./routes/imager')
+const exercise = require('./routes/exerciseListr')
 const path = require('path');
 
 // env config
@@ -18,11 +19,15 @@ app.use(cors());
 // bodyparser middleware
 app.use(express.urlencoded({extended: false}));
 app.use(express.static(path.join('public/images')));
+app.use(express.static(path.join('public/recipies')));
+app.use(express.static(path.join('public/excelFile')));
 app.use(express.json());
 
 app.use('/api', auth)
 
 app.use('/image', image)
+
+app.use('/exercise',exercise)
 
 
 app.get('/', (req, res) => {

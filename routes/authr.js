@@ -55,4 +55,5 @@ router.post('/adddoctors',addDoctors);
 
 router.put('/updatedoctors',updateDoctors);
 
+
 module.exports = router;

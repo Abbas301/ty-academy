@@ -9,8 +9,8 @@
   "basePath": "/api",
   "tags": [
     {
-      "name": "Default",
-      "description": "API for Medifit Application"
+      "name": "auth",
+      "description": "Authentication routes"
     }
   ],
   "schemes": ["http","https"],
@@ -31,13 +31,78 @@
           "example":"sanjkjhb"
         }
       }
+    },
+    "register":{
+      "type":"object",
+      "properties":{
+        "phoneNumber":{
+          "type":"number",
+          "description":"Phone Number",
+          "example":"9874585510"
+        },
+        "email":{
+          "type":"string",
+          "description":"Email ID To Login",
+          "example":"useremail@gmail.com"
+        },
+        "password":{
+          "type":"string",
+          "description":"Enter A Valid Password",
+          "example":"**********"
+        },
+        "getUpdates":{
+          "type":"boolean",
+          "description":"True If you want to recive updates",
+          "example":"true"
+        },
+        "role":{
+          "type":"string",
+          "description":"Role of the person",
+          "example":"Client"
+        }
+      }
+    },
+    "resendotp":{
+      "type":"object",
+      "properties":{
+        "email":{
+          "type":"string",
+          "description":"Email ID To Login",
+          "example":"useremail@gmail.com"
+        }
+      }
+    },
+    "verify":{
+      "type":"object",
+      "properties":{
+        "email":{
+          "type":"email",
+          "description":"Email ID To Verify OTP",
+          "example":"useremail@gmail.com"
+        },
+        "emailOtp":{
+          "type":"number",
+          "description":"OTP for Validation",
+          "example":123546
+        }
+      }
+    },
+    "forgotpassword":{
+      "type":"object",
+      "properties":{
+        "email":{
+          "type":"email",
+          "description":"Email ID To Send OTP",
+          "example":"useremail@gmail.com"
+        }
+      }
     }
   },
   "paths": {
-    "/register": {
+    "/users": {
       "get": {
         "tags": [
-            "Default"
+            "auth"
         ],
         "parameters":[
           {
@@ -65,10 +130,112 @@
         }
       }
     },
+    "/register": {
+      "post": {
+        "tags": [
+            "auth"
+        ],
+        "parameters":[
+          {
+            "name":"body",
+            "in":"body",
+            "description":"Login Credentials",
+            "required":true,
+            "type":"object",
+            "schema":{
+              "$ref":"#/definitions/register"
+            }
+          }
+        ],
+        "summary": "To Register User",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          },
+          "401":{
+              "description": "Unauthorized Client"
+          }
+        }
+      }
+    },
+    "/resendotp": {
+      "put": {
+        "tags": [
+            "auth"
+        ],
+        "parameters":[
+          {
+            "name":"body",
+            "in":"body",
+            "description":"Login Credentials",
+            "required":true,
+            "type":"object",
+            "schema":{
+              "$ref":"#/definitions/resendotp"
+            }
+          }
+        ],
+        "summary": "Provide Valid Email To Recive Otp",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          },
+          "401":{
+              "description": "Unauthorized Client"
+          }
+        }
+      }
+    },
+    "/verify": {
+      "put": {
+        "tags": [
+            "auth"
+        ],
+        "parameters":[
+          {
+            "name":"body",
+            "in":"body",
+            "description":"Login Credentials",
+            "required":true,
+            "type":"object",
+            "schema":{
+              "$ref":"#/definitions/verify"
+            }
+          }
+        ],
+        "summary": "Validate Recived OTP",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          },
+          "401":{
+              "description": "Unauthorized Client"
+          }
+        }
+      }
+    },
     "/login": {
       "post": {
         "tags": [
-            "Default"
+            "auth"
         ],
         "parameters":[
           {
@@ -82,7 +249,41 @@
             }
           }
         ],
-        "summary": "Get all users in system",
+        "summary": "Provide Valid credentials To Recive Token",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          },
+          "401":{
+              "description": "Unauthorized Client"
+          }
+        }
+      }
+    },
+    "/forgotpassword": {
+      "post": {
+        "tags": [
+            "auth"
+        ],
+        "parameters":[
+          {
+            "name":"body",
+            "in":"body",
+            "description":"For",
+            "required":true,
+            "type":"object",
+            "schema":{
+              "$ref":"#/definitions/forgotpassword"
+            }
+          }
+        ],
+        "summary": "Provide Valid mail-ID To Recive OTP",
         "responses": {
           "200": {
             "description": "Ok"
@@ -99,6 +300,7 @@
         }
       }
     }
+    
   }
   
 }

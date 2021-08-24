@@ -299,10 +299,39 @@
           }
         }
       }
+    },
+    "/goals": {
+      "get": {
+        "tags": [
+            "goals"
+        ],
+        "parameters":[
+          {
+            "name":"x-auth-token",
+            "in":"header",
+            "description":"Authentication to get goals",
+            "required":true,
+            "type":"string"
+          }
+        ],
+        "summary": "Get the goals in system",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          },
+          "401":{
+              "description": "Unauthorized Client"
+          }
+        }
+      }
     }
-    
   }
-  
 }
 
 

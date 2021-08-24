@@ -8,6 +8,7 @@ const {resetOtpVerify,verifyOtp} = require('../controllers/otp-verify-controller
 const {resetPassword} = require('../controllers/reset-password-controller');
 const {addDoctors,updateDoctors} =require('../controllers/add-doc-controller');
 
+
 router.get('/register',auth, async (req, res) => { 
     const user = await Register.find();
     res.send(user);
@@ -20,7 +21,43 @@ router.get('/getotp',auth, async (req, res) => {
 
 router.post('/register',sendMail)
 
+/**
+ * @swagger
+ * definitions:
+ *  login:
+ *   type: object
+ *   properties:
+ *    email:
+ *     type: string
+ *     description: user Email ID
+ *     example: 'harshagl@gmail.com'
+ *    password:
+ *     type: string
+ *     description: password of the user
+ *     example: '1234567890'
+ */
+
+/**
+ * @swagger
+ *  /login:
+ *    post:
+ *     summary: user register
+ *     description: register
+ *     requestBody:
+ *      content:
+ *       application/json:
+ *        schema:
+ *         $ref: '#/definitions/login'
+ *     responses: 
+ *      200:
+ *       description : user registration successful
+ *      500:
+ *       description : user registration fail
+ */
+
 router.post('/login',login);
+
+
 router.put('/resendotp',reSendMail)
 router.put('/verify',verifyOtp )
 

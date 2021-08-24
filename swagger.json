@@ -64,7 +64,43 @@
           }
         }
       }
+    },
+    "/login": {
+      "post": {
+        "tags": [
+            "Default"
+        ],
+        "parameters":[
+          {
+            "name":"body",
+            "in":"body",
+            "description":"Login Credentials",
+            "required":true,
+            "type":"object",
+            "schema":{
+              "$ref":"#/definitions/login"
+            }
+          }
+        ],
+        "summary": "Get all users in system",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          },
+          "401":{
+              "description": "Unauthorized Client"
+          }
+        }
+      }
     }
   }
   
 }
+
+

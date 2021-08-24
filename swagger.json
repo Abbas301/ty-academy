@@ -31,7 +31,49 @@
           "example":"sanjkjhb"
         }
       }
+    },
+
+    "goal":{
+      "type":"object",
+      "properties":{
+        "health":{
+          "type":"string",
+          "description":"Email ID To Login",
+          "example":{
+            "enum":[
+              "I want to lose weight",
+              "I want to reverse my medical condition",
+              "I want to sleep better"
+            ]
+          }
+        },
+        "fitness":{
+          "type":"string",
+          "description":"Enter A Valid Password",
+          "example":{
+            "enum":[
+            "I want to lose fat and gain muscle",
+            "I want to improve my strength and endurance",
+            "I want to be better at my sport"
+            ]
+          }
+        },
+        "personal":{
+          "type":"string",
+          "description":"Enter A Valid Password",
+          "example":{
+            "enum":[
+              "I want to look good",
+              "I want to feel good",
+              "I want to change my habits"
+            ]
+          }
+        }
+      }
     }
+
+
+
   },
   "paths": {
     "/register": {
@@ -98,7 +140,42 @@
           }
         }
       }
+    },
+
+
+    "/goals": {
+      "get": {
+        "tags": [
+            "goals"
+        ],
+        "parameters":[
+          {
+            "name":"x-auth-token",
+            "in":"header",
+            "description":"Authentication to get goals",
+            "required":true,
+            "type":"string"
+          }
+        ],
+        "summary": "Get the goals in system",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          },
+          "401":{
+              "description": "Unauthorized Client"
+          }
+        }
+      }
     }
+
+
   }
   
 }

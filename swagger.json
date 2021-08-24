@@ -9,23 +9,46 @@
   "basePath": "/api",
   "tags": [
     {
-      "name": "Register",
-      "description": "API for users in the system"
+      "name": "Default",
+      "description": "API for Medifit Application"
     }
   ],
   "schemes": ["http","https"],
   "consumes": ["application/json"],
   "produces": ["application/json"],
+  "definitions":{
+    "login":{
+      "type":"object",
+      "properties":{
+        "email":{
+          "type":"string",
+          "description":"Email ID To Login",
+          "example":"Example@gmail.com"
+        },
+        "password":{
+          "type":"string",
+          "description":"Enter A Valid Password",
+          "example":"sanjkjhb"
+        }
+      }
+    }
+  },
   "paths": {
-    "/auth/register": {
+    "/register": {
       "get": {
         "tags": [
-            "Register"
+            "Default"
+        ],
+        "parameters":[
+          {
+            "name":"x-auth-token",
+            "in":"header",
+            "description":"Authentication to login",
+            "required":true,
+            "type":"string"
+          }
         ],
         "summary": "Get all users in system",
-        "parameters":{
-
-        },
         "responses": {
           "200": {
             "description": "Ok"
@@ -41,14 +64,7 @@
           }
         }
       }
-    },
-    "/auth/login":{
-      "post":{
-        "tags":[
-          "Login"
-        ],
-        "summary":"Login into Application"
-      }
     }
   }
+  
 }

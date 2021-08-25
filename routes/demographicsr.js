@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const auth = require('../middlewares/auth');
 const multer = require('multer');
-const { Personal } = require('../models/demographicsm')
+const { Personal } = require('../models/demographicsm');
+const { Goal } = require('../models/demographicsm')
 const {goals, putGoals ,userDetails,updateDetails} = require('../controllers/demographics-controllers')
 const {imageController, bodyFitness, putBodyFitness} = require('../controllers/bodyprofile-controllers');
 

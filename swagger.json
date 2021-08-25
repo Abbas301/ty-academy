@@ -9,8 +9,8 @@
   "basePath": "/api",
   "tags": [
     {
-      "name": "Default",
-      "description": "API for Medifit Application"
+      "name": "auth",
+      "description": "Authentication routes"
     }
   ],
   "schemes": ["http","https"],
@@ -119,10 +119,10 @@
     }
   },
   "paths": {
-    "/register": {
+    "/users": {
       "get": {
         "tags": [
-            "Default"
+            "auth"
         ],
         "parameters":[
           {
@@ -150,10 +150,112 @@
         }
       }
     },
+    "/register": {
+      "post": {
+        "tags": [
+            "auth"
+        ],
+        "parameters":[
+          {
+            "name":"body",
+            "in":"body",
+            "description":"Login Credentials",
+            "required":true,
+            "type":"object",
+            "schema":{
+              "$ref":"#/definitions/register"
+            }
+          }
+        ],
+        "summary": "To Register User",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          },
+          "401":{
+              "description": "Unauthorized Client"
+          }
+        }
+      }
+    },
+    "/resendotp": {
+      "put": {
+        "tags": [
+            "auth"
+        ],
+        "parameters":[
+          {
+            "name":"body",
+            "in":"body",
+            "description":"Login Credentials",
+            "required":true,
+            "type":"object",
+            "schema":{
+              "$ref":"#/definitions/resendotp"
+            }
+          }
+        ],
+        "summary": "Provide Valid Email To Recive Otp",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          },
+          "401":{
+              "description": "Unauthorized Client"
+          }
+        }
+      }
+    },
+    "/verify": {
+      "put": {
+        "tags": [
+            "auth"
+        ],
+        "parameters":[
+          {
+            "name":"body",
+            "in":"body",
+            "description":"Login Credentials",
+            "required":true,
+            "type":"object",
+            "schema":{
+              "$ref":"#/definitions/verify"
+            }
+          }
+        ],
+        "summary": "Validate Recived OTP",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          },
+          "401":{
+              "description": "Unauthorized Client"
+          }
+        }
+      }
+    },
     "/login": {
       "post": {
         "tags": [
-            "Default"
+            "auth"
         ],
         "parameters":[
           {
@@ -167,7 +269,72 @@
             }
           }
         ],
-        "summary": "Get all users in system",
+        "summary": "Provide Valid credentials To Recive Token",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          },
+          "401":{
+              "description": "Unauthorized Client"
+          }
+        }
+      }
+    },
+    "/forgotpassword": {
+      "post": {
+        "tags": [
+            "auth"
+        ],
+        "parameters":[
+          {
+            "name":"body",
+            "in":"body",
+            "description":"For",
+            "required":true,
+            "type":"object",
+            "schema":{
+              "$ref":"#/definitions/forgotpassword"
+            }
+          }
+        ],
+        "summary": "Provide Valid mail-ID To Recive OTP",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          },
+          "401":{
+              "description": "Unauthorized Client"
+          }
+        }
+      }
+    },
+    "/goals": {
+      "get": {
+        "tags": [
+            "goals"
+        ],
+        "parameters":[
+          {
+            "name":"x-auth-token",
+            "in":"header",
+            "description":"Authentication to get goals",
+            "required":true,
+            "type":"string"
+          }
+        ],
+        "summary": "Get the goals in system",
         "responses": {
           "200": {
             "description": "Ok"
@@ -331,7 +498,6 @@
       }
     }
   }
-  
 }
 
 

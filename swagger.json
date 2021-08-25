@@ -31,6 +31,91 @@
           "example":"sanjkjhb"
         }
       }
+    },
+    "exerciseList":{
+      "type":"object",
+      "properties":{
+        "exerciseType":{
+          "type":"string",
+          "description":"Enter required Exercise Type",
+          "example":"Aerobics"
+        },
+        "exerciseName":{
+          "type":"string",
+          "description":"Enter Exercise Name",
+          "example":"Zumba"
+        },
+        "youTubeURL":{
+          "type":"string",
+          "description":"Enter Exercise youTubeURL",
+          "example":"https://www.youtube.com/watch?v=vG_Bs0QLc3I&ab_channel=ZumbaClass"
+        }
+      }
+    },
+    "recipies":{
+      "type":"object",
+      "properties":{
+        "recipeType":{
+          "type":"string",
+          "description":"Enter required recipe Type",
+          "example":"Breakfast"
+        },
+        "description":{
+          "type":"string",
+          "description":"Enter recipe description",
+          "example":"Good for health"
+        },
+        "ingrediants":{
+          "type":"array",
+          "description":"Enter required ingrediants",
+          "example":"Rava, Red-Chilly."
+        },
+        "carbohydrates":{
+          "type":"string",
+          "description":"Enter carbohydrates in gm",
+          "example":"11.1gm"
+        },
+        "fat":{
+          "type":"string",
+          "description":"Enter fat in gm",
+          "example":"4.1gm"
+        },
+        "calories":{
+          "type":"string",
+          "description":"Enter calories in gm",
+          "example":"91.2gm"
+        },
+        "recipeName":{
+          "type":"string",
+          "description":"Enter required recipeName",
+          "example":"rava Upma"
+        },
+        "cookingProcess":{
+          "type":"string",
+          "description":"Enter cookingProcess",
+          "example":"Prep the ingredients first. Take 1 cup rava (fine variety), ⅓ cup finely chopped onions, 1 teaspoon chopped green chillies, 1 teaspoon finely chopped ginger and 2 tablespoons coriander leaves (cilantro). Also take 8 to 10 curry leaves, 10 to 12 cashews, 1 teaspoon chana dal and 1 teaspoon urad dal"
+        },
+        "provideYouTubeLink":{
+          "type":"string",
+          "description":"Enter required provideYouTubeLink",
+          "example":"https://www.youtube.com/watch?v=J14YXUZeT3k&ab_channel=Kanak%27sKitchen"
+        },
+        "protein":{
+          "type":"string",
+          "description":"Enter protein in gm",
+          "example":"0.8gm"
+        },
+        "fiber":{
+          "type":"string",
+          "description":"Enter fiber in gm",
+          "example":"2.0gm"
+        },
+        "recipeImage":{
+          "type":"array",
+          "description":"Upload recipe image",
+          "example":"one-pot-healthy-chicken-pasta-149595-2.jpg-1629724845197.jpg"
+        }
+      }
     }
   },
   "paths": {
@@ -95,6 +180,152 @@
           },
           "401":{
               "description": "Unauthorized Client"
+          }
+        }
+      }
+    },
+    "/get-exercise": {
+      "get": {
+        "tags": [
+            "Default"
+        ],
+        "parameters":[
+          {
+            "name":"x-auth-token",
+            "in":"header",
+            "description":"Exercise List Detailes",
+            "required":true,
+            "type":"string"
+          }
+        ],
+        "summary": "Get Exercise Lists",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          }
+        }
+      }
+    },
+    "/post-exercise": {
+      "post": {
+        "tags": [
+            "Default"
+        ],
+        "parameters":[
+          {
+            "name":"x-auth-token",
+            "in":"header",
+            "description":"Exercise List Detailes",
+            "required":true,
+            "type":"string"
+          },
+          {
+            "name":"body",
+            "in":"body",
+            "description":"Exercise List Detailes",
+            "required":true,
+            "type":"object",
+            "schema":{
+              "$ref":"#/definitions/exerciseList"
+            }
+          }
+        ],
+        "summary": "Post Exercise List",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          }
+        }
+      }
+    },
+    "/put-exercise/{id}": {
+      "put": {
+        "tags": [
+            "Default"
+        ],
+        "parameters":[
+          {
+            "name":"x-auth-token",
+            "in":"header",
+            "description":"Auth token for getting Exercise List Detailes",
+            "required":true,
+            "type":"string"
+          },
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "description":"Id of Exercise List to be updated",
+            "type":"string"
+          },
+          {
+            "name":"body",
+            "in":"body",
+            "description":"Exercise List Detailes",
+            "required":true,
+            "type":"object",
+            "schema":{
+              "$ref":"#/definitions/exerciseList"
+            }
+          }
+        ],
+        "summary": "Update Exercise List",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          }
+        }
+      }
+    },
+    "/delete-exercise/{id}": {
+      "delete": {
+        "tags": [
+            "Default"
+        ],
+        "parameters":[
+          {
+            "name":"x-auth-token",
+            "in":"header",
+            "description":"Auth token for deleting Exercise List",
+            "required":true,
+            "type":"string"
+          },
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "description":"Id of Exercise List to be deleted",
+            "type":"string"
+          }
+        ],
+        "summary": "Deleted Exercise List",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
           }
         }
       }

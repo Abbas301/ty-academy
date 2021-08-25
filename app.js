@@ -39,7 +39,7 @@ app.use('/api', demographic);
 app.use('/api', recipe);
 app.use('/api/medical', medical)
 
-app.use('/exercise',exercise)
+app.use('/api',exercise)
 
 // const option = {
 //     definition :{

@@ -1,6 +1,7 @@
 const { Recipe} = require('../models/recipem');
 const _ = require('lodash');
 const multer = require("multer");
+const fs = require('fs');
 
 const MIME_TYPE = {
     "image/png": "png",
@@ -17,12 +18,12 @@ const storage = multer.diskStorage({
         }
         cb(error, "public/recipies");
     },
-    filename: (req, file, cb) => {
+    filename: async (req, file, cb) => {
         const name = file.originalname.toLowerCase().split(" ").join("-");
         const ext = MIME_TYPE[file.mimetype];
         cb(null, name + "-" + Date.now() + "." + ext);
     }
-});
+}); 
 async function postRecipe(req, res , next) {
     const imagePaths = req.files;
    let recipeImagePaths=[];
@@ -32,6 +33,7 @@ async function postRecipe(req, res , next) {
     }
     try {
         const details = await Recipe.findOne({userId:req.user._id})
+        
         if(details){
             return res.status(400).send({error:true , errorMessage:"Recipe is already added with unique userID. Just update it!!!!"})
         }

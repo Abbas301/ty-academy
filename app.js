@@ -10,10 +10,9 @@ const medical = require('./routes/medical-route')
 const recipe = require('./routes/reciper')
 const path = require('path');
 
-// const swaggerJSDoc = require('swagger-jsdoc'); 
+//swagger configurations
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
-
 app.use('/api-docs',swaggerUi.serve,swaggerUi.setup(swaggerDocument));
 
 // env config
@@ -32,14 +31,31 @@ app.use(express.static(path.join('public/recipies')));
 app.use(express.static(path.join('public/excelFile')));
 app.use(express.json());
 
-
+//routes
 app.use('/api', auth)
 app.use('/api', lifestyle)
 app.use('/api', demographic);
 app.use('/api', recipe);
 app.use('/api/medical', medical)
 
-app.use('/exercise',exercise)
+app.use('/api',exercise)
+
+app.get('/', (req, res) => {
+    res.json({requestHeaders: req.headers, responseHeaders: res.getHeaders(), app: 'Medifit', path: '/'});
+});
+
+app.use((err, req, res, next) => {
+    res.json({error: true, message: err, errorMeassage: 'Some Internal Error Ocured'});
+});
+
+app.listen(port, () => {
+    console.log(`App is running on port ${port}`);
+});
+
+//Another method to integrate Swagger using swagger-jsdoc
+
+// const swaggerJSDoc = require('swagger-jsdoc'); 
+// const swaggerUi = require('swagger-ui-express');
 
 // const option = {
 //     definition :{
@@ -58,15 +74,36 @@ app.use('/exercise',exercise)
 //    }
 // const swaggerSpec = swaggerJSDoc(option)
 // app.use('/api-docs',swaggerUi.serve,swaggerUi.setup(swaggerSpec));
+/**
+ * @swagger
+ * definitions:
+ *  login:
+ *   type: object
+ *   properties:
+ *    email:
+ *     type: string
+ *     description: user Email ID
+ *     example: 'harshagl@gmail.com'
+ *    password:
+ *     type: string
+ *     description: password of the user
+ *     example: '1234567890'
+ */
 
-app.get('/', (req, res) => {
-    res.json({requestHeaders: req.headers, responseHeaders: res.getHeaders(), app: 'Medifit', path: '/'});
-});
-
-app.use((err, req, res, next) => {
-    res.json({error: true, message: err, errorMeassage: 'Some Internal Error Ocured'});
-});
-
-app.listen(port, () => {
-    console.log(`App is running on port ${port}`);
-});
+/**
+ * @swagger
+ *  /login:
+ *    post:
+ *     summary: user register
+ *     description: register
+ *     requestBody:
+ *      content:
+ *       application/json:
+ *        schema:
+ *         $ref: '#/definitions/login'
+ *     responses: 
+ *      200:
+ *       description : user registration successful
+ *      500:
+ *       description : user registration fail
+ */

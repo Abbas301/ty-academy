@@ -9,8 +9,8 @@
   "basePath": "/api",
   "tags": [
     {
-      "name": "Default",
-      "description": "API for Medifit Application"
+      "name": "auth",
+      "description": "Authentication routes"
     }
   ],
   "schemes": ["http","https"],
@@ -232,17 +232,169 @@
             "type":"number",
             "description":"Enter duration",
             "example":"2"
-          }
+          },
+    "register":{
+      "type":"object",
+      "properties":{
+        "email":{
+          "type":"string",
+          "description":"Email ID To Login",
+          "example":"Example@gmail.com"
+        },
+        "password":{
+          "type":"string",
+          "description":"Enter A Valid Password",
+          "example":"sanjkjhb"
+        },
+        "phoneNumber":{
+          "type":"number",
+          "description":"Phone Number",
+          "example":"9874585510"
+        },
+        "getUpdates":{
+          "type":"boolean",
+          "description":"Enter A Valid Password",
+          "example":"true"
+        },
+        "role":{
+          "type":"string",
+          "description":"Role of the person",
+          "example":"Client"
+        }
+      }
+    },
+    "resendotp":{
+      "type":"object",
+      "properties":{
+        "email":{
+          "type":"email",
+          "description":"Email ID To Send OTP",
+          "example":"useremail@gmail.com"
+        },
+        "emailOtp":{
+          "type":"number",
+          "description":"OTP for Validation",
+          "example":123546
+        }
+      }
+    },
+    "verify":{
+      "type":"object",
+      "properties":{
+        "email":{
+          "type":"email",
+          "description":"Email ID To Send OTP",
+          "example":"useremail@gmail.com"
+        },
+        "emailOtp":{
+          "type":"number",
+          "description":"OTP for Validation",
+          "example":123546
+        }
+      }
+    },
+    "verifyotpforpassword":{
+      "type":"object",
+      "properties":{
+        "email":{
+          "type":"email",
+          "description":"Email ID To Send OTP",
+          "example":"useremail@gmail.com"
+        },
+        "emailOtp":{
+          "type":"number",
+          "description":"OTP for Validation",
+          "example":123546
+        }
+      }
+    },
+    "resetPassword":{
+      "type":"object",
+      "properties":{
+        "email":{
+          "type":"email",
+          "description":"Email ID To Send OTP",
+          "example":"useremail@gmail.com"
+        },
+        "password":{
+          "type":"string",
+          "description":"New Password to Update",
+          "example":"********"
+        }
+      }
+    },
+    "forgotpassword":{
+      "type":"object",
+      "properties":{
+        "email":{
+          "type":"email",
+          "description":"Email ID To Send OTP",
+          "example":"useremail@gmail.com"
+        }
+      }
+    },
+    "adddoctors":{
+      "type":"object",
+      "properties":{
+        "name":{
+          "type":"string",
+          "description":"Email ID To Login",
+          "example":"useremail@gmail.com"
+        },
+        "email":{
+          "type":"string",
+          "description":"Email ID To Login",
+          "example":"useremail@gmail.com"
+        },
+        "password":{
+          "type":"string",
+          "description":"Enter A Valid Password",
+          "example":"**********"
+        },
+        "phoneNumber":{
+          "type":"number",
+          "description":"Phone Number",
+          "example":"9874585510"
+        },
+        "role":{
+          "type":"string",
+          "description":"Role of the person",
+          "example":"Client"
+        }
+      }
+    },
+    "updatedoctors":{
+      "type":"object",
+      "properties":{
+        "name":{
+          "type":"string",
+          "description":"Email ID To Login",
+          "example":"useremail@gmail.com"
+        },
+        "email":{
+          "type":"string",
+          "description":"Email ID To Login",
+          "example":"useremail@gmail.com"
+        },
+        "phoneNumber":{
+          "type":"number",
+          "description":"Phone Number",
+          "example":"9874585510"
+        },
+        "role":{
+          "type":"string",
+          "description":"Role of the person",
+          "example":"Client"
         }
       }
     }
   }
 },
   "paths": {
-    "/register": {
+    "/users": {
       "get": {
         "tags": [
-            "Default"
+            "auth"
         ],
         "parameters":[
           {
@@ -270,10 +422,112 @@
         }
       }
     },
+    "/register": {
+      "post": {
+        "tags": [
+            "auth"
+        ],
+        "parameters":[
+          {
+            "name":"body",
+            "in":"body",
+            "description":"Login Credentials",
+            "required":true,
+            "type":"object",
+            "schema":{
+              "$ref":"#/definitions/register"
+            }
+          }
+        ],
+        "summary": "To Register User",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          },
+          "401":{
+              "description": "Unauthorized Client"
+          }
+        }
+      }
+    },
+    "/resendotp": {
+      "put": {
+        "tags": [
+            "auth"
+        ],
+        "parameters":[
+          {
+            "name":"body",
+            "in":"body",
+            "description":"Login Credentials",
+            "required":true,
+            "type":"object",
+            "schema":{
+              "$ref":"#/definitions/resendotp"
+            }
+          }
+        ],
+        "summary": "Provide Valid Email To Recive Otp",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          },
+          "401":{
+              "description": "Unauthorized Client"
+          }
+        }
+      }
+    },
+    "/verify": {
+      "put": {
+        "tags": [
+            "auth"
+        ],
+        "parameters":[
+          {
+            "name":"body",
+            "in":"body",
+            "description":"Login Credentials",
+            "required":true,
+            "type":"object",
+            "schema":{
+              "$ref":"#/definitions/verify"
+            }
+          }
+        ],
+        "summary": "Validate Recived OTP",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          },
+          "401":{
+              "description": "Unauthorized Client"
+          }
+        }
+      }
+    },
     "/login": {
       "post": {
         "tags": [
-            "Default"
+            "auth"
         ],
         "parameters":[
           {
@@ -287,7 +541,208 @@
             }
           }
         ],
-        "summary": "Get all users in system",
+        "summary": "Provide Valid credentials To Recive Token",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          },
+          "401":{
+              "description": "Unauthorized Client"
+          }
+        }
+      }
+    },
+    "/forgotpassword": {
+      "post": {
+        "tags": [
+            "auth"
+        ],
+        "parameters":[
+          {
+            "name":"body",
+            "in":"body",
+            "description":"For",
+            "required":true,
+            "type":"object",
+            "schema":{
+              "$ref":"#/definitions/forgotpassword"
+            }
+          }
+        ],
+        "summary": "Provide Valid mail-ID To Recive OTP",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          },
+          "401":{
+              "description": "Unauthorized Client"
+          }
+        }
+      }
+    },
+    "/verifyotpforpassword": {
+      "post": {
+        "tags": [
+            "auth"
+        ],
+        "parameters":[
+          {
+            "name":"body",
+            "in":"body",
+            "description":"Login Credentials",
+            "required":true,
+            "type":"object",
+            "schema":{
+              "$ref":"#/definitions/verifyotpforpassword"
+            }
+          }
+        ],
+        "summary": "Validate Recived OTP",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          },
+          "401":{
+              "description": "Unauthorized Client"
+          }
+        }
+      }
+    },
+    "/resetPassword": {
+      "post": {
+        "tags": [
+            "auth"
+        ],
+        "parameters":[
+          {
+            "name":"body",
+            "in":"body",
+            "description":"Login Credentials",
+            "required":true,
+            "type":"object",
+            "schema":{
+              "$ref":"#/definitions/resetPassword"
+            }
+          }
+        ],
+        "summary": "Reset Password",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          },
+          "401":{
+              "description": "Unauthorized Client"
+          }
+        }
+      }
+    },
+    "/getdoctors": {
+      "get": {
+        "tags": [
+            "auth"
+        ],
+        "parameters":[
+          {
+            "name":"x-auth-token",
+            "in":"header",
+            "description":"Authentication to login",
+            "required":true,
+            "type":"string"
+          }
+        ],
+        "summary": "Get all Doctors in system",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          },
+          "401":{
+              "description": "Unauthorized Client"
+          }
+        }
+      }
+    },
+    "/adddoctors": {
+      "post": {
+        "tags": [
+            "auth"
+        ],
+        "parameters":[
+          {
+            "name":"body",
+            "in":"body",
+            "description":"Add Doctor Credentials",
+            "required":true,
+            "type":"object",
+            "schema":{
+              "$ref":"#/definitions/adddoctors"
+            }
+          }
+        ],
+        "summary": "Add Doctors",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          },
+          "401":{
+              "description": "Unauthorized Client"
+          }
+        }
+      }
+    },
+    "/updatedoctors": {
+      "put": {
+        "tags": [
+            "auth"
+        ],
+        "parameters":[
+          {
+            "name":"body",
+            "in":"body",
+            "description":"Add Doctor Credentials",
+            "required":true,
+            "type":"object",
+            "schema":{
+              "$ref":"#/definitions/updatedoctors"
+            }
+          }
+        ],
+        "summary": "Add Doctors",
         "responses": {
           "200": {
             "description": "Ok"
@@ -393,7 +848,10 @@
         }
       }
     }
+    
+  }}
   }
+}
 }
 
 

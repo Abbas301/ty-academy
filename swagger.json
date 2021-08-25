@@ -31,8 +31,213 @@
           "example":"sanjkjhb"
         }
       }
+    },
+    "lifestyle":{
+      "type":"object",
+      "properties":{
+        "physicalactivity":{
+          "type":"object",
+          "properties":{
+          "currentPALevel":{
+            "type":"string",
+            "description":"Enter PA level",
+            "example":"xyz"
+          },
+          "addactivity":{
+            "type":"object",
+            "properties":{
+            "activityname":{
+              "type":"string",
+              "description":"Enter Activity name",
+              "example":"xyz"
+            },
+            "frequency":{
+              "type":"number",
+              "description":"Enter Frequency",
+              "example":"1"
+            },
+            "intensity":{
+              "type":"string",
+              "description":"Enter Intensity",
+              "example":"xyz"
+            },
+            "duration":{
+              "type":"date",
+              "description":"Enter duration",
+              "example":"yyyy-mm-dd"
+            }
+          }
+        },
+          "modesOfPA":{
+            "type":"string",
+            "description":"Enter modes of physical activity",
+            "example":"xyz"
+          },
+          "limitsFromPA":{
+            "type":"string",
+            "description":"Enter limits from physical activity",
+            "example":"xyz"
+          },
+          "preferredTimeForPA":{
+            "type":"date",
+            "description":"Enter preferred time for physical activity",
+            "example":"yyyy-mm-dd hh:mi:ss"
+          }
+        }
+        },
+        "sleep":{
+          "type":"object",
+          "properties":{
+          "wakeUpTime":{
+            "type":"date",
+            "description":"Enter Wakeup Time",
+            "example":"yyyy-mm-dd hh:mi:ss"
+          },
+          "sleepIssues":{
+            "type":"string",
+            "description":"Enter sleep issues",
+            "example":"xyz"
+          },
+          "wakeUpMood":{
+            "type":"string",
+            "description":"Enter wakeup mood",
+            "example":"xyz"
+          },
+          "sleepMedication":{
+            "type":"string",
+            "description":"Enter Sleep Medication",
+            "example":"xyz"
+          },
+          "sleepTime":{
+            "type":"date",
+            "description":"Enter Sleep Time",
+            "example":"yyyy-mm-dd hh:mi:ss"
+          },
+          "sleepDuration":{
+            "type":"number",
+            "description":"Enter Sleep Duration",
+            "example":"8"
+          },
+          "snore":{
+            "type":"string",
+            "description":"Enter yes/no for snoring",
+            "example":"yes"
+          },
+          "sleepDevice":{
+            "type":"string",
+            "description":"Enter using sleep device",
+            "example":"xyz"
+          }
+        }
+      },
+        "stress":{
+          "type":"object",
+          "properties":{
+          "stressed":{
+            "type":"boolean",
+            "description":"Enter Stressed or not",
+            "example":"1/0"
+          },
+          "stressRate":{
+            "type":"number",
+            "description":"Enter Stress rate",
+            "example":"3"
+          },
+          "sourceOfStress":{
+            "type":"string",
+            "description":"Enter source of Stress",
+            "example":"xyz"
+          },
+          "copeWithStress":{
+            "type":"string",
+            "description":"Enter cope with Stress",
+            "example":"xyz"
+          }
+        }
+      },
+        "alcohol":{
+          "type":"object",
+          "properties":{
+          "consumeAlcohol":{
+            "type":"boolean",
+            "description":"will u consume alcohol",
+            "example":"1/0"
+          },
+          "alcoholQuantity":{
+            "type":"number",
+            "description":"Enter Alcohol Quantity",
+            "example":"3"
+          },
+          "alcoholConsumeFrequency":{
+            "type":"string",
+            "description":"Enter Alcohol Consume Frequency",
+            "example":"xyz"
+          },
+          "alcoholConsumingSince":{
+            "type":"string",
+            "description":"Enter Alcohol Consume Since",
+            "example":"xyz"
+          },
+          "consumeTobacco":{
+            "type":"boolean",
+            "description":"will u consume tobacco",
+            "example":"1/0"
+          },
+          "consumingWay":{
+            "type":"string",
+            "description":"Enter how do you consume tobacco",
+            "example":"xyz"
+          },
+          "tobaccoQuantity":{
+            "type":"number",
+            "description":"Enter Tobacco Quantity",
+            "example":"3"
+          },
+          "tobaccoConsumeFrequency":{
+            "type":"string",
+            "description":"Enter Tobacco Consume Frequency",
+            "example":"xyz"
+          },
+          "tobaccoConsumingSince":{
+            "type":"string",
+            "description":"Enter Tobacco Consume Since",
+            "example":"xyz"
+          }
+        }
+      },
+        "drugs":{
+          "type":"object",
+          "properties":{
+          "drugsIntake":{
+            "type":"boolean",
+            "description":"will u consume drugs",
+            "example":"1/0"
+          },
+          "substance":{
+            "type":"string",
+            "description":"Enter which substance",
+            "example":"xyz"
+          },
+          "quantity":{
+            "type":"number",
+            "description":"Enter quantity",
+            "example":"2"
+          },
+          "frequency":{
+            "type":"string",
+            "description":"Enter frequency",
+            "example":"xyz"
+          },
+          "duration":{
+            "type":"number",
+            "description":"Enter duration",
+            "example":"2"
+          }
+        }
+      }
     }
-  },
+  }
+},
   "paths": {
     "/register": {
       "get": {
@@ -98,9 +303,97 @@
           }
         }
       }
+    },
+    "/lifestyle":{
+      "get": {
+        "tags": [
+            "Default"
+        ],
+        "parameters":[
+          {
+            "name":"body",
+            "in":"body",
+            "description":"Lifestyle details",
+            "required":true,
+            "type":"object",
+            "schema":{
+              "$ref":"#/definitions/lifestyle"
+            }
+          }
+        ],
+        "summary": "Get all lifestyle details",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+            "Default"
+        ],
+        "parameters":[
+          {
+            "name":"body",
+            "in":"body",
+            "description":"Post Lifestyle details",
+            "required":true,
+            "type":"object",
+            "schema":{
+              "$ref":"#/definitions/lifestyle"
+            }
+          }
+        ],
+        "summary": "Post Lifestyle Details",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+            "Default"
+        ],
+        "parameters":[
+          {
+            "name":"body",
+            "in":"body",
+            "description":"Edit Lifestyle Details",
+            "required":true,
+            "type":"object",
+            "schema":{
+              "$ref":"#/definitions/lifestyle"
+            }
+          }
+        ],
+        "summary": "Get all users in system",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          }
+        }
+      }
     }
   }
-  
 }
 
 

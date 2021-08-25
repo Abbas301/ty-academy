@@ -37,7 +37,8 @@ app.use('/api', lifestyle)
 app.use('/api', demographic);
 app.use('/api', recipe);
 app.use('/api/medical', medical)
-app.use('/exercise',exercise)
+
+app.use('/api',exercise)
 
 app.get('/', (req, res) => {
     res.json({requestHeaders: req.headers, responseHeaders: res.getHeaders(), app: 'Medifit', path: '/'});

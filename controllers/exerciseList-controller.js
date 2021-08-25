@@ -51,8 +51,11 @@ fs.unlinkSync(filePath);
 const postExerciseList = async (req, res, next) => {
     let userid = req.user._id
     const {exerciseType, exerciseName, youTubeURL} = req.body;
-    console.log(req.body);
     try {
+        const details = await exerciseLists.findOne({userId:req.user._id})
+        if(details){
+            return res.status(400).send({error:true , errorMessage:"exerciseList is already added with unique userID. Just update it!!!!"})
+        }
         const inserted = await exerciseLists.insertMany({
                 exerciseType,
                 exerciseName,

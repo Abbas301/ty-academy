@@ -35,24 +35,24 @@
     "register":{
       "type":"object",
       "properties":{
+        "email":{
+          "type":"string",
+          "description":"Email ID To Login",
+          "example":"Example@gmail.com"
+        },
+        "password":{
+          "type":"string",
+          "description":"Enter A Valid Password",
+          "example":"sanjkjhb"
+        },
         "phoneNumber":{
           "type":"number",
           "description":"Phone Number",
           "example":"9874585510"
         },
-        "email":{
-          "type":"string",
-          "description":"Email ID To Login",
-          "example":"useremail@gmail.com"
-        },
-        "password":{
-          "type":"string",
-          "description":"Enter A Valid Password",
-          "example":"**********"
-        },
         "getUpdates":{
           "type":"boolean",
-          "description":"True If you want to recive updates",
+          "description":"Enter A Valid Password",
           "example":"true"
         },
         "role":{
@@ -66,18 +66,8 @@
       "type":"object",
       "properties":{
         "email":{
-          "type":"string",
-          "description":"Email ID To Login",
-          "example":"useremail@gmail.com"
-        }
-      }
-    },
-    "verify":{
-      "type":"object",
-      "properties":{
-        "email":{
           "type":"email",
-          "description":"Email ID To Verify OTP",
+          "description":"Email ID To Send OTP",
           "example":"useremail@gmail.com"
         },
         "emailOtp":{
@@ -87,13 +77,18 @@
         }
       }
     },
-    "forgotpassword":{
+    "verify":{
       "type":"object",
       "properties":{
         "email":{
           "type":"email",
           "description":"Email ID To Send OTP",
           "example":"useremail@gmail.com"
+        },
+        "emailOtp":{
+          "type":"number",
+          "description":"OTP for Validation",
+          "example":123546
         }
       }
     },
@@ -124,6 +119,16 @@
           "type":"string",
           "description":"New Password to Update",
           "example":"********"
+        }
+      }
+    },
+    "forgotpassword":{
+      "type":"object",
+      "properties":{
+        "email":{
+          "type":"email",
+          "description":"Email ID To Send OTP",
+          "example":"useremail@gmail.com"
         }
       }
     },
@@ -369,37 +374,6 @@
           }
         ],
         "summary": "Provide Valid mail-ID To Recive OTP",
-        "responses": {
-          "200": {
-            "description": "Ok"
-          },
-          "400":{
-            "description": "Bad request"
-          },
-          "404":{
-            "description": "Page Not Found or File Not Found"
-          },
-          "401":{
-              "description": "Unauthorized Client"
-          }
-        }
-      }
-    },
-    "/goals": {
-      "get": {
-        "tags": [
-            "goals"
-        ],
-        "parameters":[
-          {
-            "name":"x-auth-token",
-            "in":"header",
-            "description":"Authentication to get goals",
-            "required":true,
-            "type":"string"
-          }
-        ],
-        "summary": "Get the goals in system",
         "responses": {
           "200": {
             "description": "Ok"

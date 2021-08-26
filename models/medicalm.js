@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 
 const MedicalHistory = mongoose.model("MedicalHistory", new mongoose.Schema({
    currentSymptoms:{
-       type:String
+       type:Array
    },
    currentMedicalHistory:{
        diagnosis:{
@@ -115,7 +115,7 @@ const MedicalHistory = mongoose.model("MedicalHistory", new mongoose.Schema({
             type:String
         },
         lmp:{
-            type:String
+            type:Date
         },
         Frequency:{
             type:String
@@ -135,7 +135,7 @@ const MedicalHistory = mongoose.model("MedicalHistory", new mongoose.Schema({
     },
     childBirthHistory:{
         ageofChild:{
-            type:Number
+            type:String
         },
         sexofChild:{
             type:String
@@ -149,7 +149,7 @@ const MedicalHistory = mongoose.model("MedicalHistory", new mongoose.Schema({
         abortions:{
             count:{
                 type:{
-                    Number
+                    String
                 }
             },
             longestDuration:{
@@ -164,7 +164,8 @@ const MedicalHistory = mongoose.model("MedicalHistory", new mongoose.Schema({
         type:String
     },
     userId:{
-        type:String
+        type:String,
+        default:"ID needs to be Entered later"
     }
   })
 );

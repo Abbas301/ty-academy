@@ -93,7 +93,6 @@ async function updateDoctors(req,res) {
     res.status(200).send({error:false,message: `${user.email} Details Updated successfully`})
 }
 
-
 module.exports.addDoctors = addDoctors;
 
 module.exports.updateDoctors = updateDoctors;

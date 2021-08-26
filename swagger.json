@@ -3,7 +3,7 @@
   "info": {
     "version": "1.0.0", 
     "title": "MediFit App",
-    "description": "Medifit For Healthy Life"
+    "description": "Make Your Life More Healthy"
   },
   "host": "localhost:2000",
   "basePath": "/api",
@@ -11,6 +11,10 @@
     {
       "name": "auth",
       "description": "Authentication routes"
+    },
+    {
+      "name":"medical",
+      "description": "Medical-History routes"
     }
   ],
   "schemes": ["http","https"],
@@ -184,6 +188,201 @@
           "type":"string",
           "description":"Role of the person",
           "example":"Client"
+        }
+      }
+    },
+    "addmedicaldetails":{
+      "type":"object",
+      "properties":{
+        "currentSymptoms":{
+          "type":"array",
+          "description":"Enter Your Current Symptoms",
+          "example":["Low Energy","Poor Sleep"]
+        },
+        "cmhDiagnosis":{
+          "type":"string",
+          "description":"Enter Your Diagnosis Name",
+          "example":"SINUS"
+        },
+        "cmhDiagnosisDate":{
+          "type":"date",
+          "description":"Enter Your Diagnosis Date",
+          "example":"2021-08-25"
+        },
+        "cmhtreatment":{
+          "type":"string",
+          "description":"Enter Your Diagnosis treatment",
+          "example":"ANALGESIC"
+        },
+        "dustAllergie":{
+          "type":"string",
+          "description":"Do you have dust allergie",
+          "example":"NO"
+        },
+        "pollenAllergie":{
+          "type":"string",
+          "description":"Do you have pollen allergie",
+          "example":"NO"
+        },
+        "medicationAllergie":{
+          "type":"string",
+          "description":"Do you have medication allergie",
+          "example":"SULPHUR"
+        },
+        "allergieFood":{
+          "type":"string",
+          "description":"Do you have Food allergie",
+          "example":"MUSHROOM"
+        },
+        "otherAllergies":{
+          "type":"string",
+          "description":"Do you have any other allergie",
+          "example":"Caffeine"
+        },
+        "pmhDiagnosis":{
+          "type":"string",
+          "description":"Enter Your Diagnosis Name",
+          "example":"SINUS"
+        },
+        "pmhDiagnosisDate":{
+          "type":"date",
+          "description":"Enter Your Diagnosis Date",
+          "example":"2021-08-25"
+        },
+        "pmhtreatment":{
+          "type":"string",
+          "description":"Enter Your Diagnosis treatment",
+          "example":"ANALGESIC"
+        },
+        "pmhstatus":{
+          "type":"string",
+          "description":"Enter Your Diagnosis Status",
+          "example":"Resolved"
+        },
+        "psDiagnosis":{
+          "type":"string",
+          "description":"Enter Your Diagnosis Name",
+          "example":"SINUS"
+        },
+        "psDiagnosisDate":{
+          "type":"date",
+          "description":"Enter Your Diagnosis Date",
+          "example":"2021-08-25"
+        },
+        "psstatus":{
+          "type":"string",
+          "description":"Enter Your Diagnosis Status",
+          "example":"Resolved"
+        },
+        "ptDiagnosis":{
+          "type":"string",
+          "description":"Enter Your Diagnosis Name",
+          "example":"SINUS"
+        },
+        "ptDiagnosisDate":{
+          "type":"date",
+          "description":"Enter Your Diagnosis Date",
+          "example":"2021-08-25"
+        },
+        "pttreatment:":{
+          "type":"string",
+          "description":"Enter Your Diagnosis treatment",
+          "example":"ANALGESIC"
+        },
+        "ptstatus":{
+          "type":"string",
+          "description":"Enter Your Diagnosis Status",
+          "example":"Resolved"
+        },
+        "fmhDiagnosis":{
+          "type":"string",
+          "description":"Enter Your Diagnosis Name",
+          "example":"SINUS"
+        },
+        "fmhDiagnosisDate":{
+          "type":"date",
+          "description":"Enter Your Diagnosis Date",
+          "example":"2021-08-25"
+        },
+        "fmhRel":{
+          "type":"string",
+          "description":"Enter Your Relationship with pateint",
+          "example":"Father"
+        },
+        "fmhStatus":{
+          "type":"string",
+          "description":"Enter Your Diagnosis Status",
+          "example":"Resolved"
+        },
+        "menarche":{
+          "type":"string",
+          "description":"Enter Your ",
+          "example":"13 Years"
+        },
+        "lmp":{
+          "type":"date",
+          "description":"Enter Your Diagnosis Status",
+          "example":"2020-11-20"
+        },
+        "Frequency":{
+          "type":"string",
+          "description":"Enter Your Diagnosis Status",
+          "example":"<21 days"
+        },
+        "duration":{
+          "type":"string",
+          "description":"Enter Your Diagnosis Status",
+          "example":"5 to 7 days"
+        },
+        "flow":{
+          "type":"string",
+          "description":"Enter Your Diagnosis Status",
+          "example":"Light"
+        },
+        "cramps":{
+          "type":"string",
+          "description":"Enter Your Diagnosis Status",
+          "example":"Servere"
+        },
+        "menopause":{
+          "type":"date",
+          "description":"Enter Your Diagnosis Status",
+          "example":"2020-12-22"
+        },
+        "ageofChild":{
+          "type":"string",
+          "description":"Enter Your Diagnosis Status",
+          "example":"6 Months"
+        },
+        "sexofChild":{
+          "type":"string",
+          "description":"Enter Your Diagnosis Status",
+          "example":"Male"
+        },
+        "modeOfDelivery":{
+          "type":"string",
+          "description":"Enter Your Diagnosis Status",
+          "example":"Normal Delivery"
+        },
+        "complications":{
+          "type":"string",
+          "description":"Enter Your Diagnosis Status",
+          "example":"NO"
+        },
+        "abortionCount":{
+          "type":"string",
+          "description":"Enter Your Diagnosis Status",
+          "example":"3 times"
+        },
+        "longestDuration":{
+          "type":"string",
+          "description":"Enter Your Diagnosis Status",
+          "example":"2 Months"
+        },
+        "modeOfTermination":{
+          "type":"string",
+          "description":"Enter Your Diagnosis Status",
+          "example":"Medical"
         }
       }
     }
@@ -556,9 +755,422 @@
           }
         }
       }
+    },
+    "/deletedoctors/{id}": {
+      "delete": {
+        "tags": [
+            "auth"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "description":"Delete Doctor",
+            "required":true,
+            "type":"string"
+          }
+        ],
+        "summary": "Delete Doctors",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          },
+          "401":{
+              "description": "Unauthorized Client"
+          }
+        }
+      }
+    },
+    "/medical/getmedicaldetails": {
+      "get": {
+        "tags": [
+            "medical"
+        ],
+        "parameters":[
+          {
+            "name":"x-auth-token",
+            "in":"header",
+            "description":"token",
+            "required":true,
+            "type":"string"
+          }
+        ],
+        "summary": "Get Medical Details",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          },
+          "401":{
+              "description": "Unauthorized Client"
+          }
+        }
+      }
+    },
+    "/medical/addmedicaldetails": {
+      "post": {
+        "tags": [
+            "medical"
+        ],
+        "parameters":[
+          {
+            "name":"cmhPrescription",
+            "in":"formData",
+            "description":"Add cmhPrescription Details",
+            "fieldname":"cmhPrescription",
+            "type":"file"
+          },
+          {
+            "name":"cmhIR",
+            "in":"formData",
+            "description":"Add cmhIR Details",
+            "fieldname":"cmhIR",
+            "type":"file"
+          },
+          {
+            "name":"pmhPrescription",
+            "in":"formData",
+            "description":"Add pmhPrescription Details",
+            "fieldname":"pmhPrescription",
+            "type":"file"
+          },
+          {
+            "name":"pmhIR",
+            "in":"formData",
+            "description":"Add pmhIR Details",
+            "fieldname":"pmhIR",
+            "type":"file"
+          },
+          {
+            "name":"psPrescription",
+            "in":"formData",
+            "description":"Add psPrescription Details",
+            "fieldname":"psPrescription",
+            "type":"file"
+          },
+          {
+            "name":"psIR",
+            "in":"formData",
+            "description":"Add psIR Details",
+            "fieldname":"psIR",
+            "type":"file"
+          },
+          {
+            "name":"ptPrescription",
+            "in":"formData",
+            "description":"Add ptPrescription Details",
+            "fieldname":"ptPrescription",
+            "type":"file"
+          },
+          {
+            "name":"ptIR",
+            "in":"formData",
+            "description":"Add ptIR Details",
+            "fieldname":"ptIR",
+            "type":"file"
+          },
+          {
+            "name":"recentIR",
+            "in":"formData",
+            "description":"Add recentIR Details",
+            "fieldname":"recentIR",
+            "type":"file"
+          },
+          {
+            "name":"currentSymptoms",
+            "in":"formData",
+            "description":"Add currentSymptoms Details",
+            "fieldname":"currentSymptoms",
+            "type":"string"
+          },
+          {
+            "name":"cmhDiagnosis",
+            "in":"formData",
+            "description":"Add cmhDiagnosis Details",
+            "fieldname":"cmhDiagnosis",
+            "type":"string"
+          },
+          {
+            "name":"cmhDiagnosisDate",
+            "in":"formData",
+            "description":"Add cmhDiagnosisDate Details",
+            "fieldname":"cmhDiagnosisDate",
+            "type":"date"
+          },
+          {
+            "name":"cmhtreatment",
+            "in":"formData",
+            "description":"Add cmhtreatment Details",
+            "fieldname":"cmhtreatment",
+            "type":"string"
+          },
+          {
+            "name":"dustAllergie",
+            "in":"formData",
+            "description":"Add dustAllergie Details",
+            "fieldname":"dustAllergie",
+            "type":"string"
+          },
+          {
+            "name":"pollenAllergie",
+            "in":"formData",
+            "description":"Add pollenAllergie Details",
+            "fieldname":"pollenAllergie",
+            "type":"string"
+          },
+          {
+            "name":"medicationAllergie",
+            "in":"formData",
+            "description":"Add medicationAllergie Details",
+            "fieldname":"medicationAllergie",
+            "type":"string"
+          },
+          {
+            "name":"allergieFood",
+            "in":"formData",
+            "description":"Add allergieFood Details",
+            "fieldname":"allergieFood",
+            "type":"string"
+          },
+          {
+            "name":"otherAllergies",
+            "in":"formData",
+            "description":"Add otherAllergies Details",
+            "fieldname":"otherAllergies",
+            "type":"string"
+          },
+          {
+            "name":"pmhDiagnosis",
+            "in":"formData",
+            "description":"Add pmhDiagnosis Details",
+            "fieldname":"pmhDiagnosis",
+            "type":"string"
+          },
+          {
+            "name":"pmhDiagnosisDate",
+            "in":"formData",
+            "description":"Add pmhDiagnosisDate Details",
+            "fieldname":"pmhDiagnosisDate",
+            "type":"date"
+          },
+          {
+            "name":"pmhtreatment",
+            "in":"formData",
+            "description":"Add pmhtreatment Details",
+            "fieldname":"pmhtreatment",
+            "type":"string"
+          },
+          {
+            "name":"pmhstatus",
+            "in":"formData",
+            "description":"Add pmhstatus Details",
+            "fieldname":"pmhstatus",
+            "type":"string"
+          },
+          {
+            "name":"psDiagnosis",
+            "in":"formData",
+            "description":"Add psDiagnosis Details",
+            "fieldname":"psDiagnosis",
+            "type":"string"
+          },
+          {
+            "name":"psDiagnosisDate",
+            "in":"formData",
+            "description":"Add psDiagnosisDate Details",
+            "fieldname":"psDiagnosisDate",
+            "type":"date"
+          },
+          {
+            "name":"psstatus",
+            "in":"formData",
+            "description":"Add psstatus Details",
+            "fieldname":"psstatus",
+            "type":"string"
+          },
+          {
+            "name":"ptDiagnosis",
+            "in":"formData",
+            "description":"Add ptDiagnosis Details",
+            "fieldname":"ptDiagnosis",
+            "type":"string"
+          },
+          {
+            "name":"ptDiagnosisDate",
+            "in":"formData",
+            "description":"Add ptDiagnosisDate Details",
+            "fieldname":"ptDiagnosisDate",
+            "type":"date"
+          },
+          {
+            "name":"pttreatment",
+            "in":"formData",
+            "description":"Add pttreatment Details",
+            "fieldname":"pttreatment",
+            "type":"string"
+          },
+          {
+            "name":"ptstatus",
+            "in":"formData",
+            "description":"Add ptstatus Details",
+            "fieldname":"ptstatus",
+            "type":"string"
+          },
+          {
+            "name":"fmhDiagnosis",
+            "in":"formData",
+            "description":"Add fmhDiagnosis Details",
+            "fieldname":"fmhDiagnosis",
+            "type":"string"
+          },
+          {
+            "name":"fmhDiagnosisDate",
+            "in":"formData",
+            "description":"Add fmhDiagnosisDate Details",
+            "fieldname":"fmhDiagnosisDate",
+            "type":"date"
+          },
+          {
+            "name":"fmhRel",
+            "in":"formData",
+            "description":"Add fmhRel Details",
+            "fieldname":"fmhRel",
+            "type":"string"
+          },
+          {
+            "name":"fmhStatus",
+            "in":"formData",
+            "description":"Add fmhStatus Details",
+            "fieldname":"fmhStatus",
+            "type":"string"
+          },
+          {
+            "name":"menarche",
+            "in":"formData",
+            "description":"Add menarche Details",
+            "fieldname":"menarche",
+            "type":"string"
+          },
+          {
+            "name":"lmp",
+            "in":"formData",
+            "description":"Add lmp Details",
+            "fieldname":"lmp",
+            "type":"date"
+          },
+          {
+            "name":"Frequency",
+            "in":"formData",
+            "description":"Add Frequency Details",
+            "fieldname":"Frequency",
+            "type":"string"
+          },
+          {
+            "name":"duration",
+            "in":"formData",
+            "description":"Add duration Details",
+            "fieldname":"duration",
+            "type":"string"
+          },
+          {
+            "name":"flow",
+            "in":"formData",
+            "description":"Add flow Details",
+            "fieldname":"flow",
+            "type":"string"
+          },
+          {
+            "name":"cramps",
+            "in":"formData",
+            "description":"Add cramps Details",
+            "fieldname":"cramps",
+            "type":"string"
+          },
+          {
+            "name":"menopause",
+            "in":"formData",
+            "description":"Add menopause Details",
+            "fieldname":"menopause",
+            "type":"date"
+          },
+          {
+            "name":"ageofChild",
+            "in":"formData",
+            "description":"Add ageofChild Details",
+            "fieldname":"ageofChild",
+            "type":"string"
+          },
+          {
+            "name":"sexofChild",
+            "in":"formData",
+            "description":"Add sexofChild Details",
+            "fieldname":"sexofChild",
+            "type":"string"
+          },
+          {
+            "name":"modeOfDelivery",
+            "in":"formData",
+            "description":"Add modeOfDelivery Details",
+            "fieldname":"modeOfDelivery",
+            "type":"string"
+          },
+          {
+            "name":"complications",
+            "in":"formData",
+            "description":"Add complications Details",
+            "fieldname":"complications",
+            "type":"string"
+          },
+          {
+            "name":"abortionCount",
+            "in":"formData",
+            "description":"Add abortionCount Details",
+            "fieldname":"abortionCount",
+            "type":"string"
+          },
+          {
+            "name":"longestDuration",
+            "in":"formData",
+            "description":"Add longestDuration Details",
+            "fieldname":"longestDuration",
+            "type":"string"
+          },
+          {
+            "name":"modeOfTermination",
+            "in":"formData",
+            "description":"Add modeOfTermination Details",
+            "fieldname":"modeOfTermination",
+            "type":"string"
+          }
+        ],
+        "summary": "Add Medical Details",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          },
+          "401":{
+              "description": "Unauthorized Client"
+          }
+        }
+      }
     }
-    
-
   }
 }
 

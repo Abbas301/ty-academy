@@ -1,7 +1,6 @@
 const { Recipe} = require('../models/recipem');
 const _ = require('lodash');
 const multer = require("multer");
-const fs = require('fs');
 
 const MIME_TYPE = {
     "image/png": "png",

@@ -385,6 +385,229 @@
           "example":"Medical"
         }
       }
+    },
+    "personalinfo":{
+      "type":"object",
+      "properties":{
+        "fullName":{
+          "type":"string",
+          "description":"Enter your FullName",
+          "example":"John Abraham"
+        },
+        "dateofBirth":{
+          "type":"string",
+          "description":"Enter your DateofBirth",
+          "example":"12-06-1999"
+        },
+        "age":{
+          "type":"number",
+          "description":"Enter your Age",
+          "example":"23"
+        },
+        "sex":{
+          "type":"boolean",
+          "description":"Enter your Gender",
+          "example":"Male"
+        },
+        "postalAddress":{
+          "type":"string",
+          "description":"Enter your PostalAddress",
+          "example":"Kathriguppe"
+        },
+        "city":{
+          "type":"string",
+          "description":"Enter your City",
+          "example":"Bangalore"
+        },
+        "state":{
+          "type":"string",
+          "description":"Enter your State",
+          "example":"Karnataka"
+        },
+        "country":{
+          "type":"string",
+          "description":"Enter your Country",
+          "example":"India"
+        },
+        "pincode":{
+          "type":"string",
+          "description":"Enter your Pincode",
+          "example":"560085"
+        },
+        "nationality":{
+          "type":"string",
+          "description":"Enter your Nationality",
+          "example":"Indian"
+        },
+        "currentLivesIn":{
+          "type":"boolean",
+          "description":"Enter your Present in CurrentLocation",
+          "example":"True"
+        },
+        "deriveRace":{
+          "type":"string",
+          "description":"Enter your DeriveRace",
+          "example":"Asian"
+        },
+        "religion":{
+          "type":"string",
+          "description":"Enter your Religion",
+          "example":"Hindu"
+        },
+        "occupation":{
+          "type":"string",
+          "description":"Enter your Occupation",
+          "example":"Software Employee"
+        },
+        "designation":{
+          "type":"string",
+          "description":"Enter your Designation",
+          "example":"Software Engineer"
+        },
+        "company":{
+          "type":"string",
+          "description":"Enter your Company",
+          "example":"TestYantra"
+        },
+        "workTimings":{
+          "type":"string",
+          "description":"Enter your WorkTimings",
+          "example":"10:00 AM To 07:00 PM"
+        },
+        "educationalStatus":{
+          "type":"string",
+          "description":"Enter your EducationalStatus",
+          "example":"Graduate"
+        },
+        "maritalStatus":{
+          "type":"string",
+          "description":"Enter your MaritalStatus",
+          "example":"single"
+        },
+        "familyType":{
+          "type":"string",
+          "description":"Enter your FamilyType",
+          "example":"Joint Family"
+        },
+        "annualIncome":{
+          "type":"number",
+          "description":"Enter your AnnualIncome",
+          "example":"350000"
+        }
+      }
+    },
+
+    "goals":{
+      "type":"object",
+      "properties":{
+        "health":{
+          "type":"string",
+          "description":"Email ID To Login",
+          "example":{
+            "enum":[
+              "I want to lose weight",
+              "I want to reverse my medical condition",
+              "I want to sleep better"
+            ]
+          }
+        },
+        "fitness":{
+          "type":"string",
+          "description":"Enter A Valid Password",
+          "example":{
+            "enum":[
+              "I want to lose fat and gain muscle",
+              "I want to improve my strength and endurance",
+              "I want to be better at my sport"
+            ]
+          }
+        },
+        "personal":{
+          "type":"string",
+          "description":"Enter A Valid Password",
+          "example":{
+            "enum":[
+              "I want to look good",
+              "I want to feel good",
+              "I want to change my habits"
+            ]
+          }
+        }
+      }
+    },
+    "bodyfitness":{
+      "type":"object",
+      "properties":{
+        "bodyMeasurements":{
+          "height":{
+            "type":"string",
+            "description":"Enter Your Height",
+            "example":"5.7 FT"
+          },
+          "weight":{
+            "type":"string",
+            "description":"Enter Your Weight",
+            "example":"65 KG"
+          },
+          "armCircumference":{
+            "type":"string",
+            "description":"Enter Your ArmCircumference",
+            "example":"12 CM"
+          },
+          "chestCircumference":{
+            "type":"string",
+            "description":"Enter Your ChestCircumference",
+            "example":"75 CM"
+          },
+          "waistCircumference":{
+            "type":"string",
+            "description":"Enter Your WaistCircumference",
+            "example":"71 CM"
+          },
+          "hipCircumference":{
+            "type":"string",
+            "description":"Enter Your HipCircumference",
+            "example":"90 CM"
+          },
+          "thighCircumference":{
+            "type":"string",
+            "description":"Enter Your ThighCircumference",
+            "example":"70 CM"
+          },
+          "calfCircumference":{
+            "type":"string",
+            "description":"Enter Your CalfCircumference",
+            "example":"34 CM"
+          }
+        },
+        "bodyComposition":{
+          "fat":{
+            "type":"string",
+            "description":"Enter Your Fat",
+            "example":"16%"
+          },
+          "skeletalMuscle":{
+            "type":"string",
+            "description":"Enter Your SkeletalMuscle",
+            "example":"57%"
+          },
+          "visceralFat":{
+            "type":"string",
+            "description":"Enter Your VisceralFat",
+            "example":"2.3%"
+          },
+          "totalBodyWater":{
+            "type":"string",
+            "description":"Enter Your TotalBodyWater",
+            "example":"47%"
+          },
+          "bodyAge":{
+            "type":"string",
+            "description":"Enter Your BodyAge",
+            "example":"32 Years"
+          }
+        }
+      }
     }
   },
   "paths": {
@@ -1522,6 +1745,504 @@
           }
         ],
         "summary": "Add Medical Details",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          },
+          "401":{
+              "description": "Unauthorized Client"
+          }
+        }
+      }
+    },
+    "/personalinfo": {
+      "get": {
+        "tags": [
+            "personalinfo"
+        ],
+        "parameters":[
+          {
+            "name":"x-auth-token",
+            "in":"header",
+            "description":"Authentication to get personal Information",
+            "required":true,
+            "type":"string"
+          }
+        ],
+        "summary": "Get the personal Information about the Client",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          },
+          "401":{
+              "description": "Unauthorized Client"
+          }
+        }
+      }
+    },
+    "/add-personalinfo": {
+      "post": {
+        "tags": [
+            "personalinfo"
+        ],
+        "parameters":[
+          {
+            "name":"x-auth-token",
+            "in":"header",
+            "description":"Authentication to add Personal Information",
+            "required":true,
+            "type":"string"
+          },
+          {
+            "name":"body",
+            "in":"body",
+            "type":"object",
+            "schema":{
+              "$ref":"#/definitions/personalinfo"
+            }
+          }
+        ],
+        "summary": "Add the Personal Information to the User",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          },
+          "401":{
+              "description": "Unauthorized Client"
+          }
+        }
+      }
+    },
+    "/put-personalinfo/{id}": {
+      "put": {
+        "tags": [
+            "personalinfo"
+        ],
+        "parameters":[
+          {
+            "name":"x-auth-token",
+            "in":"header",
+            "description":"Authentication to Update Personal Information",
+            "required":true,
+            "type":"string"
+          },
+          {
+            "name":"id",
+            "in":"path",
+            "description":"Add Id to Find the User",
+            "required":true,
+            "type":"string"
+          },
+          {
+            "name":"body",
+            "in":"body",
+            "type":"object",
+            "schema":{
+              "$ref":"#/definitions/personalinfo"
+            }
+          }
+        ],
+        "summary": "update the Personal Information about the Client",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          },
+          "401":{
+              "description": "Unauthorized Client"
+          }
+        }
+      }
+    },
+    "/goals": {
+      "get": {
+        "tags": [
+            "goals"
+        ],
+        "parameters":[
+          {
+            "name":"x-auth-token",
+            "in":"header",
+            "description":"Authentication to get goals",
+            "required":true,
+            "type":"string"
+          }
+        ],
+        "summary": "Get the goals in system",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          },
+          "401":{
+              "description": "Unauthorized Client"
+          }
+        }
+      }
+    },
+    "/add-goals": {
+      "post": {
+        "tags": [
+            "goals"
+        ],
+        "parameters":[
+          {
+            "name":"x-auth-token",
+            "in":"header",
+            "description":"Authentication to add goals",
+            "required":true,
+            "type":"string"
+          },
+          {
+            "name":"body",
+            "in":"body",
+            "type":"object",
+            "schema":{
+              "$ref":"#/definitions/goals"
+            }
+          }
+        ],
+        "summary": "Add the goals about the Client",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          },
+          "401":{
+              "description": "Unauthorized Client"
+          }
+        }
+      }
+    },
+    "/put-goals/{id}": {
+      "put": {
+        "tags": [
+            "goals"
+        ],
+        "parameters":[
+          {
+            "name":"x-auth-token",
+            "in":"header",
+            "description":"Authentication to Update goals",
+            "required":true,
+            "type":"string"
+          },
+          {
+            "name":"id",
+            "in":"path",
+            "description":"Add Id to Find the User",
+            "required":true,
+            "type":"string"
+          },
+          {
+            "name":"body",
+            "in":"body",
+            "type":"object",
+            "schema":{
+              "$ref":"#/definitions/goals"
+            }
+          }
+        ],
+        "summary": "update the goals about the Client",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          },
+          "401":{
+              "description": "Unauthorized Client"
+          }
+        }
+      }
+    },
+
+    "/images": {
+      "get": {
+        "tags": [
+            "images"
+        ],
+        "parameters":[
+          {
+            "name":"x-auth-token",
+            "in":"header",
+            "description":"Authentication to get goals",
+            "required":true,
+            "type":"string"
+          }
+        ],
+        "summary": "Get the goals in system",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          },
+          "401":{
+              "description": "Unauthorized Client"
+          }
+        }
+      }
+    },
+    "/add-images": {
+      "post": {
+        "tags": [
+            "images"
+        ],
+        "parameters":[
+          {
+            "name":"x-auth-token",
+            "in":"header",
+            "description":"Authentication to add images",
+            "required":true,
+            "type":"string"
+          },
+          {
+            "name":"front",
+            "in":"formData",
+            "type":"file",
+            "fieldname":"front",
+            "content-Type": "multipart/form-data" ,
+            "description":"File to upload front images"
+          },
+          {
+            "name":"back",
+            "in":"formData",
+            "type":"file",
+            "fieldname":"back",
+            "content-Type": "multipart/form-data" ,
+            "description":"File to upload back images"
+          },
+          {
+            "name":"side",
+            "in":"formData",
+            "type":"file",
+            "fieldname":"side",
+            "content-Type": "multipart/form-data" ,
+            "description":"File to upload side images"
+          }
+        ],
+        "summary": "Add the images about the Client",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          },
+          "401":{
+              "description": "Unauthorized Client"
+          }
+        }
+      }
+    },
+    "/put-images/{id}": {
+      "put": {
+        "tags": [
+            "images"
+        ],
+        "parameters":[
+          {
+            "name":"x-auth-token",
+            "in":"header",
+            "description":"Authentication to Update images",
+            "required":true,
+            "type":"string"
+          },
+          {
+            "name":"id",
+            "in":"path",
+            "description":"Add Id to Find the User",
+            "required":true,
+            "type":"string"
+          },
+          {
+            "name":"front",
+            "in":"formData",
+            "type":"file",
+            "fieldname":"front",
+            "content-Type": "multipart/form-data" ,
+            "description":"File to upload front images"
+          },
+          {
+            "name":"back",
+            "in":"formData",
+            "type":"file",
+            "fieldname":"back",
+            "content-Type": "multipart/form-data" ,
+            "description":"File to upload back images"
+          },
+          {
+            "name":"side",
+            "in":"formData",
+            "type":"file",
+            "fieldname":"side",
+            "content-Type": "multipart/form-data" ,
+            "description":"File to upload side images"
+          }
+        ],
+        "summary": "update the images about the Client",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          },
+          "401":{
+              "description": "Unauthorized Client"
+          }
+        }
+      }
+    },
+
+    "/bodyfitness": {
+      "get": {
+        "tags": [
+            "bodyfitness"
+        ],
+        "parameters":[
+          {
+            "name":"x-auth-token",
+            "in":"header",
+            "description":"Authentication to get Body Measurements",
+            "required":true,
+            "type":"string"
+          }
+        ],
+        "summary": "Get the Body Measurements about the Client",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          },
+          "401":{
+              "description": "Unauthorized Client"
+          }
+        }
+      }
+    },
+    "/add-bodyfitness": {
+      "post": {
+        "tags": [
+            "bodyfitness"
+        ],
+        "parameters":[
+          {
+            "name":"x-auth-token",
+            "in":"header",
+            "description":"Authentication to Add Body Measurements",
+            "required":true,
+            "type":"string"
+          },
+          {
+            "name":"body",
+            "in":"body",
+            "type":"object",
+            "schema":{
+              "$ref":"#/definitions/bodyfitness"
+            }
+          }
+        ],
+        "summary": "Add the  Body Measurements about the Client",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          },
+          "401":{
+              "description": "Unauthorized Client"
+          }
+        }
+      }
+    },
+    "/put-bodyfitness/{id}": {
+      "put": {
+        "tags": [
+            "bodyfitness"
+        ],
+        "parameters":[
+          {
+            "name":"x-auth-token",
+            "in":"header",
+            "description":"Authentication to Update Body Measurements",
+            "required":true,
+            "type":"string"
+          },
+          {
+            "name":"id",
+            "in":"path",
+            "description":"Add Id to Find the User",
+            "required":true,
+            "type":"string"
+          },
+          {
+            "name":"body",
+            "in":"body",
+            "type":"object",
+            "schema":{
+              "$ref":"#/definitions/bodyfitness"
+            }
+          }
+        ],
+        "summary": "update the  Body Measurements about the Client",
         "responses": {
           "200": {
             "description": "Ok"

@@ -2439,6 +2439,337 @@
           }
         }
       }
+    },
+    "/getrecipies": {
+      "get": {
+        "tags": [
+          "recipe"
+        ],
+        "parameters": [
+          {
+            "name": "x-auth-token",
+            "in": "header",
+            "description": "Authentication to get Body Measurements",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "summary": "Get all recipies",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Page Not Found or File Not Found"
+          },
+          "401": {
+            "description": "Unauthorized Client"
+          }
+        }
+      }
+    },
+    "/postrecipe": {
+      "post": {
+        "tags": [
+            "recipe"
+        ],
+        "parameters":[
+          {
+            "name":"x-auth-token",
+            "in":"header",
+            "description":"Authentication to get Body Measurements",
+            "required":true,
+            "type":"string"
+          },
+          {
+            "name":"recipeType",
+            "in":"formData",
+            "type":"string",
+            "description":"Enter required recipe type",
+            "fieldname":"recipe type",
+            "example":"Breakfast"
+          },
+          {
+            "name":"description",
+            "in":"formData",
+            "type":"string",
+            "description":"Enter description",
+            "fieldname":"description",
+            "example":"Good for health"
+          },
+          {
+            "name":"ingrediants",
+            "in":"formData",
+            "type":"string",
+            "description":"Enter required ingrediants",
+            "fieldname":"ingrediants",
+            "example":"Rava"
+          },
+          {
+            "name":"carbohydrates",
+            "in":"formData",
+            "type":"string",
+            "description":"Enter carbohydrates in gms",
+            "fieldname":"carbohydrates",
+            "example":"11.1gm"
+          },
+          {
+            "name":"fat",
+            "in":"formData",
+            "type":"string",
+            "description":"Enter fat in gms",
+            "fieldname":"fat",
+            "example":"4.0gm"
+          },
+          {
+            "name":"calories",
+            "in":"formData",
+            "type":"string",
+            "description":"Enter calories in gms",
+            "fieldname":"calories",
+            "example":"91.1gm"
+          },
+          {
+            "name":"recipeName",
+            "in":"formData",
+            "type":"string",
+            "description":"Enter recipeName",
+            "fieldname":"recipeName",
+            "example":"Rava upma"
+          },
+          {
+            "name":"cookingProcess",
+            "in":"formData",
+            "type":"string",
+            "description":"Enter cookingProcess",
+            "fieldname":"cookingProcess",
+            "example":"First prepare required ingrediants,then  Roast sooji on medium heat until fragrant, around 5 to 6 minutes, stirring continuously. Sooji shouldn’t turn brown from bottom so be careful. Remove sooji from pan and transfer it to another bowl "
+          },
+          {
+            "name":"provideYouTubeLink",
+            "in":"formData",
+            "type":"string",
+            "description":"provide YouTubeLink",
+            "fieldname":"provideYouTubeLink",
+            "example":"https://www.youtube.com/watch?v=vG_Bs0QLc3I&ab_channel=ZumbaClass"
+          },
+          {
+            "name":"protein",
+            "in":"formData",
+            "type":"string",
+            "description":"Enter protein in gm",
+            "fieldname":"protein",
+            "example":"0.3gm"
+          },
+          {
+            "name":"fiber",
+            "in":"formData",
+            "type":"string",
+            "description":"Enter fiber in gm",
+            "fieldname":"fiber",
+            "example":"2.3gm"
+          },
+          {
+            "name":"recipeImage",
+            "in":"formData",
+            "allowMultiple":true,
+            "type":"file",
+            "description":"Enter recipeImage",
+            "fieldname":"recipeImage",
+            "example":"http://localhost:2000public\\recipies\\png-clipart-plate-of-cooked-food-upma-south-indian-cuisine-dosa-street-food-coriander-food-recipe.png-1629985475784.png"
+          }
+        ],
+        "summary": "Post the Exercise List",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          },
+          "401":{
+              "description": "Unauthorized Client"
+          }
+        }
+      }
+    },
+    "/putrecipe/{id}": {
+      "put": {
+        "tags": [
+            "recipe"
+        ],
+        "parameters":[
+          {
+            "name":"x-auth-token",
+            "in":"header",
+            "description":"Authentication to get Body Measurements",
+            "required":true,
+            "type":"string"
+          },
+          {
+            "name":"id",
+            "in":"path",
+            "description":"Add Id to Find the User",
+            "required":true,
+            "type":"string"
+          },
+          {
+            "name":"recipeType",
+            "in":"formData",
+            "type":"string",
+            "description":"Enter required recipe type",
+            "fieldname":"recipe type",
+            "example":"Breakfast"
+          },
+          {
+            "name":"description",
+            "in":"formData",
+            "type":"string",
+            "description":"Enter description",
+            "fieldname":"description",
+            "example":"Good for health"
+          },
+          {
+            "name":"ingrediants",
+            "in":"formData",
+            "type":"string",
+            "description":"Enter required ingrediants",
+            "fieldname":"ingrediants",
+            "example":"Rava"
+          },
+          {
+            "name":"carbohydrates",
+            "in":"formData",
+            "type":"string",
+            "description":"Enter carbohydrates in gms",
+            "fieldname":"carbohydrates",
+            "example":"11.1gm"
+          },
+          {
+            "name":"fat",
+            "in":"formData",
+            "type":"string",
+            "description":"Enter fat in gms",
+            "fieldname":"fat",
+            "example":"4.0gm"
+          },
+          {
+            "name":"calories",
+            "in":"formData",
+            "type":"string",
+            "description":"Enter calories in gms",
+            "fieldname":"calories",
+            "example":"91.1gm"
+          },
+          {
+            "name":"recipeName",
+            "in":"formData",
+            "type":"string",
+            "description":"Enter recipeName",
+            "fieldname":"recipeName",
+            "example":"Rava upma"
+          },
+          {
+            "name":"cookingProcess",
+            "in":"formData",
+            "type":"string",
+            "description":"Enter cookingProcess",
+            "fieldname":"cookingProcess",
+            "example":"First prepare required ingrediants,then  Roast sooji on medium heat until fragrant, around 5 to 6 minutes, stirring continuously. Sooji shouldn’t turn brown from bottom so be careful. Remove sooji from pan and transfer it to another bowl "
+          },
+          {
+            "name":"provideYouTubeLink",
+            "in":"formData",
+            "type":"string",
+            "description":"provide YouTubeLink",
+            "fieldname":"provideYouTubeLink",
+            "example":"https://www.youtube.com/watch?v=vG_Bs0QLc3I&ab_channel=ZumbaClass"
+          },
+          {
+            "name":"protein",
+            "in":"formData",
+            "type":"string",
+            "description":"Enter protein in gm",
+            "fieldname":"protein",
+            "example":"0.3gm"
+          },
+          {
+            "name":"fiber",
+            "in":"formData",
+            "type":"string",
+            "description":"Enter fiber in gm",
+            "fieldname":"fiber",
+            "example":"2.3gm"
+          },
+          {
+            "name":"recipeImage",
+            "in":"formData",
+            "type":"file",
+            "description":"Enter recipeImage",
+            "fieldname":"recipeImage",
+            "example":"http://localhost:2000public\\recipies\\png-clipart-plate-of-cooked-food-upma-south-indian-cuisine-dosa-street-food-coriander-food-recipe.png-1629985475784.png"
+          }
+        ],
+        "summary": "Post the Exercise List",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          },
+          "401":{
+              "description": "Unauthorized Client"
+          }
+        }
+      }
+    },
+    "/deleterecipe/{id}": {
+      "delete": {
+        "tags": [
+          "recipe"
+        ],
+        "parameters": [
+          {
+            "name": "x-auth-token",
+            "in": "header",
+            "description": "Authentication to get Body Measurements",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Add Id to Find the User",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "summary": "Delete the Exercise List",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Page Not Found or File Not Found"
+          },
+          "401": {
+            "description": "Unauthorized Client"
+          }
+        }
+      }
     }
   }
 }

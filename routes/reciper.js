@@ -8,6 +8,6 @@ const {postRecipe,putRecipe,getRecipies,deleteRecipe,storage} = require('../cont
 router.get('/getrecipies',auth,getRecipies);
 router.post('/postrecipe', auth ,multer({storage:storage}).array('recipeImage'),postRecipe);
 router.put('/putrecipe/:id', auth ,multer({storage:storage}).array('recipeImage'),putRecipe);
-router.delete('/getrecipies/:id',auth,deleteRecipe);
+router.delete('/deleterecipe/:id',auth,deleteRecipe);
 
 module.exports = router;

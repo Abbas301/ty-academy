@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "1.0.0", 
+    "version": "1.0.0",
     "title": "MediFit App",
     "description": "Make Your Life More Healthy"
   },
@@ -13,520 +13,529 @@
       "description": "Authentication routes"
     },
     {
-      "name":"medical",
+      "name": "medical",
       "description": "Medical-History routes"
     }
   ],
-  "schemes": ["http","https"],
-  "consumes": ["application/json"],
-  "produces": ["application/json"],
-  "definitions":{
-    "login":{
-      "type":"object",
-      "properties":{
-        "email":{
-          "type":"string",
-          "description":"Email ID To Login",
-          "example":"Example@gmail.com"
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "definitions": {
+    "login": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "description": "Email ID To Login",
+          "example": "Example@gmail.com"
         },
-        "password":{
-          "type":"string",
-          "description":"Enter A Valid Password",
-          "example":"sanjkjhb"
+        "password": {
+          "type": "string",
+          "description": "Enter A Valid Password",
+          "example": "sanjkjhb"
         }
       }
     },
-    "register":{
-      "type":"object",
-      "properties":{
-        "email":{
-          "type":"string",
-          "description":"Email ID To Login",
-          "example":"Example@gmail.com"
+    "register": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "description": "Email ID To Login",
+          "example": "Example@gmail.com"
         },
-        "password":{
-          "type":"string",
-          "description":"Enter A Valid Password",
-          "example":"sanjkjhb"
+        "password": {
+          "type": "string",
+          "description": "Enter A Valid Password",
+          "example": "sanjkjhb"
         },
-        "phoneNumber":{
-          "type":"number",
-          "description":"Phone Number",
-          "example":"9874585510"
+        "phoneNumber": {
+          "type": "number",
+          "description": "Phone Number",
+          "example": "9874585510"
         },
-        "getUpdates":{
-          "type":"boolean",
-          "description":"Enter A Valid Password",
-          "example":"true"
+        "getUpdates": {
+          "type": "boolean",
+          "description": "Enter A Valid Password",
+          "example": "true"
         },
-        "role":{
-          "type":"string",
-          "description":"Role of the person",
-          "example":"Client"
+        "role": {
+          "type": "string",
+          "description": "Role of the person",
+          "example": "Client"
         }
       }
     },
-    "resendotp":{
-      "type":"object",
-      "properties":{
-        "email":{
-          "type":"email",
-          "description":"Email ID To Send OTP",
-          "example":"useremail@gmail.com"
+    "resendotp": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "email",
+          "description": "Email ID To Send OTP",
+          "example": "useremail@gmail.com"
         },
-        "emailOtp":{
-          "type":"number",
-          "description":"OTP for Validation",
-          "example":123546
+        "emailOtp": {
+          "type": "number",
+          "description": "OTP for Validation",
+          "example": 123546
         }
       }
     },
-    "verify":{
-      "type":"object",
-      "properties":{
-        "email":{
-          "type":"email",
-          "description":"Email ID To Send OTP",
-          "example":"useremail@gmail.com"
+    "verify": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "email",
+          "description": "Email ID To Send OTP",
+          "example": "useremail@gmail.com"
         },
-        "emailOtp":{
-          "type":"number",
-          "description":"OTP for Validation",
-          "example":123546
+        "emailOtp": {
+          "type": "number",
+          "description": "OTP for Validation",
+          "example": 123546
         }
       }
     },
-    "verifyotpforpassword":{
-      "type":"object",
-      "properties":{
-        "email":{
-          "type":"email",
-          "description":"Email ID To Send OTP",
-          "example":"useremail@gmail.com"
+    "verifyotpforpassword": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "email",
+          "description": "Email ID To Send OTP",
+          "example": "useremail@gmail.com"
         },
-        "emailOtp":{
-          "type":"number",
-          "description":"OTP for Validation",
-          "example":123546
+        "emailOtp": {
+          "type": "number",
+          "description": "OTP for Validation",
+          "example": 123546
         }
       }
     },
-    "resetPassword":{
-      "type":"object",
-      "properties":{
-        "email":{
-          "type":"email",
-          "description":"Email ID To Send OTP",
-          "example":"useremail@gmail.com"
+    "resetPassword": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "email",
+          "description": "Email ID To Send OTP",
+          "example": "useremail@gmail.com"
         },
-        "password":{
-          "type":"string",
-          "description":"New Password to Update",
-          "example":"********"
+        "password": {
+          "type": "string",
+          "description": "New Password to Update",
+          "example": "********"
         }
       }
     },
-    "forgotpassword":{
-      "type":"object",
-      "properties":{
-        "email":{
-          "type":"email",
-          "description":"Email ID To Send OTP",
-          "example":"useremail@gmail.com"
+    "forgotpassword": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "email",
+          "description": "Email ID To Send OTP",
+          "example": "useremail@gmail.com"
         }
       }
     },
-    "adddoctors":{
-      "type":"object",
-      "properties":{
-        "name":{
-          "type":"string",
-          "description":"Email ID To Login",
-          "example":"useremail@gmail.com"
+    "adddoctors": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Email ID To Login",
+          "example": "useremail@gmail.com"
         },
-        "email":{
-          "type":"string",
-          "description":"Email ID To Login",
-          "example":"useremail@gmail.com"
+        "email": {
+          "type": "string",
+          "description": "Email ID To Login",
+          "example": "useremail@gmail.com"
         },
-        "password":{
-          "type":"string",
-          "description":"Enter A Valid Password",
-          "example":"**********"
+        "password": {
+          "type": "string",
+          "description": "Enter A Valid Password",
+          "example": "**********"
         },
-        "phoneNumber":{
-          "type":"number",
-          "description":"Phone Number",
-          "example":"9874585510"
+        "phoneNumber": {
+          "type": "number",
+          "description": "Phone Number",
+          "example": "9874585510"
         },
-        "role":{
-          "type":"string",
-          "description":"Role of the person",
-          "example":"Client"
+        "role": {
+          "type": "string",
+          "description": "Role of the person",
+          "example": "Client"
         }
       }
     },
-    "updatedoctors":{
-      "type":"object",
-      "properties":{
-        "name":{
-          "type":"string",
-          "description":"Email ID To Login",
-          "example":"useremail@gmail.com"
+    "updatedoctors": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Email ID To Login",
+          "example": "useremail@gmail.com"
         },
-        "email":{
-          "type":"string",
-          "description":"Email ID To Login",
-          "example":"useremail@gmail.com"
+        "email": {
+          "type": "string",
+          "description": "Email ID To Login",
+          "example": "useremail@gmail.com"
         },
-        "phoneNumber":{
-          "type":"number",
-          "description":"Phone Number",
-          "example":"9874585510"
+        "phoneNumber": {
+          "type": "number",
+          "description": "Phone Number",
+          "example": "9874585510"
         },
-        "role":{
-          "type":"string",
-          "description":"Role of the person",
-          "example":"Client"
+        "role": {
+          "type": "string",
+          "description": "Role of the person",
+          "example": "Client"
         }
       }
     },
-    "addmedicaldetails":{
-      "type":"object",
-      "properties":{
-        "currentSymptoms":{
-          "type":"array",
-          "description":"Enter Your Current Symptoms",
-          "example":["Low Energy","Poor Sleep"]
+    "addmedicaldetails": {
+      "type": "object",
+      "properties": {
+        "currentSymptoms": {
+          "type": "array",
+          "description": "Enter Your Current Symptoms",
+          "example": [
+            "Low Energy",
+            "Poor Sleep"
+          ]
         },
-        "cmhDiagnosis":{
-          "type":"string",
-          "description":"Enter Your Diagnosis Name",
-          "example":"SINUS"
+        "cmhDiagnosis": {
+          "type": "string",
+          "description": "Enter Your Diagnosis Name",
+          "example": "SINUS"
         },
-        "cmhDiagnosisDate":{
-          "type":"date",
-          "description":"Enter Your Diagnosis Date",
-          "example":"2021-08-25"
+        "cmhDiagnosisDate": {
+          "type": "date",
+          "description": "Enter Your Diagnosis Date",
+          "example": "2021-08-25"
         },
-        "cmhtreatment":{
-          "type":"string",
-          "description":"Enter Your Diagnosis treatment",
-          "example":"ANALGESIC"
+        "cmhtreatment": {
+          "type": "string",
+          "description": "Enter Your Diagnosis treatment",
+          "example": "ANALGESIC"
         },
-        "dustAllergie":{
-          "type":"string",
-          "description":"Do you have dust allergie",
-          "example":"NO"
+        "dustAllergie": {
+          "type": "string",
+          "description": "Do you have dust allergie",
+          "example": "NO"
         },
-        "pollenAllergie":{
-          "type":"string",
-          "description":"Do you have pollen allergie",
-          "example":"NO"
+        "pollenAllergie": {
+          "type": "string",
+          "description": "Do you have pollen allergie",
+          "example": "NO"
         },
-        "medicationAllergie":{
-          "type":"string",
-          "description":"Do you have medication allergie",
-          "example":"SULPHUR"
+        "medicationAllergie": {
+          "type": "string",
+          "description": "Do you have medication allergie",
+          "example": "SULPHUR"
         },
-        "allergieFood":{
-          "type":"string",
-          "description":"Do you have Food allergie",
-          "example":"MUSHROOM"
+        "allergieFood": {
+          "type": "string",
+          "description": "Do you have Food allergie",
+          "example": "MUSHROOM"
         },
-        "otherAllergies":{
-          "type":"string",
-          "description":"Do you have any other allergie",
-          "example":"Caffeine"
+        "otherAllergies": {
+          "type": "string",
+          "description": "Do you have any other allergie",
+          "example": "Caffeine"
         },
-        "pmhDiagnosis":{
-          "type":"string",
-          "description":"Enter Your Diagnosis Name",
-          "example":"SINUS"
+        "pmhDiagnosis": {
+          "type": "string",
+          "description": "Enter Your Diagnosis Name",
+          "example": "SINUS"
         },
-        "pmhDiagnosisDate":{
-          "type":"date",
-          "description":"Enter Your Diagnosis Date",
-          "example":"2021-08-25"
+        "pmhDiagnosisDate": {
+          "type": "date",
+          "description": "Enter Your Diagnosis Date",
+          "example": "2021-08-25"
         },
-        "pmhtreatment":{
-          "type":"string",
-          "description":"Enter Your Diagnosis treatment",
-          "example":"ANALGESIC"
+        "pmhtreatment": {
+          "type": "string",
+          "description": "Enter Your Diagnosis treatment",
+          "example": "ANALGESIC"
         },
-        "pmhstatus":{
-          "type":"string",
-          "description":"Enter Your Diagnosis Status",
-          "example":"Resolved"
+        "pmhstatus": {
+          "type": "string",
+          "description": "Enter Your Diagnosis Status",
+          "example": "Resolved"
         },
-        "psDiagnosis":{
-          "type":"string",
-          "description":"Enter Your Diagnosis Name",
-          "example":"SINUS"
+        "psDiagnosis": {
+          "type": "string",
+          "description": "Enter Your Diagnosis Name",
+          "example": "SINUS"
         },
-        "psDiagnosisDate":{
-          "type":"date",
-          "description":"Enter Your Diagnosis Date",
-          "example":"2021-08-25"
+        "psDiagnosisDate": {
+          "type": "date",
+          "description": "Enter Your Diagnosis Date",
+          "example": "2021-08-25"
         },
-        "psstatus":{
-          "type":"string",
-          "description":"Enter Your Diagnosis Status",
-          "example":"Resolved"
+        "psstatus": {
+          "type": "string",
+          "description": "Enter Your Diagnosis Status",
+          "example": "Resolved"
         },
-        "ptDiagnosis":{
-          "type":"string",
-          "description":"Enter Your Diagnosis Name",
-          "example":"SINUS"
+        "ptDiagnosis": {
+          "type": "string",
+          "description": "Enter Your Diagnosis Name",
+          "example": "SINUS"
         },
-        "ptDiagnosisDate":{
-          "type":"date",
-          "description":"Enter Your Diagnosis Date",
-          "example":"2021-08-25"
+        "ptDiagnosisDate": {
+          "type": "date",
+          "description": "Enter Your Diagnosis Date",
+          "example": "2021-08-25"
         },
-        "pttreatment:":{
-          "type":"string",
-          "description":"Enter Your Diagnosis treatment",
-          "example":"ANALGESIC"
+        "pttreatment:": {
+          "type": "string",
+          "description": "Enter Your Diagnosis treatment",
+          "example": "ANALGESIC"
         },
-        "ptstatus":{
-          "type":"string",
-          "description":"Enter Your Diagnosis Status",
-          "example":"Resolved"
+        "ptstatus": {
+          "type": "string",
+          "description": "Enter Your Diagnosis Status",
+          "example": "Resolved"
         },
-        "fmhDiagnosis":{
-          "type":"string",
-          "description":"Enter Your Diagnosis Name",
-          "example":"SINUS"
+        "fmhDiagnosis": {
+          "type": "string",
+          "description": "Enter Your Diagnosis Name",
+          "example": "SINUS"
         },
-        "fmhDiagnosisDate":{
-          "type":"date",
-          "description":"Enter Your Diagnosis Date",
-          "example":"2021-08-25"
+        "fmhDiagnosisDate": {
+          "type": "date",
+          "description": "Enter Your Diagnosis Date",
+          "example": "2021-08-25"
         },
-        "fmhRel":{
-          "type":"string",
-          "description":"Enter Your Relationship with pateint",
-          "example":"Father"
+        "fmhRel": {
+          "type": "string",
+          "description": "Enter Your Relationship with pateint",
+          "example": "Father"
         },
-        "fmhStatus":{
-          "type":"string",
-          "description":"Enter Your Diagnosis Status",
-          "example":"Resolved"
+        "fmhStatus": {
+          "type": "string",
+          "description": "Enter Your Diagnosis Status",
+          "example": "Resolved"
         },
-        "menarche":{
-          "type":"string",
-          "description":"Enter Your ",
-          "example":"13 Years"
+        "menarche": {
+          "type": "string",
+          "description": "Enter Your ",
+          "example": "13 Years"
         },
-        "lmp":{
-          "type":"date",
-          "description":"Enter Your Diagnosis Status",
-          "example":"2020-11-20"
+        "lmp": {
+          "type": "date",
+          "description": "Enter Your Diagnosis Status",
+          "example": "2020-11-20"
         },
-        "Frequency":{
-          "type":"string",
-          "description":"Enter Your Diagnosis Status",
-          "example":"<21 days"
+        "Frequency": {
+          "type": "string",
+          "description": "Enter Your Diagnosis Status",
+          "example": "<21 days"
         },
-        "duration":{
-          "type":"string",
-          "description":"Enter Your Diagnosis Status",
-          "example":"5 to 7 days"
+        "duration": {
+          "type": "string",
+          "description": "Enter Your Diagnosis Status",
+          "example": "5 to 7 days"
         },
-        "flow":{
-          "type":"string",
-          "description":"Enter Your Diagnosis Status",
-          "example":"Light"
+        "flow": {
+          "type": "string",
+          "description": "Enter Your Diagnosis Status",
+          "example": "Light"
         },
-        "cramps":{
-          "type":"string",
-          "description":"Enter Your Diagnosis Status",
-          "example":"Servere"
+        "cramps": {
+          "type": "string",
+          "description": "Enter Your Diagnosis Status",
+          "example": "Servere"
         },
-        "menopause":{
-          "type":"date",
-          "description":"Enter Your Diagnosis Status",
-          "example":"2020-12-22"
+        "menopause": {
+          "type": "date",
+          "description": "Enter Your Diagnosis Status",
+          "example": "2020-12-22"
         },
-        "ageofChild":{
-          "type":"string",
-          "description":"Enter Your Diagnosis Status",
-          "example":"6 Months"
+        "ageofChild": {
+          "type": "string",
+          "description": "Enter Your Diagnosis Status",
+          "example": "6 Months"
         },
-        "sexofChild":{
-          "type":"string",
-          "description":"Enter Your Diagnosis Status",
-          "example":"Male"
+        "sexofChild": {
+          "type": "string",
+          "description": "Enter Your Diagnosis Status",
+          "example": "Male"
         },
-        "modeOfDelivery":{
-          "type":"string",
-          "description":"Enter Your Diagnosis Status",
-          "example":"Normal Delivery"
+        "modeOfDelivery": {
+          "type": "string",
+          "description": "Enter Your Diagnosis Status",
+          "example": "Normal Delivery"
         },
-        "complications":{
-          "type":"string",
-          "description":"Enter Your Diagnosis Status",
-          "example":"NO"
+        "complications": {
+          "type": "string",
+          "description": "Enter Your Diagnosis Status",
+          "example": "NO"
         },
-        "abortionCount":{
-          "type":"string",
-          "description":"Enter Your Diagnosis Status",
-          "example":"3 times"
+        "abortionCount": {
+          "type": "string",
+          "description": "Enter Your Diagnosis Status",
+          "example": "3 times"
         },
-        "longestDuration":{
-          "type":"string",
-          "description":"Enter Your Diagnosis Status",
-          "example":"2 Months"
+        "longestDuration": {
+          "type": "string",
+          "description": "Enter Your Diagnosis Status",
+          "example": "2 Months"
         },
-        "modeOfTermination":{
-          "type":"string",
-          "description":"Enter Your Diagnosis Status",
-          "example":"Medical"
+        "modeOfTermination": {
+          "type": "string",
+          "description": "Enter Your Diagnosis Status",
+          "example": "Medical"
         }
       }
     },
-    "personalinfo":{
-      "type":"object",
-      "properties":{
-        "fullName":{
-          "type":"string",
-          "description":"Enter your FullName",
-          "example":"John Abraham"
+    "personalinfo": {
+      "type": "object",
+      "properties": {
+        "fullName": {
+          "type": "string",
+          "description": "Enter your FullName",
+          "example": "John Abraham"
         },
-        "dateofBirth":{
-          "type":"string",
-          "description":"Enter your DateofBirth",
-          "example":"12-06-1999"
+        "dateofBirth": {
+          "type": "string",
+          "description": "Enter your DateofBirth",
+          "example": "12-06-1999"
         },
-        "age":{
-          "type":"number",
-          "description":"Enter your Age",
-          "example":"23"
+        "age": {
+          "type": "number",
+          "description": "Enter your Age",
+          "example": "23"
         },
-        "sex":{
-          "type":"boolean",
-          "description":"Enter your Gender",
-          "example":"Male"
+        "sex": {
+          "type": "boolean",
+          "description": "Enter your Gender",
+          "example": "Male"
         },
-        "postalAddress":{
-          "type":"string",
-          "description":"Enter your PostalAddress",
-          "example":"Kathriguppe"
+        "postalAddress": {
+          "type": "string",
+          "description": "Enter your PostalAddress",
+          "example": "Kathriguppe"
         },
-        "city":{
-          "type":"string",
-          "description":"Enter your City",
-          "example":"Bangalore"
+        "city": {
+          "type": "string",
+          "description": "Enter your City",
+          "example": "Bangalore"
         },
-        "state":{
-          "type":"string",
-          "description":"Enter your State",
-          "example":"Karnataka"
+        "state": {
+          "type": "string",
+          "description": "Enter your State",
+          "example": "Karnataka"
         },
-        "country":{
-          "type":"string",
-          "description":"Enter your Country",
-          "example":"India"
+        "country": {
+          "type": "string",
+          "description": "Enter your Country",
+          "example": "India"
         },
-        "pincode":{
-          "type":"string",
-          "description":"Enter your Pincode",
-          "example":"560085"
+        "pincode": {
+          "type": "string",
+          "description": "Enter your Pincode",
+          "example": "560085"
         },
-        "nationality":{
-          "type":"string",
-          "description":"Enter your Nationality",
-          "example":"Indian"
+        "nationality": {
+          "type": "string",
+          "description": "Enter your Nationality",
+          "example": "Indian"
         },
-        "currentLivesIn":{
-          "type":"boolean",
-          "description":"Enter your Present in CurrentLocation",
-          "example":"True"
+        "currentLivesIn": {
+          "type": "boolean",
+          "description": "Enter your Present in CurrentLocation",
+          "example": "True"
         },
-        "deriveRace":{
-          "type":"string",
-          "description":"Enter your DeriveRace",
-          "example":"Asian"
+        "deriveRace": {
+          "type": "string",
+          "description": "Enter your DeriveRace",
+          "example": "Asian"
         },
-        "religion":{
-          "type":"string",
-          "description":"Enter your Religion",
-          "example":"Hindu"
+        "religion": {
+          "type": "string",
+          "description": "Enter your Religion",
+          "example": "Hindu"
         },
-        "occupation":{
-          "type":"string",
-          "description":"Enter your Occupation",
-          "example":"Software Employee"
+        "occupation": {
+          "type": "string",
+          "description": "Enter your Occupation",
+          "example": "Software Employee"
         },
-        "designation":{
-          "type":"string",
-          "description":"Enter your Designation",
-          "example":"Software Engineer"
+        "designation": {
+          "type": "string",
+          "description": "Enter your Designation",
+          "example": "Software Engineer"
         },
-        "company":{
-          "type":"string",
-          "description":"Enter your Company",
-          "example":"TestYantra"
+        "company": {
+          "type": "string",
+          "description": "Enter your Company",
+          "example": "TestYantra"
         },
-        "workTimings":{
-          "type":"string",
-          "description":"Enter your WorkTimings",
-          "example":"10:00 AM To 07:00 PM"
+        "workTimings": {
+          "type": "string",
+          "description": "Enter your WorkTimings",
+          "example": "10:00 AM To 07:00 PM"
         },
-        "educationalStatus":{
-          "type":"string",
-          "description":"Enter your EducationalStatus",
-          "example":"Graduate"
+        "educationalStatus": {
+          "type": "string",
+          "description": "Enter your EducationalStatus",
+          "example": "Graduate"
         },
-        "maritalStatus":{
-          "type":"string",
-          "description":"Enter your MaritalStatus",
-          "example":"single"
+        "maritalStatus": {
+          "type": "string",
+          "description": "Enter your MaritalStatus",
+          "example": "single"
         },
-        "familyType":{
-          "type":"string",
-          "description":"Enter your FamilyType",
-          "example":"Joint Family"
+        "familyType": {
+          "type": "string",
+          "description": "Enter your FamilyType",
+          "example": "Joint Family"
         },
-        "annualIncome":{
-          "type":"number",
-          "description":"Enter your AnnualIncome",
-          "example":"350000"
+        "annualIncome": {
+          "type": "number",
+          "description": "Enter your AnnualIncome",
+          "example": "350000"
         }
       }
     },
-
-    "goals":{
-      "type":"object",
-      "properties":{
-        "health":{
-          "type":"string",
-          "description":"Email ID To Login",
-          "example":{
-            "enum":[
+    "goals": {
+      "type": "object",
+      "properties": {
+        "health": {
+          "type": "string",
+          "description": "Email ID To Login",
+          "example": {
+            "enum": [
               "I want to lose weight",
               "I want to reverse my medical condition",
               "I want to sleep better"
             ]
           }
         },
-        "fitness":{
-          "type":"string",
-          "description":"Enter A Valid Password",
-          "example":{
-            "enum":[
+        "fitness": {
+          "type": "string",
+          "description": "Enter A Valid Password",
+          "example": {
+            "enum": [
               "I want to lose fat and gain muscle",
               "I want to improve my strength and endurance",
               "I want to be better at my sport"
             ]
           }
         },
-        "personal":{
-          "type":"string",
-          "description":"Enter A Valid Password",
-          "example":{
-            "enum":[
+        "personal": {
+          "type": "string",
+          "description": "Enter A Valid Password",
+          "example": {
+            "enum": [
               "I want to look good",
               "I want to feel good",
               "I want to change my habits"
@@ -535,77 +544,97 @@
         }
       }
     },
-    "bodyfitness":{
-      "type":"object",
-      "properties":{
-        "bodyMeasurements":{
-          "height":{
-            "type":"string",
-            "description":"Enter Your Height",
-            "example":"5.7 FT"
+    "bodyfitness": {
+      "type": "object",
+      "properties": {
+        "bodyMeasurements": {
+          "height": {
+            "type": "string",
+            "description": "Enter Your Height",
+            "example": "5.7 FT"
           },
-          "weight":{
-            "type":"string",
-            "description":"Enter Your Weight",
-            "example":"65 KG"
+          "weight": {
+            "type": "string",
+            "description": "Enter Your Weight",
+            "example": "65 KG"
           },
-          "armCircumference":{
-            "type":"string",
-            "description":"Enter Your ArmCircumference",
-            "example":"12 CM"
+          "armCircumference": {
+            "type": "string",
+            "description": "Enter Your ArmCircumference",
+            "example": "12 CM"
           },
-          "chestCircumference":{
-            "type":"string",
-            "description":"Enter Your ChestCircumference",
-            "example":"75 CM"
+          "chestCircumference": {
+            "type": "string",
+            "description": "Enter Your ChestCircumference",
+            "example": "75 CM"
           },
-          "waistCircumference":{
-            "type":"string",
-            "description":"Enter Your WaistCircumference",
-            "example":"71 CM"
+          "waistCircumference": {
+            "type": "string",
+            "description": "Enter Your WaistCircumference",
+            "example": "71 CM"
           },
-          "hipCircumference":{
-            "type":"string",
-            "description":"Enter Your HipCircumference",
-            "example":"90 CM"
+          "hipCircumference": {
+            "type": "string",
+            "description": "Enter Your HipCircumference",
+            "example": "90 CM"
           },
-          "thighCircumference":{
-            "type":"string",
-            "description":"Enter Your ThighCircumference",
-            "example":"70 CM"
+          "thighCircumference": {
+            "type": "string",
+            "description": "Enter Your ThighCircumference",
+            "example": "70 CM"
           },
-          "calfCircumference":{
-            "type":"string",
-            "description":"Enter Your CalfCircumference",
-            "example":"34 CM"
+          "calfCircumference": {
+            "type": "string",
+            "description": "Enter Your CalfCircumference",
+            "example": "34 CM"
           }
         },
-        "bodyComposition":{
-          "fat":{
-            "type":"string",
-            "description":"Enter Your Fat",
-            "example":"16%"
+        "bodyComposition": {
+          "fat": {
+            "type": "string",
+            "description": "Enter Your Fat",
+            "example": "16%"
           },
-          "skeletalMuscle":{
-            "type":"string",
-            "description":"Enter Your SkeletalMuscle",
-            "example":"57%"
+          "skeletalMuscle": {
+            "type": "string",
+            "description": "Enter Your SkeletalMuscle",
+            "example": "57%"
           },
-          "visceralFat":{
-            "type":"string",
-            "description":"Enter Your VisceralFat",
-            "example":"2.3%"
+          "visceralFat": {
+            "type": "string",
+            "description": "Enter Your VisceralFat",
+            "example": "2.3%"
           },
-          "totalBodyWater":{
-            "type":"string",
-            "description":"Enter Your TotalBodyWater",
-            "example":"47%"
+          "totalBodyWater": {
+            "type": "string",
+            "description": "Enter Your TotalBodyWater",
+            "example": "47%"
           },
-          "bodyAge":{
-            "type":"string",
-            "description":"Enter Your BodyAge",
-            "example":"32 Years"
+          "bodyAge": {
+            "type": "string",
+            "description": "Enter Your BodyAge",
+            "example": "32 Years"
           }
+        }
+      }
+    },
+    "exerciseList": {
+      "type": "object",
+      "properties": {
+        "exerciseType": {
+          "type": "string",
+          "description": "Enter exerciseType",
+          "example": "Aerobics"
+        },
+        "exerciseName": {
+          "type": "string",
+          "description": "Enter Exercise name",
+          "example": "Zumba"
+        },
+        "youTubeURL": {
+          "type": "string",
+          "description": "Enter required youtubeUrl",
+          "example": "https://www.youtube.com/watch?v=vG_Bs0QLc3I&ab_channel=ZumbaClass"
         }
       }
     }
@@ -614,15 +643,15 @@
     "/users": {
       "get": {
         "tags": [
-            "auth"
+          "auth"
         ],
-        "parameters":[
+        "parameters": [
           {
-            "name":"x-auth-token",
-            "in":"header",
-            "description":"Authentication to login",
-            "required":true,
-            "type":"string"
+            "name": "x-auth-token",
+            "in": "header",
+            "description": "Authentication to login",
+            "required": true,
+            "type": "string"
           }
         ],
         "summary": "Get all users in system",
@@ -630,14 +659,14 @@
           "200": {
             "description": "Ok"
           },
-          "400":{
+          "400": {
             "description": "Bad request"
           },
-          "404":{
+          "404": {
             "description": "Page Not Found or File Not Found"
           },
-          "401":{
-              "description": "Unauthorized Client"
+          "401": {
+            "description": "Unauthorized Client"
           }
         }
       }
@@ -645,17 +674,17 @@
     "/register": {
       "post": {
         "tags": [
-            "auth"
+          "auth"
         ],
-        "parameters":[
+        "parameters": [
           {
-            "name":"body",
-            "in":"body",
-            "description":"Login Credentials",
-            "required":true,
-            "type":"object",
-            "schema":{
-              "$ref":"#/definitions/register"
+            "name": "body",
+            "in": "body",
+            "description": "Login Credentials",
+            "required": true,
+            "type": "object",
+            "schema": {
+              "$ref": "#/definitions/register"
             }
           }
         ],
@@ -664,14 +693,14 @@
           "200": {
             "description": "Ok"
           },
-          "400":{
+          "400": {
             "description": "Bad request"
           },
-          "404":{
+          "404": {
             "description": "Page Not Found or File Not Found"
           },
-          "401":{
-              "description": "Unauthorized Client"
+          "401": {
+            "description": "Unauthorized Client"
           }
         }
       }
@@ -679,17 +708,17 @@
     "/resendotp": {
       "put": {
         "tags": [
-            "auth"
+          "auth"
         ],
-        "parameters":[
+        "parameters": [
           {
-            "name":"body",
-            "in":"body",
-            "description":"Login Credentials",
-            "required":true,
-            "type":"object",
-            "schema":{
-              "$ref":"#/definitions/resendotp"
+            "name": "body",
+            "in": "body",
+            "description": "Login Credentials",
+            "required": true,
+            "type": "object",
+            "schema": {
+              "$ref": "#/definitions/resendotp"
             }
           }
         ],
@@ -698,14 +727,14 @@
           "200": {
             "description": "Ok"
           },
-          "400":{
+          "400": {
             "description": "Bad request"
           },
-          "404":{
+          "404": {
             "description": "Page Not Found or File Not Found"
           },
-          "401":{
-              "description": "Unauthorized Client"
+          "401": {
+            "description": "Unauthorized Client"
           }
         }
       }
@@ -713,17 +742,17 @@
     "/verify": {
       "put": {
         "tags": [
-            "auth"
+          "auth"
         ],
-        "parameters":[
+        "parameters": [
           {
-            "name":"body",
-            "in":"body",
-            "description":"Login Credentials",
-            "required":true,
-            "type":"object",
-            "schema":{
-              "$ref":"#/definitions/verify"
+            "name": "body",
+            "in": "body",
+            "description": "Login Credentials",
+            "required": true,
+            "type": "object",
+            "schema": {
+              "$ref": "#/definitions/verify"
             }
           }
         ],
@@ -732,14 +761,14 @@
           "200": {
             "description": "Ok"
           },
-          "400":{
+          "400": {
             "description": "Bad request"
           },
-          "404":{
+          "404": {
             "description": "Page Not Found or File Not Found"
           },
-          "401":{
-              "description": "Unauthorized Client"
+          "401": {
+            "description": "Unauthorized Client"
           }
         }
       }
@@ -747,17 +776,17 @@
     "/login": {
       "post": {
         "tags": [
-            "auth"
+          "auth"
         ],
-        "parameters":[
+        "parameters": [
           {
-            "name":"body",
-            "in":"body",
-            "description":"Login Credentials",
-            "required":true,
-            "type":"object",
-            "schema":{
-              "$ref":"#/definitions/login"
+            "name": "body",
+            "in": "body",
+            "description": "Login Credentials",
+            "required": true,
+            "type": "object",
+            "schema": {
+              "$ref": "#/definitions/login"
             }
           }
         ],
@@ -766,14 +795,14 @@
           "200": {
             "description": "Ok"
           },
-          "400":{
+          "400": {
             "description": "Bad request"
           },
-          "404":{
+          "404": {
             "description": "Page Not Found or File Not Found"
           },
-          "401":{
-              "description": "Unauthorized Client"
+          "401": {
+            "description": "Unauthorized Client"
           }
         }
       }
@@ -781,17 +810,17 @@
     "/forgotpassword": {
       "post": {
         "tags": [
-            "auth"
+          "auth"
         ],
-        "parameters":[
+        "parameters": [
           {
-            "name":"body",
-            "in":"body",
-            "description":"For",
-            "required":true,
-            "type":"object",
-            "schema":{
-              "$ref":"#/definitions/forgotpassword"
+            "name": "body",
+            "in": "body",
+            "description": "For",
+            "required": true,
+            "type": "object",
+            "schema": {
+              "$ref": "#/definitions/forgotpassword"
             }
           }
         ],
@@ -800,14 +829,14 @@
           "200": {
             "description": "Ok"
           },
-          "400":{
+          "400": {
             "description": "Bad request"
           },
-          "404":{
+          "404": {
             "description": "Page Not Found or File Not Found"
           },
-          "401":{
-              "description": "Unauthorized Client"
+          "401": {
+            "description": "Unauthorized Client"
           }
         }
       }
@@ -815,17 +844,17 @@
     "/verifyotpforpassword": {
       "post": {
         "tags": [
-            "auth"
+          "auth"
         ],
-        "parameters":[
+        "parameters": [
           {
-            "name":"body",
-            "in":"body",
-            "description":"Login Credentials",
-            "required":true,
-            "type":"object",
-            "schema":{
-              "$ref":"#/definitions/verifyotpforpassword"
+            "name": "body",
+            "in": "body",
+            "description": "Login Credentials",
+            "required": true,
+            "type": "object",
+            "schema": {
+              "$ref": "#/definitions/verifyotpforpassword"
             }
           }
         ],
@@ -834,14 +863,14 @@
           "200": {
             "description": "Ok"
           },
-          "400":{
+          "400": {
             "description": "Bad request"
           },
-          "404":{
+          "404": {
             "description": "Page Not Found or File Not Found"
           },
-          "401":{
-              "description": "Unauthorized Client"
+          "401": {
+            "description": "Unauthorized Client"
           }
         }
       }
@@ -849,17 +878,17 @@
     "/resetPassword": {
       "post": {
         "tags": [
-            "auth"
+          "auth"
         ],
-        "parameters":[
+        "parameters": [
           {
-            "name":"body",
-            "in":"body",
-            "description":"Login Credentials",
-            "required":true,
-            "type":"object",
-            "schema":{
-              "$ref":"#/definitions/resetPassword"
+            "name": "body",
+            "in": "body",
+            "description": "Login Credentials",
+            "required": true,
+            "type": "object",
+            "schema": {
+              "$ref": "#/definitions/resetPassword"
             }
           }
         ],
@@ -868,14 +897,14 @@
           "200": {
             "description": "Ok"
           },
-          "400":{
+          "400": {
             "description": "Bad request"
           },
-          "404":{
+          "404": {
             "description": "Page Not Found or File Not Found"
           },
-          "401":{
-              "description": "Unauthorized Client"
+          "401": {
+            "description": "Unauthorized Client"
           }
         }
       }
@@ -883,15 +912,15 @@
     "/getdoctors": {
       "get": {
         "tags": [
-            "auth"
+          "auth"
         ],
-        "parameters":[
+        "parameters": [
           {
-            "name":"x-auth-token",
-            "in":"header",
-            "description":"Authentication to login",
-            "required":true,
-            "type":"string"
+            "name": "x-auth-token",
+            "in": "header",
+            "description": "Authentication to login",
+            "required": true,
+            "type": "string"
           }
         ],
         "summary": "Get all Doctors in system",
@@ -899,14 +928,14 @@
           "200": {
             "description": "Ok"
           },
-          "400":{
+          "400": {
             "description": "Bad request"
           },
-          "404":{
+          "404": {
             "description": "Page Not Found or File Not Found"
           },
-          "401":{
-              "description": "Unauthorized Client"
+          "401": {
+            "description": "Unauthorized Client"
           }
         }
       }
@@ -914,17 +943,17 @@
     "/adddoctors": {
       "post": {
         "tags": [
-            "auth"
+          "auth"
         ],
-        "parameters":[
+        "parameters": [
           {
-            "name":"body",
-            "in":"body",
-            "description":"Add Doctor Credentials",
-            "required":true,
-            "type":"object",
-            "schema":{
-              "$ref":"#/definitions/adddoctors"
+            "name": "body",
+            "in": "body",
+            "description": "Add Doctor Credentials",
+            "required": true,
+            "type": "object",
+            "schema": {
+              "$ref": "#/definitions/adddoctors"
             }
           }
         ],
@@ -933,14 +962,14 @@
           "200": {
             "description": "Ok"
           },
-          "400":{
+          "400": {
             "description": "Bad request"
           },
-          "404":{
+          "404": {
             "description": "Page Not Found or File Not Found"
           },
-          "401":{
-              "description": "Unauthorized Client"
+          "401": {
+            "description": "Unauthorized Client"
           }
         }
       }
@@ -948,17 +977,17 @@
     "/updatedoctors": {
       "put": {
         "tags": [
-            "auth"
+          "auth"
         ],
-        "parameters":[
+        "parameters": [
           {
-            "name":"body",
-            "in":"body",
-            "description":"Add Doctor Credentials",
-            "required":true,
-            "type":"object",
-            "schema":{
-              "$ref":"#/definitions/updatedoctors"
+            "name": "body",
+            "in": "body",
+            "description": "Add Doctor Credentials",
+            "required": true,
+            "type": "object",
+            "schema": {
+              "$ref": "#/definitions/updatedoctors"
             }
           }
         ],
@@ -967,14 +996,14 @@
           "200": {
             "description": "Ok"
           },
-          "400":{
+          "400": {
             "description": "Bad request"
           },
-          "404":{
+          "404": {
             "description": "Page Not Found or File Not Found"
           },
-          "401":{
-              "description": "Unauthorized Client"
+          "401": {
+            "description": "Unauthorized Client"
           }
         }
       }
@@ -982,15 +1011,15 @@
     "/deletedoctors/{id}": {
       "delete": {
         "tags": [
-            "auth"
+          "auth"
         ],
-        "parameters":[
+        "parameters": [
           {
-            "name":"id",
-            "in":"path",
-            "description":"Delete Doctor",
-            "required":true,
-            "type":"string"
+            "name": "id",
+            "in": "path",
+            "description": "Delete Doctor",
+            "required": true,
+            "type": "string"
           }
         ],
         "summary": "Delete Doctors",
@@ -998,14 +1027,14 @@
           "200": {
             "description": "Ok"
           },
-          "400":{
+          "400": {
             "description": "Bad request"
           },
-          "404":{
+          "404": {
             "description": "Page Not Found or File Not Found"
           },
-          "401":{
-              "description": "Unauthorized Client"
+          "401": {
+            "description": "Unauthorized Client"
           }
         }
       }
@@ -1013,15 +1042,15 @@
     "/medical/getmedicaldetails": {
       "get": {
         "tags": [
-            "medical"
+          "medical"
         ],
-        "parameters":[
+        "parameters": [
           {
-            "name":"x-auth-token",
-            "in":"header",
-            "description":"token",
-            "required":true,
-            "type":"string"
+            "name": "x-auth-token",
+            "in": "header",
+            "description": "token",
+            "required": true,
+            "type": "string"
           }
         ],
         "summary": "Get Medical Details",
@@ -1029,14 +1058,14 @@
           "200": {
             "description": "Ok"
           },
-          "400":{
+          "400": {
             "description": "Bad request"
           },
-          "404":{
+          "404": {
             "description": "Page Not Found or File Not Found"
           },
-          "401":{
-              "description": "Unauthorized Client"
+          "401": {
+            "description": "Unauthorized Client"
           }
         }
       }
@@ -1044,337 +1073,337 @@
     "/medical/addmedicaldetails": {
       "post": {
         "tags": [
-            "medical"
+          "medical"
         ],
-        "parameters":[
+        "parameters": [
           {
-            "name":"cmhPrescription",
-            "in":"formData",
-            "description":"Add cmhPrescription Details",
-            "fieldname":"cmhPrescription",
-            "type":"file"
+            "name": "cmhPrescription",
+            "in": "formData",
+            "description": "Add cmhPrescription Details",
+            "fieldname": "cmhPrescription",
+            "type": "file"
           },
           {
-            "name":"cmhIR",
-            "in":"formData",
-            "description":"Add cmhIR Details",
-            "fieldname":"cmhIR",
-            "type":"file"
+            "name": "cmhIR",
+            "in": "formData",
+            "description": "Add cmhIR Details",
+            "fieldname": "cmhIR",
+            "type": "file"
           },
           {
-            "name":"pmhPrescription",
-            "in":"formData",
-            "description":"Add pmhPrescription Details",
-            "fieldname":"pmhPrescription",
-            "type":"file"
+            "name": "pmhPrescription",
+            "in": "formData",
+            "description": "Add pmhPrescription Details",
+            "fieldname": "pmhPrescription",
+            "type": "file"
           },
           {
-            "name":"pmhIR",
-            "in":"formData",
-            "description":"Add pmhIR Details",
-            "fieldname":"pmhIR",
-            "type":"file"
+            "name": "pmhIR",
+            "in": "formData",
+            "description": "Add pmhIR Details",
+            "fieldname": "pmhIR",
+            "type": "file"
           },
           {
-            "name":"psPrescription",
-            "in":"formData",
-            "description":"Add psPrescription Details",
-            "fieldname":"psPrescription",
-            "type":"file"
+            "name": "psPrescription",
+            "in": "formData",
+            "description": "Add psPrescription Details",
+            "fieldname": "psPrescription",
+            "type": "file"
           },
           {
-            "name":"psIR",
-            "in":"formData",
-            "description":"Add psIR Details",
-            "fieldname":"psIR",
-            "type":"file"
+            "name": "psIR",
+            "in": "formData",
+            "description": "Add psIR Details",
+            "fieldname": "psIR",
+            "type": "file"
           },
           {
-            "name":"ptPrescription",
-            "in":"formData",
-            "description":"Add ptPrescription Details",
-            "fieldname":"ptPrescription",
-            "type":"file"
+            "name": "ptPrescription",
+            "in": "formData",
+            "description": "Add ptPrescription Details",
+            "fieldname": "ptPrescription",
+            "type": "file"
           },
           {
-            "name":"ptIR",
-            "in":"formData",
-            "description":"Add ptIR Details",
-            "fieldname":"ptIR",
-            "type":"file"
+            "name": "ptIR",
+            "in": "formData",
+            "description": "Add ptIR Details",
+            "fieldname": "ptIR",
+            "type": "file"
           },
           {
-            "name":"recentIR",
-            "in":"formData",
-            "description":"Add recentIR Details",
-            "fieldname":"recentIR",
-            "type":"file"
+            "name": "recentIR",
+            "in": "formData",
+            "description": "Add recentIR Details",
+            "fieldname": "recentIR",
+            "type": "file"
           },
           {
-            "name":"currentSymptoms",
-            "in":"formData",
-            "description":"Add currentSymptoms Details",
-            "fieldname":"currentSymptoms",
-            "type":"string"
+            "name": "currentSymptoms",
+            "in": "formData",
+            "description": "Add currentSymptoms Details",
+            "fieldname": "currentSymptoms",
+            "type": "string"
           },
           {
-            "name":"cmhDiagnosis",
-            "in":"formData",
-            "description":"Add cmhDiagnosis Details",
-            "fieldname":"cmhDiagnosis",
-            "type":"string"
+            "name": "cmhDiagnosis",
+            "in": "formData",
+            "description": "Add cmhDiagnosis Details",
+            "fieldname": "cmhDiagnosis",
+            "type": "string"
           },
           {
-            "name":"cmhDiagnosisDate",
-            "in":"formData",
-            "description":"Add cmhDiagnosisDate Details",
-            "fieldname":"cmhDiagnosisDate",
-            "type":"date"
+            "name": "cmhDiagnosisDate",
+            "in": "formData",
+            "description": "Add cmhDiagnosisDate Details",
+            "fieldname": "cmhDiagnosisDate",
+            "type": "date"
           },
           {
-            "name":"cmhtreatment",
-            "in":"formData",
-            "description":"Add cmhtreatment Details",
-            "fieldname":"cmhtreatment",
-            "type":"string"
+            "name": "cmhtreatment",
+            "in": "formData",
+            "description": "Add cmhtreatment Details",
+            "fieldname": "cmhtreatment",
+            "type": "string"
           },
           {
-            "name":"dustAllergie",
-            "in":"formData",
-            "description":"Add dustAllergie Details",
-            "fieldname":"dustAllergie",
-            "type":"string"
+            "name": "dustAllergie",
+            "in": "formData",
+            "description": "Add dustAllergie Details",
+            "fieldname": "dustAllergie",
+            "type": "string"
           },
           {
-            "name":"pollenAllergie",
-            "in":"formData",
-            "description":"Add pollenAllergie Details",
-            "fieldname":"pollenAllergie",
-            "type":"string"
+            "name": "pollenAllergie",
+            "in": "formData",
+            "description": "Add pollenAllergie Details",
+            "fieldname": "pollenAllergie",
+            "type": "string"
           },
           {
-            "name":"medicationAllergie",
-            "in":"formData",
-            "description":"Add medicationAllergie Details",
-            "fieldname":"medicationAllergie",
-            "type":"string"
+            "name": "medicationAllergie",
+            "in": "formData",
+            "description": "Add medicationAllergie Details",
+            "fieldname": "medicationAllergie",
+            "type": "string"
           },
           {
-            "name":"allergieFood",
-            "in":"formData",
-            "description":"Add allergieFood Details",
-            "fieldname":"allergieFood",
-            "type":"string"
+            "name": "allergieFood",
+            "in": "formData",
+            "description": "Add allergieFood Details",
+            "fieldname": "allergieFood",
+            "type": "string"
           },
           {
-            "name":"otherAllergies",
-            "in":"formData",
-            "description":"Add otherAllergies Details",
-            "fieldname":"otherAllergies",
-            "type":"string"
+            "name": "otherAllergies",
+            "in": "formData",
+            "description": "Add otherAllergies Details",
+            "fieldname": "otherAllergies",
+            "type": "string"
           },
           {
-            "name":"pmhDiagnosis",
-            "in":"formData",
-            "description":"Add pmhDiagnosis Details",
-            "fieldname":"pmhDiagnosis",
-            "type":"string"
+            "name": "pmhDiagnosis",
+            "in": "formData",
+            "description": "Add pmhDiagnosis Details",
+            "fieldname": "pmhDiagnosis",
+            "type": "string"
           },
           {
-            "name":"pmhDiagnosisDate",
-            "in":"formData",
-            "description":"Add pmhDiagnosisDate Details",
-            "fieldname":"pmhDiagnosisDate",
-            "type":"date"
+            "name": "pmhDiagnosisDate",
+            "in": "formData",
+            "description": "Add pmhDiagnosisDate Details",
+            "fieldname": "pmhDiagnosisDate",
+            "type": "date"
           },
           {
-            "name":"pmhtreatment",
-            "in":"formData",
-            "description":"Add pmhtreatment Details",
-            "fieldname":"pmhtreatment",
-            "type":"string"
+            "name": "pmhtreatment",
+            "in": "formData",
+            "description": "Add pmhtreatment Details",
+            "fieldname": "pmhtreatment",
+            "type": "string"
           },
           {
-            "name":"pmhstatus",
-            "in":"formData",
-            "description":"Add pmhstatus Details",
-            "fieldname":"pmhstatus",
-            "type":"string"
+            "name": "pmhstatus",
+            "in": "formData",
+            "description": "Add pmhstatus Details",
+            "fieldname": "pmhstatus",
+            "type": "string"
           },
           {
-            "name":"psDiagnosis",
-            "in":"formData",
-            "description":"Add psDiagnosis Details",
-            "fieldname":"psDiagnosis",
-            "type":"string"
+            "name": "psDiagnosis",
+            "in": "formData",
+            "description": "Add psDiagnosis Details",
+            "fieldname": "psDiagnosis",
+            "type": "string"
           },
           {
-            "name":"psDiagnosisDate",
-            "in":"formData",
-            "description":"Add psDiagnosisDate Details",
-            "fieldname":"psDiagnosisDate",
-            "type":"date"
+            "name": "psDiagnosisDate",
+            "in": "formData",
+            "description": "Add psDiagnosisDate Details",
+            "fieldname": "psDiagnosisDate",
+            "type": "date"
           },
           {
-            "name":"psstatus",
-            "in":"formData",
-            "description":"Add psstatus Details",
-            "fieldname":"psstatus",
-            "type":"string"
+            "name": "psstatus",
+            "in": "formData",
+            "description": "Add psstatus Details",
+            "fieldname": "psstatus",
+            "type": "string"
           },
           {
-            "name":"ptDiagnosis",
-            "in":"formData",
-            "description":"Add ptDiagnosis Details",
-            "fieldname":"ptDiagnosis",
-            "type":"string"
+            "name": "ptDiagnosis",
+            "in": "formData",
+            "description": "Add ptDiagnosis Details",
+            "fieldname": "ptDiagnosis",
+            "type": "string"
           },
           {
-            "name":"ptDiagnosisDate",
-            "in":"formData",
-            "description":"Add ptDiagnosisDate Details",
-            "fieldname":"ptDiagnosisDate",
-            "type":"date"
+            "name": "ptDiagnosisDate",
+            "in": "formData",
+            "description": "Add ptDiagnosisDate Details",
+            "fieldname": "ptDiagnosisDate",
+            "type": "date"
           },
           {
-            "name":"pttreatment",
-            "in":"formData",
-            "description":"Add pttreatment Details",
-            "fieldname":"pttreatment",
-            "type":"string"
+            "name": "pttreatment",
+            "in": "formData",
+            "description": "Add pttreatment Details",
+            "fieldname": "pttreatment",
+            "type": "string"
           },
           {
-            "name":"ptstatus",
-            "in":"formData",
-            "description":"Add ptstatus Details",
-            "fieldname":"ptstatus",
-            "type":"string"
+            "name": "ptstatus",
+            "in": "formData",
+            "description": "Add ptstatus Details",
+            "fieldname": "ptstatus",
+            "type": "string"
           },
           {
-            "name":"fmhDiagnosis",
-            "in":"formData",
-            "description":"Add fmhDiagnosis Details",
-            "fieldname":"fmhDiagnosis",
-            "type":"string"
+            "name": "fmhDiagnosis",
+            "in": "formData",
+            "description": "Add fmhDiagnosis Details",
+            "fieldname": "fmhDiagnosis",
+            "type": "string"
           },
           {
-            "name":"fmhDiagnosisDate",
-            "in":"formData",
-            "description":"Add fmhDiagnosisDate Details",
-            "fieldname":"fmhDiagnosisDate",
-            "type":"date"
+            "name": "fmhDiagnosisDate",
+            "in": "formData",
+            "description": "Add fmhDiagnosisDate Details",
+            "fieldname": "fmhDiagnosisDate",
+            "type": "date"
           },
           {
-            "name":"fmhRel",
-            "in":"formData",
-            "description":"Add fmhRel Details",
-            "fieldname":"fmhRel",
-            "type":"string"
+            "name": "fmhRel",
+            "in": "formData",
+            "description": "Add fmhRel Details",
+            "fieldname": "fmhRel",
+            "type": "string"
           },
           {
-            "name":"fmhStatus",
-            "in":"formData",
-            "description":"Add fmhStatus Details",
-            "fieldname":"fmhStatus",
-            "type":"string"
+            "name": "fmhStatus",
+            "in": "formData",
+            "description": "Add fmhStatus Details",
+            "fieldname": "fmhStatus",
+            "type": "string"
           },
           {
-            "name":"menarche",
-            "in":"formData",
-            "description":"Add menarche Details",
-            "fieldname":"menarche",
-            "type":"string"
+            "name": "menarche",
+            "in": "formData",
+            "description": "Add menarche Details",
+            "fieldname": "menarche",
+            "type": "string"
           },
           {
-            "name":"lmp",
-            "in":"formData",
-            "description":"Add lmp Details",
-            "fieldname":"lmp",
-            "type":"date"
+            "name": "lmp",
+            "in": "formData",
+            "description": "Add lmp Details",
+            "fieldname": "lmp",
+            "type": "date"
           },
           {
-            "name":"Frequency",
-            "in":"formData",
-            "description":"Add Frequency Details",
-            "fieldname":"Frequency",
-            "type":"string"
+            "name": "Frequency",
+            "in": "formData",
+            "description": "Add Frequency Details",
+            "fieldname": "Frequency",
+            "type": "string"
           },
           {
-            "name":"duration",
-            "in":"formData",
-            "description":"Add duration Details",
-            "fieldname":"duration",
-            "type":"string"
+            "name": "duration",
+            "in": "formData",
+            "description": "Add duration Details",
+            "fieldname": "duration",
+            "type": "string"
           },
           {
-            "name":"flow",
-            "in":"formData",
-            "description":"Add flow Details",
-            "fieldname":"flow",
-            "type":"string"
+            "name": "flow",
+            "in": "formData",
+            "description": "Add flow Details",
+            "fieldname": "flow",
+            "type": "string"
           },
           {
-            "name":"cramps",
-            "in":"formData",
-            "description":"Add cramps Details",
-            "fieldname":"cramps",
-            "type":"string"
+            "name": "cramps",
+            "in": "formData",
+            "description": "Add cramps Details",
+            "fieldname": "cramps",
+            "type": "string"
           },
           {
-            "name":"menopause",
-            "in":"formData",
-            "description":"Add menopause Details",
-            "fieldname":"menopause",
-            "type":"date"
+            "name": "menopause",
+            "in": "formData",
+            "description": "Add menopause Details",
+            "fieldname": "menopause",
+            "type": "date"
           },
           {
-            "name":"ageofChild",
-            "in":"formData",
-            "description":"Add ageofChild Details",
-            "fieldname":"ageofChild",
-            "type":"string"
+            "name": "ageofChild",
+            "in": "formData",
+            "description": "Add ageofChild Details",
+            "fieldname": "ageofChild",
+            "type": "string"
           },
           {
-            "name":"sexofChild",
-            "in":"formData",
-            "description":"Add sexofChild Details",
-            "fieldname":"sexofChild",
-            "type":"string"
+            "name": "sexofChild",
+            "in": "formData",
+            "description": "Add sexofChild Details",
+            "fieldname": "sexofChild",
+            "type": "string"
           },
           {
-            "name":"modeOfDelivery",
-            "in":"formData",
-            "description":"Add modeOfDelivery Details",
-            "fieldname":"modeOfDelivery",
-            "type":"string"
+            "name": "modeOfDelivery",
+            "in": "formData",
+            "description": "Add modeOfDelivery Details",
+            "fieldname": "modeOfDelivery",
+            "type": "string"
           },
           {
-            "name":"complications",
-            "in":"formData",
-            "description":"Add complications Details",
-            "fieldname":"complications",
-            "type":"string"
+            "name": "complications",
+            "in": "formData",
+            "description": "Add complications Details",
+            "fieldname": "complications",
+            "type": "string"
           },
           {
-            "name":"abortionCount",
-            "in":"formData",
-            "description":"Add abortionCount Details",
-            "fieldname":"abortionCount",
-            "type":"string"
+            "name": "abortionCount",
+            "in": "formData",
+            "description": "Add abortionCount Details",
+            "fieldname": "abortionCount",
+            "type": "string"
           },
           {
-            "name":"longestDuration",
-            "in":"formData",
-            "description":"Add longestDuration Details",
-            "fieldname":"longestDuration",
-            "type":"string"
+            "name": "longestDuration",
+            "in": "formData",
+            "description": "Add longestDuration Details",
+            "fieldname": "longestDuration",
+            "type": "string"
           },
           {
-            "name":"modeOfTermination",
-            "in":"formData",
-            "description":"Add modeOfTermination Details",
-            "fieldname":"modeOfTermination",
-            "type":"string"
+            "name": "modeOfTermination",
+            "in": "formData",
+            "description": "Add modeOfTermination Details",
+            "fieldname": "modeOfTermination",
+            "type": "string"
           }
         ],
         "summary": "Add Medical Details",
@@ -1382,14 +1411,14 @@
           "200": {
             "description": "Ok"
           },
-          "400":{
+          "400": {
             "description": "Bad request"
           },
-          "404":{
+          "404": {
             "description": "Page Not Found or File Not Found"
           },
-          "401":{
-              "description": "Unauthorized Client"
+          "401": {
+            "description": "Unauthorized Client"
           }
         }
       }
@@ -1397,351 +1426,351 @@
     "/medical/updatemedicaldetails": {
       "put": {
         "tags": [
-            "medical"
+          "medical"
         ],
-        "parameters":[
+        "parameters": [
           {
-            "name":"x-auth-token",
-            "in":"header",
-            "description":"Add x-auth-token",
-            "fieldname":"x-auth-token",
-            "type":"string"
+            "name": "x-auth-token",
+            "in": "header",
+            "description": "Add x-auth-token",
+            "fieldname": "x-auth-token",
+            "type": "string"
           },
           {
-            "name":"cmhPrescription",
-            "in":"formData",
-            "description":"Add cmhPrescription Details",
-            "fieldname":"cmhPrescription",
-            "type":"file"
+            "name": "cmhPrescription",
+            "in": "formData",
+            "description": "Add cmhPrescription Details",
+            "fieldname": "cmhPrescription",
+            "type": "file"
           },
           {
-            "name":"cmhIR",
-            "in":"formData",
-            "description":"Add cmhIR Details",
-            "fieldname":"cmhIR",
-            "type":"file"
+            "name": "cmhIR",
+            "in": "formData",
+            "description": "Add cmhIR Details",
+            "fieldname": "cmhIR",
+            "type": "file"
           },
           {
-            "name":"pmhPrescription",
-            "in":"formData",
-            "description":"Add pmhPrescription Details",
-            "fieldname":"pmhPrescription",
-            "type":"file"
+            "name": "pmhPrescription",
+            "in": "formData",
+            "description": "Add pmhPrescription Details",
+            "fieldname": "pmhPrescription",
+            "type": "file"
           },
           {
-            "name":"pmhIR",
-            "in":"formData",
-            "description":"Add pmhIR Details",
-            "fieldname":"pmhIR",
-            "type":"file"
+            "name": "pmhIR",
+            "in": "formData",
+            "description": "Add pmhIR Details",
+            "fieldname": "pmhIR",
+            "type": "file"
           },
           {
-            "name":"psPrescription",
-            "in":"formData",
-            "description":"Add psPrescription Details",
-            "fieldname":"psPrescription",
-            "type":"file"
+            "name": "psPrescription",
+            "in": "formData",
+            "description": "Add psPrescription Details",
+            "fieldname": "psPrescription",
+            "type": "file"
           },
           {
-            "name":"psIR",
-            "in":"formData",
-            "description":"Add psIR Details",
-            "fieldname":"psIR",
-            "type":"file"
+            "name": "psIR",
+            "in": "formData",
+            "description": "Add psIR Details",
+            "fieldname": "psIR",
+            "type": "file"
           },
           {
-            "name":"ptPrescription",
-            "in":"formData",
-            "description":"Add ptPrescription Details",
-            "fieldname":"ptPrescription",
-            "type":"file"
+            "name": "ptPrescription",
+            "in": "formData",
+            "description": "Add ptPrescription Details",
+            "fieldname": "ptPrescription",
+            "type": "file"
           },
           {
-            "name":"ptIR",
-            "in":"formData",
-            "description":"Add ptIR Details",
-            "fieldname":"ptIR",
-            "type":"file"
+            "name": "ptIR",
+            "in": "formData",
+            "description": "Add ptIR Details",
+            "fieldname": "ptIR",
+            "type": "file"
           },
           {
-            "name":"recentIR",
-            "in":"formData",
-            "description":"Add recentIR Details",
-            "fieldname":"recentIR",
-            "type":"file"
+            "name": "recentIR",
+            "in": "formData",
+            "description": "Add recentIR Details",
+            "fieldname": "recentIR",
+            "type": "file"
           },
           {
-            "name":"currentSymptoms",
-            "in":"formData",
-            "description":"Add currentSymptoms Details",
-            "fieldname":"currentSymptoms",
-            "type":"string"
+            "name": "currentSymptoms",
+            "in": "formData",
+            "description": "Add currentSymptoms Details",
+            "fieldname": "currentSymptoms",
+            "type": "string"
           },
           {
-            "name":"cmhDiagnosis",
-            "in":"formData",
-            "description":"Add cmhDiagnosis Details",
-            "fieldname":"cmhDiagnosis",
-            "type":"string"
+            "name": "cmhDiagnosis",
+            "in": "formData",
+            "description": "Add cmhDiagnosis Details",
+            "fieldname": "cmhDiagnosis",
+            "type": "string"
           },
           {
-            "name":"cmhDiagnosisDate",
-            "in":"formData",
-            "description":"Add cmhDiagnosisDate Details",
-            "fieldname":"cmhDiagnosisDate",
-            "type":"date"
+            "name": "cmhDiagnosisDate",
+            "in": "formData",
+            "description": "Add cmhDiagnosisDate Details",
+            "fieldname": "cmhDiagnosisDate",
+            "type": "date"
           },
           {
-            "name":"cmhtreatment",
-            "in":"formData",
-            "description":"Add cmhtreatment Details",
-            "fieldname":"cmhtreatment",
-            "type":"string"
+            "name": "cmhtreatment",
+            "in": "formData",
+            "description": "Add cmhtreatment Details",
+            "fieldname": "cmhtreatment",
+            "type": "string"
           },
           {
-            "name":"dustAllergie",
-            "in":"formData",
-            "description":"Add dustAllergie Details",
-            "fieldname":"dustAllergie",
-            "type":"string"
+            "name": "dustAllergie",
+            "in": "formData",
+            "description": "Add dustAllergie Details",
+            "fieldname": "dustAllergie",
+            "type": "string"
           },
           {
-            "name":"pollenAllergie",
-            "in":"formData",
-            "description":"Add pollenAllergie Details",
-            "fieldname":"pollenAllergie",
-            "type":"string"
+            "name": "pollenAllergie",
+            "in": "formData",
+            "description": "Add pollenAllergie Details",
+            "fieldname": "pollenAllergie",
+            "type": "string"
           },
           {
-            "name":"medicationAllergie",
-            "in":"formData",
-            "description":"Add medicationAllergie Details",
-            "fieldname":"medicationAllergie",
-            "type":"string"
+            "name": "medicationAllergie",
+            "in": "formData",
+            "description": "Add medicationAllergie Details",
+            "fieldname": "medicationAllergie",
+            "type": "string"
           },
           {
-            "name":"allergieFood",
-            "in":"formData",
-            "description":"Add allergieFood Details",
-            "fieldname":"allergieFood",
-            "type":"string"
+            "name": "allergieFood",
+            "in": "formData",
+            "description": "Add allergieFood Details",
+            "fieldname": "allergieFood",
+            "type": "string"
           },
           {
-            "name":"otherAllergies",
-            "in":"formData",
-            "description":"Add otherAllergies Details",
-            "fieldname":"otherAllergies",
-            "type":"string"
+            "name": "otherAllergies",
+            "in": "formData",
+            "description": "Add otherAllergies Details",
+            "fieldname": "otherAllergies",
+            "type": "string"
           },
           {
-            "name":"pmhDiagnosis",
-            "in":"formData",
-            "description":"Add pmhDiagnosis Details",
-            "fieldname":"pmhDiagnosis",
-            "type":"string"
+            "name": "pmhDiagnosis",
+            "in": "formData",
+            "description": "Add pmhDiagnosis Details",
+            "fieldname": "pmhDiagnosis",
+            "type": "string"
           },
           {
-            "name":"pmhDiagnosisDate",
-            "in":"formData",
-            "description":"Add pmhDiagnosisDate Details",
-            "fieldname":"pmhDiagnosisDate",
-            "type":"date"
+            "name": "pmhDiagnosisDate",
+            "in": "formData",
+            "description": "Add pmhDiagnosisDate Details",
+            "fieldname": "pmhDiagnosisDate",
+            "type": "date"
           },
           {
-            "name":"pmhtreatment",
-            "in":"formData",
-            "description":"Add pmhtreatment Details",
-            "fieldname":"pmhtreatment",
-            "type":"string"
+            "name": "pmhtreatment",
+            "in": "formData",
+            "description": "Add pmhtreatment Details",
+            "fieldname": "pmhtreatment",
+            "type": "string"
           },
           {
-            "name":"pmhstatus",
-            "in":"formData",
-            "description":"Add pmhstatus Details",
-            "fieldname":"pmhstatus",
-            "type":"string"
+            "name": "pmhstatus",
+            "in": "formData",
+            "description": "Add pmhstatus Details",
+            "fieldname": "pmhstatus",
+            "type": "string"
           },
           {
-            "name":"psDiagnosis",
-            "in":"formData",
-            "description":"Add psDiagnosis Details",
-            "fieldname":"psDiagnosis",
-            "type":"string"
+            "name": "psDiagnosis",
+            "in": "formData",
+            "description": "Add psDiagnosis Details",
+            "fieldname": "psDiagnosis",
+            "type": "string"
           },
           {
-            "name":"psDiagnosisDate",
-            "in":"formData",
-            "description":"Add psDiagnosisDate Details",
-            "fieldname":"psDiagnosisDate",
-            "type":"date"
+            "name": "psDiagnosisDate",
+            "in": "formData",
+            "description": "Add psDiagnosisDate Details",
+            "fieldname": "psDiagnosisDate",
+            "type": "date"
           },
           {
-            "name":"psstatus",
-            "in":"formData",
-            "description":"Add psstatus Details",
-            "fieldname":"psstatus",
-            "type":"string"
+            "name": "psstatus",
+            "in": "formData",
+            "description": "Add psstatus Details",
+            "fieldname": "psstatus",
+            "type": "string"
           },
           {
-            "name":"ptDiagnosis",
-            "in":"formData",
-            "description":"Add ptDiagnosis Details",
-            "fieldname":"ptDiagnosis",
-            "type":"string"
+            "name": "ptDiagnosis",
+            "in": "formData",
+            "description": "Add ptDiagnosis Details",
+            "fieldname": "ptDiagnosis",
+            "type": "string"
           },
           {
-            "name":"ptDiagnosisDate",
-            "in":"formData",
-            "description":"Add ptDiagnosisDate Details",
-            "fieldname":"ptDiagnosisDate",
-            "type":"date"
+            "name": "ptDiagnosisDate",
+            "in": "formData",
+            "description": "Add ptDiagnosisDate Details",
+            "fieldname": "ptDiagnosisDate",
+            "type": "date"
           },
           {
-            "name":"pttreatment",
-            "in":"formData",
-            "description":"Add pttreatment Details",
-            "fieldname":"pttreatment",
-            "type":"string"
+            "name": "pttreatment",
+            "in": "formData",
+            "description": "Add pttreatment Details",
+            "fieldname": "pttreatment",
+            "type": "string"
           },
           {
-            "name":"ptstatus",
-            "in":"formData",
-            "description":"Add ptstatus Details",
-            "fieldname":"ptstatus",
-            "type":"string"
+            "name": "ptstatus",
+            "in": "formData",
+            "description": "Add ptstatus Details",
+            "fieldname": "ptstatus",
+            "type": "string"
           },
           {
-            "name":"fmhDiagnosis",
-            "in":"formData",
-            "description":"Add fmhDiagnosis Details",
-            "fieldname":"fmhDiagnosis",
-            "type":"string"
+            "name": "fmhDiagnosis",
+            "in": "formData",
+            "description": "Add fmhDiagnosis Details",
+            "fieldname": "fmhDiagnosis",
+            "type": "string"
           },
           {
-            "name":"fmhDiagnosisDate",
-            "in":"formData",
-            "description":"Add fmhDiagnosisDate Details",
-            "fieldname":"fmhDiagnosisDate",
-            "type":"date"
+            "name": "fmhDiagnosisDate",
+            "in": "formData",
+            "description": "Add fmhDiagnosisDate Details",
+            "fieldname": "fmhDiagnosisDate",
+            "type": "date"
           },
           {
-            "name":"fmhRel",
-            "in":"formData",
-            "description":"Add fmhRel Details",
-            "fieldname":"fmhRel",
-            "type":"string"
+            "name": "fmhRel",
+            "in": "formData",
+            "description": "Add fmhRel Details",
+            "fieldname": "fmhRel",
+            "type": "string"
           },
           {
-            "name":"fmhStatus",
-            "in":"formData",
-            "description":"Add fmhStatus Details",
-            "fieldname":"fmhStatus",
-            "type":"string"
+            "name": "fmhStatus",
+            "in": "formData",
+            "description": "Add fmhStatus Details",
+            "fieldname": "fmhStatus",
+            "type": "string"
           },
           {
-            "name":"menarche",
-            "in":"formData",
-            "description":"Add menarche Details",
-            "fieldname":"menarche",
-            "type":"string"
+            "name": "menarche",
+            "in": "formData",
+            "description": "Add menarche Details",
+            "fieldname": "menarche",
+            "type": "string"
           },
           {
-            "name":"lmp",
-            "in":"formData",
-            "description":"Add lmp Details",
-            "fieldname":"lmp",
-            "type":"date"
+            "name": "lmp",
+            "in": "formData",
+            "description": "Add lmp Details",
+            "fieldname": "lmp",
+            "type": "date"
           },
           {
-            "name":"Frequency",
-            "in":"formData",
-            "description":"Add Frequency Details",
-            "fieldname":"Frequency",
-            "type":"string"
+            "name": "Frequency",
+            "in": "formData",
+            "description": "Add Frequency Details",
+            "fieldname": "Frequency",
+            "type": "string"
           },
           {
-            "name":"duration",
-            "in":"formData",
-            "description":"Add duration Details",
-            "fieldname":"duration",
-            "type":"string"
+            "name": "duration",
+            "in": "formData",
+            "description": "Add duration Details",
+            "fieldname": "duration",
+            "type": "string"
           },
           {
-            "name":"flow",
-            "in":"formData",
-            "description":"Add flow Details",
-            "fieldname":"flow",
-            "type":"string"
+            "name": "flow",
+            "in": "formData",
+            "description": "Add flow Details",
+            "fieldname": "flow",
+            "type": "string"
           },
           {
-            "name":"cramps",
-            "in":"formData",
-            "description":"Add cramps Details",
-            "fieldname":"cramps",
-            "type":"string"
+            "name": "cramps",
+            "in": "formData",
+            "description": "Add cramps Details",
+            "fieldname": "cramps",
+            "type": "string"
           },
           {
-            "name":"menopause",
-            "in":"formData",
-            "description":"Add menopause Details",
-            "fieldname":"menopause",
-            "type":"date"
+            "name": "menopause",
+            "in": "formData",
+            "description": "Add menopause Details",
+            "fieldname": "menopause",
+            "type": "date"
           },
           {
-            "name":"ageofChild",
-            "in":"formData",
-            "description":"Add ageofChild Details",
-            "fieldname":"ageofChild",
-            "type":"string"
+            "name": "ageofChild",
+            "in": "formData",
+            "description": "Add ageofChild Details",
+            "fieldname": "ageofChild",
+            "type": "string"
           },
           {
-            "name":"sexofChild",
-            "in":"formData",
-            "description":"Add sexofChild Details",
-            "fieldname":"sexofChild",
-            "type":"string"
+            "name": "sexofChild",
+            "in": "formData",
+            "description": "Add sexofChild Details",
+            "fieldname": "sexofChild",
+            "type": "string"
           },
           {
-            "name":"modeOfDelivery",
-            "in":"formData",
-            "description":"Add modeOfDelivery Details",
-            "fieldname":"modeOfDelivery",
-            "type":"string"
+            "name": "modeOfDelivery",
+            "in": "formData",
+            "description": "Add modeOfDelivery Details",
+            "fieldname": "modeOfDelivery",
+            "type": "string"
           },
           {
-            "name":"complications",
-            "in":"formData",
-            "description":"Add complications Details",
-            "fieldname":"complications",
-            "type":"string"
+            "name": "complications",
+            "in": "formData",
+            "description": "Add complications Details",
+            "fieldname": "complications",
+            "type": "string"
           },
           {
-            "name":"abortionCount",
-            "in":"formData",
-            "description":"Add abortionCount Details",
-            "fieldname":"abortionCount",
-            "type":"string"
+            "name": "abortionCount",
+            "in": "formData",
+            "description": "Add abortionCount Details",
+            "fieldname": "abortionCount",
+            "type": "string"
           },
           {
-            "name":"longestDuration",
-            "in":"formData",
-            "description":"Add longestDuration Details",
-            "fieldname":"longestDuration",
-            "type":"string"
+            "name": "longestDuration",
+            "in": "formData",
+            "description": "Add longestDuration Details",
+            "fieldname": "longestDuration",
+            "type": "string"
           },
           {
-            "name":"modeOfTermination",
-            "in":"formData",
-            "description":"Add modeOfTermination Details",
-            "fieldname":"modeOfTermination",
-            "type":"string"
+            "name": "modeOfTermination",
+            "in": "formData",
+            "description": "Add modeOfTermination Details",
+            "fieldname": "modeOfTermination",
+            "type": "string"
           },
           {
-            "name":"userId",
-            "in":"formData",
-            "description":"Enter userId To Be Updated",
-            "fieldname":"userId",
-            "type":"string"
+            "name": "userId",
+            "in": "formData",
+            "description": "Enter userId To Be Updated",
+            "fieldname": "userId",
+            "type": "string"
           }
         ],
         "summary": "Add Medical Details",
@@ -1749,14 +1778,14 @@
           "200": {
             "description": "Ok"
           },
-          "400":{
+          "400": {
             "description": "Bad request"
           },
-          "404":{
+          "404": {
             "description": "Page Not Found or File Not Found"
           },
-          "401":{
-              "description": "Unauthorized Client"
+          "401": {
+            "description": "Unauthorized Client"
           }
         }
       }
@@ -1764,15 +1793,15 @@
     "/personalinfo": {
       "get": {
         "tags": [
-            "demographics"
+          "demographics"
         ],
-        "parameters":[
+        "parameters": [
           {
-            "name":"x-auth-token",
-            "in":"header",
-            "description":"Authentication to get personal Information",
-            "required":true,
-            "type":"string"
+            "name": "x-auth-token",
+            "in": "header",
+            "description": "Authentication to get personal Information",
+            "required": true,
+            "type": "string"
           }
         ],
         "summary": "Get the personal Information about the Client",
@@ -1780,14 +1809,14 @@
           "200": {
             "description": "Ok"
           },
-          "400":{
+          "400": {
             "description": "Bad request"
           },
-          "404":{
+          "404": {
             "description": "Page Not Found or File Not Found"
           },
-          "401":{
-              "description": "Unauthorized Client"
+          "401": {
+            "description": "Unauthorized Client"
           }
         }
       }
@@ -1795,22 +1824,22 @@
     "/add-personalinfo": {
       "post": {
         "tags": [
-            "demographics"
+          "demographics"
         ],
-        "parameters":[
+        "parameters": [
           {
-            "name":"x-auth-token",
-            "in":"header",
-            "description":"Authentication to add Personal Information",
-            "required":true,
-            "type":"string"
+            "name": "x-auth-token",
+            "in": "header",
+            "description": "Authentication to add Personal Information",
+            "required": true,
+            "type": "string"
           },
           {
-            "name":"body",
-            "in":"body",
-            "type":"object",
-            "schema":{
-              "$ref":"#/definitions/personalinfo"
+            "name": "body",
+            "in": "body",
+            "type": "object",
+            "schema": {
+              "$ref": "#/definitions/personalinfo"
             }
           }
         ],
@@ -1819,14 +1848,14 @@
           "200": {
             "description": "Ok"
           },
-          "400":{
+          "400": {
             "description": "Bad request"
           },
-          "404":{
+          "404": {
             "description": "Page Not Found or File Not Found"
           },
-          "401":{
-              "description": "Unauthorized Client"
+          "401": {
+            "description": "Unauthorized Client"
           }
         }
       }
@@ -1834,29 +1863,29 @@
     "/put-personalinfo/{id}": {
       "put": {
         "tags": [
-            "demographics"
+          "demographics"
         ],
-        "parameters":[
+        "parameters": [
           {
-            "name":"x-auth-token",
-            "in":"header",
-            "description":"Authentication to Update Personal Information",
-            "required":true,
-            "type":"string"
+            "name": "x-auth-token",
+            "in": "header",
+            "description": "Authentication to Update Personal Information",
+            "required": true,
+            "type": "string"
           },
           {
-            "name":"id",
-            "in":"path",
-            "description":"Add Id to Find the User",
-            "required":true,
-            "type":"string"
+            "name": "id",
+            "in": "path",
+            "description": "Add Id to Find the User",
+            "required": true,
+            "type": "string"
           },
           {
-            "name":"body",
-            "in":"body",
-            "type":"object",
-            "schema":{
-              "$ref":"#/definitions/personalinfo"
+            "name": "body",
+            "in": "body",
+            "type": "object",
+            "schema": {
+              "$ref": "#/definitions/personalinfo"
             }
           }
         ],
@@ -1865,14 +1894,14 @@
           "200": {
             "description": "Ok"
           },
-          "400":{
+          "400": {
             "description": "Bad request"
           },
-          "404":{
+          "404": {
             "description": "Page Not Found or File Not Found"
           },
-          "401":{
-              "description": "Unauthorized Client"
+          "401": {
+            "description": "Unauthorized Client"
           }
         }
       }
@@ -1880,15 +1909,15 @@
     "/goals": {
       "get": {
         "tags": [
-            "demographics"
+          "demographics"
         ],
-        "parameters":[
+        "parameters": [
           {
-            "name":"x-auth-token",
-            "in":"header",
-            "description":"Authentication to get goals",
-            "required":true,
-            "type":"string"
+            "name": "x-auth-token",
+            "in": "header",
+            "description": "Authentication to get goals",
+            "required": true,
+            "type": "string"
           }
         ],
         "summary": "Get the goals in system",
@@ -1896,14 +1925,14 @@
           "200": {
             "description": "Ok"
           },
-          "400":{
+          "400": {
             "description": "Bad request"
           },
-          "404":{
+          "404": {
             "description": "Page Not Found or File Not Found"
           },
-          "401":{
-              "description": "Unauthorized Client"
+          "401": {
+            "description": "Unauthorized Client"
           }
         }
       }
@@ -1911,22 +1940,22 @@
     "/add-goals": {
       "post": {
         "tags": [
-            "demographics"
+          "demographics"
         ],
-        "parameters":[
+        "parameters": [
           {
-            "name":"x-auth-token",
-            "in":"header",
-            "description":"Authentication to add goals",
-            "required":true,
-            "type":"string"
+            "name": "x-auth-token",
+            "in": "header",
+            "description": "Authentication to add goals",
+            "required": true,
+            "type": "string"
           },
           {
-            "name":"body",
-            "in":"body",
-            "type":"object",
-            "schema":{
-              "$ref":"#/definitions/goals"
+            "name": "body",
+            "in": "body",
+            "type": "object",
+            "schema": {
+              "$ref": "#/definitions/goals"
             }
           }
         ],
@@ -1935,14 +1964,14 @@
           "200": {
             "description": "Ok"
           },
-          "400":{
+          "400": {
             "description": "Bad request"
           },
-          "404":{
+          "404": {
             "description": "Page Not Found or File Not Found"
           },
-          "401":{
-              "description": "Unauthorized Client"
+          "401": {
+            "description": "Unauthorized Client"
           }
         }
       }
@@ -1950,29 +1979,29 @@
     "/put-goals/{id}": {
       "put": {
         "tags": [
-            "demographics"
+          "demographics"
         ],
-        "parameters":[
+        "parameters": [
           {
-            "name":"x-auth-token",
-            "in":"header",
-            "description":"Authentication to Update goals",
-            "required":true,
-            "type":"string"
+            "name": "x-auth-token",
+            "in": "header",
+            "description": "Authentication to Update goals",
+            "required": true,
+            "type": "string"
           },
           {
-            "name":"id",
-            "in":"path",
-            "description":"Add Id to Find the User",
-            "required":true,
-            "type":"string"
+            "name": "id",
+            "in": "path",
+            "description": "Add Id to Find the User",
+            "required": true,
+            "type": "string"
           },
           {
-            "name":"body",
-            "in":"body",
-            "type":"object",
-            "schema":{
-              "$ref":"#/definitions/goals"
+            "name": "body",
+            "in": "body",
+            "type": "object",
+            "schema": {
+              "$ref": "#/definitions/goals"
             }
           }
         ],
@@ -1981,31 +2010,30 @@
           "200": {
             "description": "Ok"
           },
-          "400":{
+          "400": {
             "description": "Bad request"
           },
-          "404":{
+          "404": {
             "description": "Page Not Found or File Not Found"
           },
-          "401":{
-              "description": "Unauthorized Client"
+          "401": {
+            "description": "Unauthorized Client"
           }
         }
       }
     },
-
     "/images": {
       "get": {
         "tags": [
-            "body profile"
+          "body profile"
         ],
-        "parameters":[
+        "parameters": [
           {
-            "name":"x-auth-token",
-            "in":"header",
-            "description":"Authentication to get goals",
-            "required":true,
-            "type":"string"
+            "name": "x-auth-token",
+            "in": "header",
+            "description": "Authentication to get goals",
+            "required": true,
+            "type": "string"
           }
         ],
         "summary": "Get the goals in system",
@@ -2013,14 +2041,14 @@
           "200": {
             "description": "Ok"
           },
-          "400":{
+          "400": {
             "description": "Bad request"
           },
-          "404":{
+          "404": {
             "description": "Page Not Found or File Not Found"
           },
-          "401":{
-              "description": "Unauthorized Client"
+          "401": {
+            "description": "Unauthorized Client"
           }
         }
       }
@@ -2028,39 +2056,39 @@
     "/add-images": {
       "post": {
         "tags": [
-            "body profile"
+          "body profile"
         ],
-        "parameters":[
+        "parameters": [
           {
-            "name":"x-auth-token",
-            "in":"header",
-            "description":"Authentication to add images",
-            "required":true,
-            "type":"string"
+            "name": "x-auth-token",
+            "in": "header",
+            "description": "Authentication to add images",
+            "required": true,
+            "type": "string"
           },
           {
-            "name":"front",
-            "in":"formData",
-            "type":"file",
-            "fieldname":"front",
-            "content-Type": "multipart/form-data" ,
-            "description":"File to upload front images"
+            "name": "front",
+            "in": "formData",
+            "type": "file",
+            "fieldname": "front",
+            "content-Type": "multipart/form-data",
+            "description": "File to upload front images"
           },
           {
-            "name":"back",
-            "in":"formData",
-            "type":"file",
-            "fieldname":"back",
-            "content-Type": "multipart/form-data" ,
-            "description":"File to upload back images"
+            "name": "back",
+            "in": "formData",
+            "type": "file",
+            "fieldname": "back",
+            "content-Type": "multipart/form-data",
+            "description": "File to upload back images"
           },
           {
-            "name":"side",
-            "in":"formData",
-            "type":"file",
-            "fieldname":"side",
-            "content-Type": "multipart/form-data" ,
-            "description":"File to upload side images"
+            "name": "side",
+            "in": "formData",
+            "type": "file",
+            "fieldname": "side",
+            "content-Type": "multipart/form-data",
+            "description": "File to upload side images"
           }
         ],
         "summary": "Add the images about the Client",
@@ -2068,14 +2096,14 @@
           "200": {
             "description": "Ok"
           },
-          "400":{
+          "400": {
             "description": "Bad request"
           },
-          "404":{
+          "404": {
             "description": "Page Not Found or File Not Found"
           },
-          "401":{
-              "description": "Unauthorized Client"
+          "401": {
+            "description": "Unauthorized Client"
           }
         }
       }
@@ -2083,46 +2111,46 @@
     "/put-images/{id}": {
       "put": {
         "tags": [
-            "body profile"
+          "body profile"
         ],
-        "parameters":[
+        "parameters": [
           {
-            "name":"x-auth-token",
-            "in":"header",
-            "description":"Authentication to Update images",
-            "required":true,
-            "type":"string"
+            "name": "x-auth-token",
+            "in": "header",
+            "description": "Authentication to Update images",
+            "required": true,
+            "type": "string"
           },
           {
-            "name":"id",
-            "in":"path",
-            "description":"Add Id to Find the User",
-            "required":true,
-            "type":"string"
+            "name": "id",
+            "in": "path",
+            "description": "Add Id to Find the User",
+            "required": true,
+            "type": "string"
           },
           {
-            "name":"front",
-            "in":"formData",
-            "type":"file",
-            "fieldname":"front",
-            "content-Type": "multipart/form-data" ,
-            "description":"File to upload front images"
+            "name": "front",
+            "in": "formData",
+            "type": "file",
+            "fieldname": "front",
+            "content-Type": "multipart/form-data",
+            "description": "File to upload front images"
           },
           {
-            "name":"back",
-            "in":"formData",
-            "type":"file",
-            "fieldname":"back",
-            "content-Type": "multipart/form-data" ,
-            "description":"File to upload back images"
+            "name": "back",
+            "in": "formData",
+            "type": "file",
+            "fieldname": "back",
+            "content-Type": "multipart/form-data",
+            "description": "File to upload back images"
           },
           {
-            "name":"side",
-            "in":"formData",
-            "type":"file",
-            "fieldname":"side",
-            "content-Type": "multipart/form-data" ,
-            "description":"File to upload side images"
+            "name": "side",
+            "in": "formData",
+            "type": "file",
+            "fieldname": "side",
+            "content-Type": "multipart/form-data",
+            "description": "File to upload side images"
           }
         ],
         "summary": "update the images about the Client",
@@ -2130,31 +2158,30 @@
           "200": {
             "description": "Ok"
           },
-          "400":{
+          "400": {
             "description": "Bad request"
           },
-          "404":{
+          "404": {
             "description": "Page Not Found or File Not Found"
           },
-          "401":{
-              "description": "Unauthorized Client"
+          "401": {
+            "description": "Unauthorized Client"
           }
         }
       }
     },
-
     "/bodyfitness": {
       "get": {
         "tags": [
-            "body profile"
+          "body profile"
         ],
-        "parameters":[
+        "parameters": [
           {
-            "name":"x-auth-token",
-            "in":"header",
-            "description":"Authentication to get Body Measurements",
-            "required":true,
-            "type":"string"
+            "name": "x-auth-token",
+            "in": "header",
+            "description": "Authentication to get Body Measurements",
+            "required": true,
+            "type": "string"
           }
         ],
         "summary": "Get the Body Measurements about the Client",
@@ -2162,14 +2189,14 @@
           "200": {
             "description": "Ok"
           },
-          "400":{
+          "400": {
             "description": "Bad request"
           },
-          "404":{
+          "404": {
             "description": "Page Not Found or File Not Found"
           },
-          "401":{
-              "description": "Unauthorized Client"
+          "401": {
+            "description": "Unauthorized Client"
           }
         }
       }
@@ -2177,22 +2204,22 @@
     "/add-bodyfitness": {
       "post": {
         "tags": [
-            "body profile"
+          "body profile"
         ],
-        "parameters":[
+        "parameters": [
           {
-            "name":"x-auth-token",
-            "in":"header",
-            "description":"Authentication to Add Body Measurements",
-            "required":true,
-            "type":"string"
+            "name": "x-auth-token",
+            "in": "header",
+            "description": "Authentication to Add Body Measurements",
+            "required": true,
+            "type": "string"
           },
           {
-            "name":"body",
-            "in":"body",
-            "type":"object",
-            "schema":{
-              "$ref":"#/definitions/bodyfitness"
+            "name": "body",
+            "in": "body",
+            "type": "object",
+            "schema": {
+              "$ref": "#/definitions/bodyfitness"
             }
           }
         ],
@@ -2201,14 +2228,14 @@
           "200": {
             "description": "Ok"
           },
-          "400":{
+          "400": {
             "description": "Bad request"
           },
-          "404":{
+          "404": {
             "description": "Page Not Found or File Not Found"
           },
-          "401":{
-              "description": "Unauthorized Client"
+          "401": {
+            "description": "Unauthorized Client"
           }
         }
       }
@@ -2216,29 +2243,29 @@
     "/put-bodyfitness/{id}": {
       "put": {
         "tags": [
-            "body profile"
+          "body profile"
         ],
-        "parameters":[
+        "parameters": [
           {
-            "name":"x-auth-token",
-            "in":"header",
-            "description":"Authentication to Update Body Measurements",
-            "required":true,
-            "type":"string"
+            "name": "x-auth-token",
+            "in": "header",
+            "description": "Authentication to Update Body Measurements",
+            "required": true,
+            "type": "string"
           },
           {
-            "name":"id",
-            "in":"path",
-            "description":"Add Id to Find the User",
-            "required":true,
-            "type":"string"
+            "name": "id",
+            "in": "path",
+            "description": "Add Id to Find the User",
+            "required": true,
+            "type": "string"
           },
           {
-            "name":"body",
-            "in":"body",
-            "type":"object",
-            "schema":{
-              "$ref":"#/definitions/bodyfitness"
+            "name": "body",
+            "in": "body",
+            "type": "object",
+            "schema": {
+              "$ref": "#/definitions/bodyfitness"
             }
           }
         ],
@@ -2247,19 +2274,171 @@
           "200": {
             "description": "Ok"
           },
-          "400":{
+          "400": {
             "description": "Bad request"
           },
-          "404":{
+          "404": {
             "description": "Page Not Found or File Not Found"
           },
-          "401":{
-              "description": "Unauthorized Client"
+          "401": {
+            "description": "Unauthorized Client"
+          }
+        }
+      }
+    },
+    "/getrecipies": {
+      "get": {
+        "tags": [
+          "recipe"
+        ],
+        "parameters": [
+          {
+            "name": "x-auth-token",
+            "in": "header",
+            "description": "Authentication to get Body Measurements",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "summary": "Get all recipies",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Page Not Found or File Not Found"
+          },
+          "401": {
+            "description": "Unauthorized Client"
+          }
+        }
+      }
+    },
+    "/post-exercise": {
+      "post": {
+        "tags": [
+          "Exercise"
+        ],
+        "parameters": [
+          {
+            "name": "x-auth-token",
+            "in": "header",
+            "description": "Authentication to get Body Measurements",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "type": "object",
+            "schema": {
+              "$ref": "#/definitions/exerciseList"
+            }
+          }
+        ],
+        "summary": "Post the Exercise List",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Page Not Found or File Not Found"
+          },
+          "401": {
+            "description": "Unauthorized Client"
+          }
+        }
+      }
+    },
+    "/put-exercise/{id}": {
+      "put": {
+        "tags": [
+          "Exercise"
+        ],
+        "parameters": [
+          {
+            "name": "x-auth-token",
+            "in": "header",
+            "description": "Authentication to get Body Measurements",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Add Id to Find the User",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "type": "object",
+            "schema": {
+              "$ref": "#/definitions/exerciseList"
+            }
+          }
+        ],
+        "summary": "Post the Exercise List",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Page Not Found or File Not Found"
+          },
+          "401": {
+            "description": "Unauthorized Client"
+          }
+        }
+      }
+    },
+    "/deleterecipe/{id}": {
+      "delete": {
+        "tags": [
+          "recipe"
+        ],
+        "parameters": [
+          {
+            "name": "x-auth-token",
+            "in": "header",
+            "description": "Authentication to get Body Measurements",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Add Id to Find the User",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "summary": "Delete the Exercise List",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Page Not Found or File Not Found"
+          },
+          "401": {
+            "description": "Unauthorized Client"
           }
         }
       }
     }
   }
 }
-
-

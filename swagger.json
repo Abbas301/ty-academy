@@ -2286,10 +2286,10 @@
         }
       }
     },
-    "/getrecipies": {
+    "/get-exercise": {
       "get": {
         "tags": [
-          "recipe"
+          "Exercise"
         ],
         "parameters": [
           {
@@ -2300,7 +2300,7 @@
             "type": "string"
           }
         ],
-        "summary": "Get all recipies",
+        "summary": "Get the Exercise Lists",
         "responses": {
           "200": {
             "description": "Ok"
@@ -2402,10 +2402,10 @@
         }
       }
     },
-    "/deleterecipe/{id}": {
+    "/delete-exercise/{id}": {
       "delete": {
         "tags": [
-          "recipe"
+          "Exercise"
         ],
         "parameters": [
           {

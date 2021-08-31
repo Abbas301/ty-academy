@@ -27,14 +27,7 @@ const storage = multer.diskStorage({
 }); 
 
 async function addMedicalDetails(req,res,next) {
-    const images = req.files; 
-    // let user;
-    // if(req.body.currentSymptoms){
-    //     user.currentSymptoms = req.body.currentSymptoms
-    // }
-    // if(req.body.currentMedicalHistory){
-
-    // }
+    const images = req.files;
     try {
         let user = new MedicalHistory({
             currentSymptoms:req.body.currentSymptoms,

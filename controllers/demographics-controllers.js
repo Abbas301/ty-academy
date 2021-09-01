@@ -23,13 +23,14 @@ async function userDetails(req, res) {
     userId: req.user._id,
   });
   if (userExist) {
-    return res.status(400).send({error: true,errorMessage: "Personel information already added with this userIdv just update the personalInfo"});
+    return res.status(400).send({error: true,errorMessage: "Personal information already added with this userIdv just update the personalInfo"});
   }
  
   let user = new Personal(personalInfo);
   await user.save();
   res.send({
     error: false,
+    message:"pesonal details added successfully",
     user: user,
   });
 }
@@ -37,12 +38,15 @@ async function userDetails(req, res) {
 async function updateDetails(req, res, next) {
 
   let person = await Register.findOne({_id:req.user._id})
-  console.log(person);
 
       let user = await Personal.findByIdAndUpdate(req.params.id,req.body,
     { new: true }
   );
-  res.send(user);
+  res.send({
+    error: false,
+    message:"pesonal details updated successfully",
+    user: user,
+  });
 }
 
 async function goals(req, res) {

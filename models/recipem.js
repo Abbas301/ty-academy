@@ -2,55 +2,40 @@ const mongoose = require('mongoose');
 
 const Recipe = mongoose.model('Recipe', new mongoose.Schema({
          recipeType:{
-             type:String,
-             required:true
+             type:String
          },
          description:{
-             type:String,
-             required:true
+             type:String
          },
          ingrediants:{
-             type:Array,
-             required:true
+             type:Array
          },
          carbohydrates:{
-             type:String,
-             required:true
+             type:String
          },
          fat:{
-             type:String,
-             required:true
+             type:String
          },
          calories:{
-             type:String,
-             required:true
+             type:String
          },
          recipeName:{
-             type:String,
-             required:true
+             type:String
          },
          cookingProcess:{
-             type:String,
-             required:true
+             type:String
          },
          provideYouTubeLink:{
-             type:String,
-             required:true
+             type:String
          },
          protein:{
-            type:String,
-            required:true
+            type:String
         },
         fiber:{
-            type:String,
-            required:true
+            type:String
         },
         recipeImage:{
-            type:Array,
-            required:true
-        },
-        userId:{
-            type:String
+            type:Array
         }
         })
         )

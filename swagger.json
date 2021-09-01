@@ -2582,7 +2582,7 @@
             "example":"http://localhost:2000public\\recipies\\png-clipart-plate-of-cooked-food-upma-south-indian-cuisine-dosa-street-food-coriander-food-recipe.png-1629985475784.png"
           }
         ],
-        "summary": "Post the Exercise List",
+        "summary": "Post the recipe",
         "responses": {
           "200": {
             "description": "Ok"
@@ -2716,7 +2716,7 @@
             "example":"http://localhost:2000public\\recipies\\png-clipart-plate-of-cooked-food-upma-south-indian-cuisine-dosa-street-food-coriander-food-recipe.png-1629985475784.png"
           }
         ],
-        "summary": "Post the Exercise List",
+        "summary": "Put recipe",
         "responses": {
           "200": {
             "description": "Ok"
@@ -2754,7 +2754,7 @@
             "type": "string"
           }
         ],
-        "summary": "Delete the Exercise List",
+        "summary": "Delete recipe",
         "responses": {
           "200": {
             "description": "Ok"
@@ -2767,6 +2767,39 @@
           },
           "401": {
             "description": "Unauthorized Client"
+          }
+        }
+      }
+    },
+    "/postexcelrecipe": {
+      "post": {
+        "tags": [
+            "recipe"
+        ],
+        "parameters":[
+          {
+            "name":"uploadFile",
+            "in":"formData",
+            "allowMultiple":true,
+            "type":"file",
+            "description":"Choose required excel file",
+            "fieldname":"uploadFile",
+            "example":"upload your recipe data from excel file"
+          }
+        ],
+        "summary": "Post the recipe from excel file",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          },
+          "401":{
+              "description": "Unauthorized Client"
           }
         }
       }

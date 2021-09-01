@@ -1,8 +1,7 @@
-const { ExerciseList }= require("../models/exerciseListm");
+const { Recipe } = require('../models/recipem');
 const multer = require('multer');
 var xlstojson = require("xls-to-json-lc");
 var xlsxtojson = require("xlsx-to-json-lc");
-
 
 var excelStorage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -22,22 +21,11 @@ var upload = multer({
         }
         callback(null, true);
     }
-}).single('uploadfile');
+}).single('uploadFile');
 
-const postExerciseList = async (req, res, next) => {
-    
-    const excersize = req.body;
-    excersize.userId=req.user._id
+const postExcelRecipe = async (req, res, next) => {
     try {
-        const details = await ExerciseList.findOne({userId:req.user._id})
-        if(details){
-            return res.status(400).send({error:true , errorMessage:"exerciseList is already added with unique userID. Just update it!!!!"})
-        }
-        if(req.body.exerciseType){
-            const inserted = await ExerciseList.insertMany(excersize);
-        res.json({error: false, message: 'exerciseList inserted successfully', inserted});
-        } else {
-            var exceltojson;
+        var exceltojson;
         upload(req,res,function(err){
         if(err){
              res.json({error_code:1,err_desc:err});
@@ -66,7 +54,7 @@ const postExerciseList = async (req, res, next) => {
                 if(err) {
                     return res.json({error_code:1,err_desc:err, data: null});
                 } 
-                const savedResult = await ExerciseList.insertMany(dataFromExcel);
+                const savedResult = await Recipe.insertMany(dataFromExcel);
                 res.json({error_code:0,err_desc:null, data: savedResult});
                 console.log(savedResult);
             });
@@ -74,51 +62,9 @@ const postExerciseList = async (req, res, next) => {
             next(e)
         }
     })
-        }
-        
     } catch (err) {
         next(err);
     }
 };
 
-
-const putExerciseList = async (req, res, next) => {
-    const {exerciseType, exerciseName, youTubeURL} = req.body;
-    try {
-        const inserted = await ExerciseList.findByIdAndUpdate(req.params.id,{
-                exerciseType,
-                exerciseName,
-                youTubeURL
-            },{new:true});
-
-        res.json({error: false, message: 'exerciseList is  updated successfully', inserted});
-    } catch (err) {
-        next(err);
-    }
-};
-
-const getExerciseList = async (req, res, next) => {
-    try {
-        let exercise = await ExerciseList.find();
-        res.json({error: false, message: "exerciseList is uploaded sucessfully", response: exercise});
-    } catch (err) {
-        next(err);
-    }
-}
-
-const deleteExerciseList = async (req, res, next) => {
-    try {
-        let exercise = await ExerciseList.findByIdAndDelete(req.params.id);
-        res.json({error: false, message: "exerciseList is deleted sucessfully", response: exercise});
-    } catch (err) {
-        next(err);
-    }
-}
-
-
-module.exports = {
-    postExerciseList,
-    getExerciseList,
-    putExerciseList,
-    deleteExerciseList
-}
+exports.postExcelRecipe = postExcelRecipe;

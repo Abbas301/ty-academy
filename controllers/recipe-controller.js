@@ -1,4 +1,4 @@
-const { Recipe} = require('../models/recipem');
+const { Recipe } = require('../models/recipem');
 const _ = require('lodash');
 const multer = require("multer");
 
@@ -22,26 +22,24 @@ const storage = multer.diskStorage({
         const ext = MIME_TYPE[file.mimetype];
         cb(null, name + "-" + Date.now() + "." + ext);
     }
-}); 
+}) ;
+
 async function postRecipe(req, res , next) {
-    const imagePaths = req.files;
-   let recipeImagePaths=[];
-   const url = req.protocol + "://" + req.get("host");
-    for(let image of imagePaths){
-        recipeImagePaths.push(url+image.path)
-    }
     try {
-        const details = await Recipe.findOne({userId:req.user._id})
-        
-        if(details){
-            return res.status(400).send({error:true , errorMessage:"Recipe is already added with unique userID. Just update it!!!!"})
-        }
-        const recipies =req.body;
-        recipies.userId = req.user._id
-        recipies.recipeImage = recipeImagePaths
-       const recipe = await Recipe.insertMany(recipies);
-      res.json({error:false,message:"Recipe added successfully",response:recipe});
+            const imagePaths = req.files;
+            let recipeImagePaths=[];
+            const url = req.protocol + "://" + req.get("host");
+            for(let image of imagePaths){
+            recipeImagePaths.push(url+image.path)
+            }
+            const recipies =req.body;
+            recipies.userId = req.user._id
+            recipies.recipeImage = recipeImagePaths;
+            const recipe = await Recipe.insertMany(recipies);
+            res.json({error:false,message:"Recipe added successfully",response:recipe});    
+
     } catch (err) {
+        console.log("error!!!!! raised here");
         next(err)
         console.log(err);
     }
@@ -78,6 +76,6 @@ async function getRecipies(req, res ,next) {
 
 exports.postRecipe = postRecipe;
 exports.putRecipe = putRecipe;
-exports.storage = storage;
+exports.storage =storage;
 exports.deleteRecipe = deleteRecipe;
 exports.getRecipies = getRecipies;

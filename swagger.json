@@ -2440,6 +2440,39 @@
         }
       }
     },
+    "/post-excel-exercise": {
+      "post": {
+        "tags": [
+            "Exercise"
+        ],
+        "parameters":[
+          {
+            "name":"uploadFile",
+            "in":"formData",
+            "allowMultiple":true,
+            "type":"file",
+            "description":"Choose required excel file",
+            "fieldname":"uploadFile",
+            "example":"upload your exercise data from excel file"
+          }
+        ],
+        "summary": "Post the exercise from excel file",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400":{
+            "description": "Bad request"
+          },
+          "404":{
+            "description": "Page Not Found or File Not Found"
+          },
+          "401":{
+              "description": "Unauthorized Client"
+          }
+        }
+      }
+    },
     "/getrecipies": {
       "get": {
         "tags": [

@@ -9,6 +9,9 @@ router.put('/put-exercise/:id',auth,exerciseListController.putExerciseList);
 router.get('/get-exercise',auth,exerciseListController.getExerciseList);
 router.delete('/delete-exercise/:id',auth,exerciseListController.deleteExerciseList);
 
+router.post('/post-excel-exercise',exerciseListController.postExcelExercise);
+
+
 
 
 

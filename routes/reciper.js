@@ -3,8 +3,7 @@ const router = express.Router();
 const multer = require('multer');
 const auth = require('../middlewares/auth');
 
-const {postRecipe,putRecipe,getRecipies,deleteRecipe,storage} = require('../controllers/recipe-controller')
-const {postExcelRecipe} = require('../controllers/recipeExcel-controller')
+const {postRecipe,putRecipe,getRecipies,deleteRecipe,storage,postExcelRecipe} = require('../controllers/recipe-controller')
 
 router.get('/getrecipies',auth,getRecipies);
 router.post('/postrecipe', auth ,multer({storage:storage}).array('recipeImage'),postRecipe);

@@ -15,6 +15,22 @@
     {
       "name": "medical",
       "description": "Medical-History routes"
+    },
+    {
+      "name": "demographics",
+      "description": "Demographics routes"
+    },
+    {
+      "name": "body profile",
+      "description": "body profile routes"
+    },
+    {
+      "name": "Exercise",
+      "description": "Exercise routes"
+    },
+    {
+      "name": "recipe",
+      "description": "recipe routes"
     }
   ],
   "schemes": [

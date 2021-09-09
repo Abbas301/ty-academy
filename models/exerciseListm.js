@@ -1,28 +1,19 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 
-const exerciseListSchema = new Schema({
-
+const ExerciseList = mongoose.model('ExerciseList', new mongoose.Schema({
     exerciseType: {
-        type: String,
-        required: true
+        type: String
     },
     exerciseName: {
-        type: String,
-        required: true
+        type: String
     },
     youTubeURL: {
-        type: String,
-        required: true
-    },
-    uploadfile:{
-        type:String
-    },
-    userId: {
         type: String
+    },
+    uploadfile : {
+        type:String
     }
+}));
 
+module.exports.ExerciseList = ExerciseList;
 
-});
-
-module.exports = mongoose.model('exerciseList', exerciseListSchema)

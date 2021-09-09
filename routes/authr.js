@@ -8,7 +8,6 @@ const {resetOtpVerify,verifyOtp} = require('../controllers/otp-verify-controller
 const {resetPassword} = require('../controllers/reset-password-controller');
 const {addDoctors,updateDoctors} =require('../controllers/add-doc-controller');
 
-
 router.get('/users',auth, async (req, res) => { 
     const user = await Register.find();
     res.send(user);

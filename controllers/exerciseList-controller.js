@@ -1,70 +1,102 @@
-const exerciseLists = require("../models/exerciseListm");
-const fs = require('fs');
-const excelToJson = require('convert-excel-to-json');
+const { ExerciseList }= require("../models/exerciseListm");
 const multer = require('multer');
+var xlstojson = require("xls-to-json-lc");
+var xlsxtojson = require("xlsx-to-json-lc");
 
 
-
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        let error = "Invalid exceltype";
-        cb(error,'/public/excelFile')
+var excelStorage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'public/uploads')
     },
-    filename: (req, file, cb) => {
-        cb(null, file.fieldname + "-" + Date.now() + "-" + file.originalname)
+    filename: function (req, file, cb) {
+        var datetimestamp = Date.now();
+        cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length -1])
     }
 });
 
-let excelData2MongoDB = (req, res)=>{importExcelData2MongoDB( '/public/excelFile'+ req.file.filename)}
+var upload = multer({
+    storage: excelStorage,
+    fileFilter : function(req, file, callback) {
+        if (['xls', 'xlsx'].indexOf(file.originalname.split('.')[file.originalname.split('.').length-1]) === -1) {
+            return callback(new Error('Wrong extension type'));
+        }
+        callback(null, true);
+    }
+}).single('uploadFile');
 
-async function importExcelData2MongoDB(filePath){
-    try{
-        // -> Read Excel File to Json Data
-    const excelData = await excelToJson({
-        sourceFile: filePath,
-        sheets:[{
-            // Excel Sheet Name
-            name: 'ExerciseList',
-            // Header Row -> be skipped and will not be present at our result object.
-            header:{
-               rows: 1
-            },
-            // Mapping columns to keys
-            columnToKey: {
-                A: 'exerciseType',
-                B: 'exerciseName',
-                C: 'youTubeURL',
-            }
-        }]
-    });
-    // -> Log Excel Data to Console
-    console.log(excelData);
-    const exerciseList = await exerciseLists.insertMany(excelData);
-res.json({error: false, message: 'exerciseList inserted successfully from Excel', exerciseList});
-fs.unlinkSync(filePath);
-    }catch(err){
-        console.log(err,"error occured");
-    } 
+async function matchYoutubeUrl(url) {
+    var p = /^(?:https?:\/\/)?(?:m\.|www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+    if(url.match(p)){
+        url.match(p)[1];
+        return true;
+    }
+    return false;
 }
+const postExcelExercise = async (req, res, next) => {
+    try {
+        var exceltojson;
+        upload(req,res,function(err){
+        if(err){
+             res.json({error_code:1,err_desc:err});
+             return;
+        }
+        if(!req.file){
+            res.json({error_code:1,err_desc:"No file passed"});
+            return;
+        }
+        if(req.file.originalname.split('.')[req.file.originalname.split('.').length-1] === 'xlsx'){
+            exceltojson = xlsxtojson;
+        } else {
+            exceltojson = xlstojson;
+        }
+        try {
+            exceltojson({
+                input: req.file.path,
+                output: null,
+                lowerCaseHeaders:false
+            },async function(err,result){
+                let dataFromExcel=[];
+                let verifiedYoutubeUrl=[];
+                for(let excelData of result){
+                    dataFromExcel.push(excelData);
+                    verifiedYoutubeUrlBoolean =await matchYoutubeUrl(excelData.youTubeURL);
+                    verifiedYoutubeUrl.push(verifiedYoutubeUrlBoolean)
+               }
+               let checker = a => a.every(v => v === true);
+               let validateUtl = checker(verifiedYoutubeUrl);
+                if(err) {
+                    return res.json({error_code:1,err_desc:err, data: null});
+                } 
+                if(validateUtl === true){
+                    const savedResult = await ExerciseList.insertMany(dataFromExcel);
+                    res.json({error_code:0,err_desc:null, data: savedResult});
+                }else {
+                    res.json({error:true,message:"Invalid Youtube Url"})
+                } 
+            });
+        } catch (e){
+            next(e)
+        }
+    })
+    } catch (err) {
+        next(err);
+    }
+};
 
 
 const postExerciseList = async (req, res, next) => {
-    let userid = req.user._id
-    const {exerciseType, exerciseName, youTubeURL} = req.body;
+    
+    const excersize = req.body;
+    excersize.userId=req.user._id
+   let verifiedYoutubeUrl =await matchYoutubeUrl(excersize.youTubeURL)
     try {
-        const details = await exerciseLists.findOne({userId:req.user._id})
-        if(details){
-            return res.status(400).send({error:true , errorMessage:"exerciseList is already added with unique userID. Just update it!!!!"})
+        if(verifiedYoutubeUrl === true){
+            const inserted = await ExerciseList.insertMany(excersize);
+            res.json({error: false, message: 'exerciseList inserted successfully', inserted});
+        }else {
+            res.json({error:true,message:"Invalid Youtube Url"})
         }
-        const inserted = await exerciseLists.insertMany({
-                exerciseType,
-                exerciseName,
-                youTubeURL,
-                userId:userid
-
-            });
-
-        res.json({error: false, message: 'exerciseList inserted successfully', inserted});
+       
     } catch (err) {
         next(err);
     }
@@ -72,15 +104,15 @@ const postExerciseList = async (req, res, next) => {
 
 
 const putExerciseList = async (req, res, next) => {
-    const {exerciseType, exerciseName, youTubeURL} = req.body;
+    const exercise = req.body;
+   let verifiedYoutubeUrl =await matchYoutubeUrl(excersize.youTubeURL)
     try {
-        const inserted = await exerciseLists.findByIdAndUpdate(req.params.id,{
-                exerciseType,
-                exerciseName,
-                youTubeURL
-            },{new:true});
-
+        if(verifiedYoutubeUrl === true){
+        const inserted = await ExerciseList.findByIdAndUpdate(req.params.id,exercise,{new:true});
         res.json({error: false, message: 'exerciseList is  updated successfully', inserted});
+        }else{
+            res.json({error:true,message:"Invalid Youtube Url"})
+        }
     } catch (err) {
         next(err);
     }
@@ -88,7 +120,7 @@ const putExerciseList = async (req, res, next) => {
 
 const getExerciseList = async (req, res, next) => {
     try {
-        let exercise = await exerciseLists.find();
+        let exercise = await ExerciseList.find();
         res.json({error: false, message: "exerciseList is uploaded sucessfully", response: exercise});
     } catch (err) {
         next(err);
@@ -97,7 +129,7 @@ const getExerciseList = async (req, res, next) => {
 
 const deleteExerciseList = async (req, res, next) => {
     try {
-        let exercise = await exerciseLists.findByIdAndDelete(req.params.id);
+        let exercise = await ExerciseList.findByIdAndDelete(req.params.id);
         res.json({error: false, message: "exerciseList is deleted sucessfully", response: exercise});
     } catch (err) {
         next(err);
@@ -110,6 +142,5 @@ module.exports = {
     getExerciseList,
     putExerciseList,
     deleteExerciseList,
-    excelData2MongoDB,
-    storage
+    postExcelExercise
 }

@@ -6,6 +6,8 @@ const path = require('path');
 const mongoose  = require('mongoose');
 const batchlist = require('./routes/batchlistr');
 const Candidate = require('./routes/candidater');
+const users = require('./routes/userr');
+const calendar = require('./routes/calendarr');
 
 
 // env config
@@ -30,8 +32,10 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
 //routes
+app.use('/api', users);
 app.use('/api', batchlist);
 app.use('/api', Candidate);
+app.use('/api', calendar);
 
 
 app.get('/', (req, res) => {

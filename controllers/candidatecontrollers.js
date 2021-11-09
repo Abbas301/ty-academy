@@ -9,7 +9,7 @@ async function addCandidate(req, res) {
         }
         const details = await Candidates.findOne({email:req.body.email})
         if(details){
-            return res.status(400).send({error:true , errorMessage:"Goals are already existed. Just update it!!!!"})
+            return res.status(400).send({error:true , errorMessage:"candidate are already existed. Just update it!!!!"})
         }
         const data =req.body;
         candidate = new Candidates(data)

@@ -5,8 +5,8 @@ const { addCandidate ,updateCandidate } = require('../controllers/candidatecontr
 const { Candidates } = require('../models/candidatesm');
 
 router.get('/candidates', async (req, res) => {
-    const goals = await Candidates.find();
-    res.send(goals);
+    const candidates = await Candidates.find();
+    res.send(candidates);
 });
 
 router.post('/add-candidates', addCandidate);

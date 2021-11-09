@@ -2,46 +2,40 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const port = 2000;
-const auth = require('./routes/authr')
-const lifestyle = require('./routes/lifestyler')
-const exercise = require('./routes/exerciseListr')
-const demographic = require('./routes/demographicsr')
-const medical = require('./routes/medical-route')
-const recipe = require('./routes/reciper')
 const path = require('path');
+const mongoose  = require('mongoose');
+const batchlist = require('./routes/batchlistr');
+const Candidate = require('./routes/candidater');
 
-//swagger configurations
-const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('./swagger.json');
-app.use('/api-docs',swaggerUi.serve,swaggerUi.setup(swaggerDocument));
 
 // env config
-require('dotenv').config();
+// require('dotenv').config();
 
 // importing database
-require('./config/db');
+// require('./config/db');
+
+mongoose.connect('mongodb://localhost:27017/academy',{
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+.then(()=>{console.log("MongoDB Connected Successfully")})
+.catch(err => {console.log(err)}) 
+
 
 // cors middleware
 app.use(cors());
 
 // bodyparser middleware
 app.use(express.urlencoded({extended: false}));
-app.use(express.static(path.join('public/images')));
-app.use(express.static(path.join('public/recipies')));
-app.use(express.static(path.join('public/excelFile')));
 app.use(express.json());
 
 //routes
-app.use('/api', auth)
-app.use('/api', lifestyle)
-app.use('/api', demographic);
-app.use('/api', recipe);
-app.use('/api/medical', medical)
+app.use('/api', batchlist);
+app.use('/api', Candidate);
 
-app.use('/api',exercise)
 
 app.get('/', (req, res) => {
-    res.json({requestHeaders: req.headers, responseHeaders: res.getHeaders(), app: 'Medifit', path: '/'});
+    res.json({requestHeaders: req.headers, responseHeaders: res.getHeaders(), app: 'ty-academy', path: '/'});
 });
 
 app.use((err, req, res, next) => {
@@ -52,58 +46,3 @@ app.listen(port, () => {
     console.log(`App is running on port ${port}`);
 });
 
-//Another method to integrate Swagger using swagger-jsdoc
-
-// const swaggerJSDoc = require('swagger-jsdoc'); 
-// const swaggerUi = require('swagger-ui-express');
-
-// const option = {
-//     definition :{
-//         openapi :'3.0.0',
-//         info :{
-//             title:'MediFit App',
-//             version:'1.0.0'
-//         } ,
-//         servers:[
-//             {
-//              url:'http://localhost:2000/api'
-//             }
-//         ]
-//     },
-//     apis:['./app.js']
-//    }
-// const swaggerSpec = swaggerJSDoc(option)
-// app.use('/api-docs',swaggerUi.serve,swaggerUi.setup(swaggerSpec));
-/**
- * @swagger
- * definitions:
- *  login:
- *   type: object
- *   properties:
- *    email:
- *     type: string
- *     description: user Email ID
- *     example: 'harshagl@gmail.com'
- *    password:
- *     type: string
- *     description: password of the user
- *     example: '1234567890'
- */
-
-/**
- * @swagger
- *  /login:
- *    post:
- *     summary: user register
- *     description: register
- *     requestBody:
- *      content:
- *       application/json:
- *        schema:
- *         $ref: '#/definitions/login'
- *     responses: 
- *      200:
- *       description : user registration successful
- *      500:
- *       description : user registration fail
- */
